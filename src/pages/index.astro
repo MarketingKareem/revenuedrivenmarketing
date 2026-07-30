@@ -1,0 +1,98 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+
+const posts = (await getCollection('blog', ({ data }) => !data.draft))
+	.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
+	.slice(0, 3);
+---
+
+<BaseLayout
+	title="PPC Management Focused on Revenue, Not Just Clicks"
+	description="Google Ads and Meta Ads management built around attribution and revenue, not vanity metrics. Audits, teardowns, and hands-on account management."
+>
+	<section class="hero">
+		<h1>Your ads are spending money. Are they actually driving revenue?</h1>
+		<p class="lede">
+			<!-- TODO(Kareem): swap in your real years of experience / niche once finalized -->
+			I run Google Ads and Meta Ads accounts with revenue attribution as the starting point, not
+			an afterthought &mdash; so budget goes where it actually converts, not just where it gets
+			clicks.
+		</p>
+		<div class="cta-row">
+			<a class="btn primary" href="/contact/">Get a free account audit</a>
+			<a class="btn" href="/about/">How I work</a>
+		</div>
+	</section>
+
+	<section class="posts">
+		<h2>Latest from the blog</h2>
+		{
+			posts.length === 0 ? (
+				<p class="muted">First posts coming soon.</p>
+			) : (
+				<ul>
+					{posts.map((post) => (
+						<li>
+							<a href={`/blog/${post.id}/`}>{post.data.title}</a>
+							<p>{post.data.description}</p>
+						</li>
+					))}
+				</ul>
+			)
+		}
+		<a href="/blog/">See all posts &rarr;</a>
+	</section>
+</BaseLayout>
+
+<style>
+	.hero {
+		padding: 2rem 0 3rem;
+	}
+	.hero h1 {
+		font-size: 2.25rem;
+		max-width: 20ch;
+	}
+	.lede {
+		font-size: 1.15rem;
+		color: #333;
+		max-width: 60ch;
+	}
+	.cta-row {
+		display: flex;
+		gap: 1rem;
+		margin-top: 1.5rem;
+		flex-wrap: wrap;
+	}
+	.btn {
+		display: inline-block;
+		padding: 0.75rem 1.5rem;
+		border-radius: 6px;
+		text-decoration: none;
+		font-weight: 600;
+		border: 1px solid #0a5c36;
+		color: #0a5c36;
+	}
+	.btn.primary {
+		background: #0a5c36;
+		color: #fff;
+	}
+	.posts {
+		border-top: 1px solid #e5e5e5;
+		padding-top: 2rem;
+	}
+	.posts ul {
+		list-style: none;
+		padding: 0;
+	}
+	.posts li {
+		margin-bottom: 1.25rem;
+	}
+	.posts li a {
+		font-weight: 600;
+		font-size: 1.05rem;
+	}
+	.muted {
+		color: #777;
+	}
+</style>

@@ -1,0 +1,37 @@
+---
+const year = new Date().getFullYear();
+---
+
+<footer class="site-footer">
+	<div class="wrap">
+		<p>&copy; {year} Revenue Driven Marketing. All rights reserved.</p>
+		<a href="/contact/">Work with me</a>
+	</div>
+</footer>
+
+<style>
+	.site-footer {
+		border-top: 1px solid #e5e5e5;
+		margin-top: 4rem;
+	}
+	.wrap {
+		max-width: 960px;
+		margin: 0 auto;
+		padding: 1.5rem;
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: 1rem;
+		flex-wrap: wrap;
+		font-size: 0.9rem;
+		color: #555;
+	}
+	.wrap a {
+		color: #0a5c36;
+		font-weight: 600;
+		text-decoration: none;
+	}
+	.wrap a:hover {
+		text-decoration: underline;
+	}
+</style>

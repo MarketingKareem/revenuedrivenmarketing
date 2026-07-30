@@ -1,0 +1,78 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+
+const posts = (await getCollection('blog', ({ data }) => !data.draft)).sort(
+	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+);
+
+const pillarLabels: Record<string, string> = {
+	'google-ads': 'Google Ads',
+	'meta-ads': 'Meta Ads',
+	attribution: 'Attribution',
+	'case-study': 'Case Study',
+	general: 'General',
+};
+---
+
+<BaseLayout
+	title="Blog"
+	description="PPC audits, teardowns, and revenue-attribution breakdowns for Google Ads and Meta Ads."
+>
+	<h1>Blog</h1>
+
+	{
+		posts.length === 0 ? (
+			<p>First posts coming soon.</p>
+		) : (
+			<ul class="post-list">
+				{posts.map((post) => (
+					<li>
+						<span class="pillar">{pillarLabels[post.data.pillar]}</span>
+						<a href={`/blog/${post.id}/`}>{post.data.title}</a>
+						<p>{post.data.description}</p>
+						<time datetime={post.data.pubDate.toISOString()}>
+							{post.data.pubDate.toLocaleDateString('en-US', {
+								year: 'numeric',
+								month: 'long',
+								day: 'numeric',
+							})}
+						</time>
+					</li>
+				))}
+			</ul>
+		)
+	}
+
+	<style>
+		.post-list {
+			list-style: none;
+			padding: 0;
+		}
+		.post-list li {
+			border-bottom: 1px solid #e5e5e5;
+			padding: 1.5rem 0;
+		}
+		.post-list a {
+			font-size: 1.2rem;
+			font-weight: 600;
+			text-decoration: none;
+		}
+		.post-list a:hover {
+			text-decoration: underline;
+		}
+		.pillar {
+			display: block;
+			font-size: 0.75rem;
+			text-transform: uppercase;
+			letter-spacing: 0.05em;
+			color: #0a5c36;
+			font-weight: 700;
+			margin-bottom: 0.35rem;
+		}
+		time {
+			font-size: 0.85rem;
+			color: #777;
+		}
+	</style>
+</BaseLayout>
