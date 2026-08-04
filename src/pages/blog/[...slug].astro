@@ -35,12 +35,20 @@ const { Content } = await render(post);
 		article {
 			max-width: 68ch;
 		}
+		article h1 {
+			font-size: 2rem;
+			color: var(--color-text);
+		}
 		.meta {
-			color: #777;
+			color: var(--color-text-muted);
 			font-size: 0.9rem;
 		}
 		article :global(h2) {
 			margin-top: 2rem;
+			font-size: 1.4rem;
+		}
+		article :global(p) {
+			color: var(--color-text);
 		}
 	</style>
 </BaseLayout>

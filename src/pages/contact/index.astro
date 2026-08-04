@@ -68,10 +68,13 @@ const FORM_ENDPOINT = 'https://formspree.io/f/REPLACE_ME';
 	</script>
 
 	<style>
+		h1 {
+			font-size: 2rem;
+		}
 		form {
 			display: flex;
 			flex-direction: column;
-			gap: 1rem;
+			gap: 1.1rem;
 			max-width: 480px;
 			margin-top: 2rem;
 		}
@@ -81,24 +84,35 @@ const FORM_ENDPOINT = 'https://formspree.io/f/REPLACE_ME';
 			gap: 0.4rem;
 			font-weight: 600;
 			font-size: 0.95rem;
+			color: var(--color-text);
 		}
 		input,
 		textarea {
 			font: inherit;
-			padding: 0.6rem;
-			border: 1px solid #ccc;
-			border-radius: 4px;
+			padding: 0.65rem 0.75rem;
+			border: 1px solid var(--color-border);
+			border-radius: var(--radius);
+			color: var(--color-text);
+		}
+		input:focus,
+		textarea:focus {
+			outline: 2px solid var(--color-accent);
+			outline-offset: 1px;
 		}
 		button {
 			align-self: flex-start;
-			background: #0a5c36;
+			background: var(--color-accent);
 			color: #fff;
 			border: none;
 			padding: 0.75rem 1.75rem;
-			border-radius: 6px;
+			border-radius: var(--radius);
 			font-weight: 600;
 			font-size: 1rem;
 			cursor: pointer;
+			transition: background 0.15s ease;
+		}
+		button:hover {
+			background: var(--color-accent-hover);
 		}
 		#form-error {
 			color: #b00020;

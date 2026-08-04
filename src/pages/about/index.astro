@@ -24,7 +24,24 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 		<li>Straight answers about what's working, what isn't, and why &mdash; including when the honest answer is "spend less here."</li>
 	</ul>
 
-	<p>
+	<p class="cta-line">
 		<a href="/contact/">Want a second opinion on your account?</a>
 	</p>
 </BaseLayout>
+
+<style>
+	h1 {
+		font-size: 2rem;
+	}
+	ul {
+		padding-left: 1.25rem;
+	}
+	li {
+		margin-bottom: 0.5rem;
+		color: var(--color-text-muted);
+	}
+	.cta-line a {
+		font-weight: 600;
+		text-decoration: none;
+	}
+</style>
