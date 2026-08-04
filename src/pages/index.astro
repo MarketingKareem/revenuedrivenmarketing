@@ -5,29 +5,103 @@ import { getCollection } from 'astro:content';
 const posts = (await getCollection('blog', ({ data }) => !data.draft))
 	.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
 	.slice(0, 3);
+
+const services = [
+	{
+		name: 'Google Ads Management',
+		desc: 'Search, Shopping, and Performance Max — structured around what actually converts, not platform-recommended defaults.',
+	},
+	{
+		name: 'Meta Ads Management',
+		desc: "Facebook and Instagram campaigns built for revenue, with creative and audience testing that doesn't stall out after week two.",
+	},
+	{
+		name: 'Revenue Attribution & Analytics',
+		desc: 'GA4, conversion tracking, and multi-touch attribution set up correctly — so the numbers you optimize against are actually true.',
+	},
+	{
+		name: 'Account Audits & Teardowns',
+		desc: "A full diagnostic of what's broken, what's wasted, and what's working before you spend another dollar.",
+	},
+];
+
+const process = [
+	{
+		step: '01',
+		name: 'Audit',
+		desc: "We tear the account down to see what's actually happening — tracking accuracy, wasted spend, structural issues the platform dashboard won't show you.",
+	},
+	{
+		step: '02',
+		name: 'Rebuild',
+		desc: "Fix what's broken first — tracking, structure, targeting — before touching a single bid.",
+	},
+	{
+		step: '03',
+		name: 'Scale',
+		desc: "Once the foundation is honest, we scale what's proven to convert and cut what isn't.",
+	},
+];
 ---
 
 <BaseLayout
-	title="PPC Management Focused on Revenue, Not Just Clicks"
-	description="Google Ads and Meta Ads management built around attribution and revenue, not vanity metrics. Audits, teardowns, and hands-on account management."
+	title="Performance Marketing Agency Focused on Revenue, Not Just Clicks"
+	description="Revenue Driven Marketing is a performance marketing agency running Google Ads and Meta Ads on attribution first, vanity metrics never. Audits, teardowns, and hands-on management."
 >
 	<section class="hero">
-		<p class="eyebrow">Google Ads &middot; Meta Ads &middot; Revenue Attribution</p>
-		<h1>Your ads are spending money. Are they actually driving revenue?</h1>
-		<p class="lede">
-			<!-- TODO(Kareem): swap in your real years of experience / niche once finalized -->
-			I run Google Ads and Meta Ads accounts with revenue attribution as the starting point, not
-			an afterthought &mdash; so budget goes where it actually converts, not just where it gets
-			clicks.
-		</p>
-		<div class="cta-row">
-			<a class="btn primary" href="/contact/">Get a free account audit</a>
-			<a class="btn" href="/about/">How I work</a>
+		<div class="hero-inner">
+			<p class="eyebrow">Performance Marketing Agency</p>
+			<h1>Your Ads Are Spending Money. Are They Actually Driving Revenue?</h1>
+			<p class="lede">
+				Revenue Driven Marketing runs Google Ads and Meta Ads accounts with attribution as the
+				starting point, not an afterthought &mdash; so budget goes where it actually converts,
+				not just where it gets clicks.
+			</p>
+			<div class="cta-row">
+				<a class="btn primary" href="/contact/">Get a Free Account Audit</a>
+				<a class="btn ghost" href="#process">See How We Work</a>
+			</div>
+		</div>
+	</section>
+
+	<section class="services">
+		<h2>What We Do</h2>
+		<div class="grid">
+			{
+				services.map((service) => (
+					<div class="card">
+						<h3>{service.name}</h3>
+						<p>{service.desc}</p>
+					</div>
+				))
+			}
+		</div>
+	</section>
+
+	<section class="process" id="process">
+		<h2>How We Work</h2>
+		<div class="grid">
+			{
+				process.map((p) => (
+					<div class="step">
+						<span class="step-num">{p.step}</span>
+						<h3>{p.name}</h3>
+						<p>{p.desc}</p>
+					</div>
+				))
+			}
+		</div>
+	</section>
+
+	<section class="cta-band">
+		<div class="cta-band-inner">
+			<h2>Ready to See What Your Ad Account Is Actually Doing?</h2>
+			<a class="btn primary large" href="/contact/">Get a Free Audit</a>
 		</div>
 	</section>
 
 	<section class="posts">
-		<h2>Latest from the blog</h2>
+		<h2>Latest From the Blog</h2>
 		{
 			posts.length === 0 ? (
 				<p class="muted">First posts coming soon.</p>
@@ -42,47 +116,65 @@ const posts = (await getCollection('blog', ({ data }) => !data.draft))
 				</ul>
 			)
 		}
-		<a class="see-all" href="/blog/">See all posts &rarr;</a>
+		<a class="see-all" href="/blog/">See All Posts &rarr;</a>
 	</section>
 </BaseLayout>
 
 <style>
+	/* Full-bleed section technique: break out of main's centered max-width */
+	.hero,
+	.cta-band {
+		width: auto;
+		margin-inline: calc(50% - 50vw);
+		background: #0b0d12;
+		color: #f5f6fa;
+	}
 	.hero {
-		padding: 1.5rem 0 3.5rem;
+		margin-top: -3rem;
+		padding: 5.5rem 1.5rem 5rem;
+	}
+	.hero-inner,
+	.cta-band-inner {
+		max-width: 960px;
+		margin: 0 auto;
 	}
 	.eyebrow {
 		text-transform: uppercase;
 		font-size: 0.8rem;
 		font-weight: 700;
-		letter-spacing: 0.08em;
-		color: var(--color-accent);
-		margin: 0 0 1rem;
+		letter-spacing: 0.12em;
+		color: #7ba0ff;
+		margin: 0 0 1.25rem;
 	}
 	.hero h1 {
-		font-size: 2.5rem;
-		max-width: 20ch;
-		margin: 0 0 1.25rem;
-		color: var(--color-text);
+		font-size: 3rem;
+		max-width: 18ch;
+		margin: 0 0 1.5rem;
+		color: #fff;
 	}
-	.lede {
-		font-size: 1.15rem;
-		max-width: 60ch;
+	.hero .lede {
+		font-size: 1.2rem;
+		max-width: 58ch;
+		color: #c2c5d6;
 	}
 	.cta-row {
 		display: flex;
 		gap: 1rem;
-		margin-top: 1.75rem;
+		margin-top: 2rem;
 		flex-wrap: wrap;
 	}
 	.btn {
 		display: inline-block;
-		padding: 0.75rem 1.5rem;
+		padding: 0.85rem 1.75rem;
 		border-radius: var(--radius);
 		text-decoration: none;
-		font-weight: 600;
+		font-weight: 700;
 		border: 1px solid var(--color-accent);
 		color: var(--color-accent);
-		transition: background 0.15s ease;
+		transition:
+			background 0.15s ease,
+			border-color 0.15s ease,
+			color 0.15s ease;
 	}
 	.btn:hover {
 		background: var(--color-bg-subtle);
@@ -96,9 +188,84 @@ const posts = (await getCollection('blog', ({ data }) => !data.draft))
 		background: var(--color-accent-hover);
 		color: #fff;
 	}
-	.posts {
+	.btn.large {
+		padding: 1rem 2.25rem;
+		font-size: 1.05rem;
+	}
+	.btn.ghost {
+		border-color: #454a5e;
+		color: #f5f6fa;
+	}
+	.btn.ghost:hover {
+		background: #171922;
+		border-color: #7ba0ff;
+		color: #fff;
+	}
+
+	.services,
+	.process {
+		padding: 4.5rem 0;
 		border-top: 1px solid var(--color-border);
-		padding-top: 2.5rem;
+	}
+	.services h2,
+	.process h2,
+	.posts h2 {
+		font-size: 1.75rem;
+		margin: 0 0 2.5rem;
+	}
+	.grid {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		gap: 1.75rem;
+	}
+	.card {
+		padding: 1.75rem;
+		border: 1px solid var(--color-border);
+		border-radius: 12px;
+		background: var(--color-bg-subtle);
+	}
+	.card h3 {
+		margin: 0 0 0.6rem;
+		font-size: 1.1rem;
+	}
+	.card p {
+		margin: 0;
+		font-size: 0.95rem;
+	}
+
+	.process .grid {
+		grid-template-columns: repeat(3, 1fr);
+	}
+	.step-num {
+		display: block;
+		font-size: 0.85rem;
+		font-weight: 800;
+		color: var(--color-accent);
+		letter-spacing: 0.05em;
+		margin-bottom: 0.75rem;
+	}
+	.step h3 {
+		margin: 0 0 0.6rem;
+		font-size: 1.15rem;
+	}
+	.step p {
+		margin: 0;
+		font-size: 0.95rem;
+	}
+
+	.cta-band {
+		padding: 4.5rem 1.5rem;
+		text-align: center;
+	}
+	.cta-band h2 {
+		color: #fff;
+		font-size: 2rem;
+		max-width: 24ch;
+		margin: 0 auto 2rem;
+	}
+
+	.posts {
+		padding-top: 4.5rem;
 	}
 	.posts ul {
 		list-style: none;
@@ -125,5 +292,15 @@ const posts = (await getCollection('blog', ({ data }) => !data.draft))
 	}
 	.muted {
 		color: var(--color-text-muted);
+	}
+
+	@media (max-width: 640px) {
+		.hero h1 {
+			font-size: 2.1rem;
+		}
+		.grid,
+		.process .grid {
+			grid-template-columns: 1fr;
+		}
 	}
 </style>
