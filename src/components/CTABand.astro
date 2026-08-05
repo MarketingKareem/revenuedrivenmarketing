@@ -1,0 +1,54 @@
+---
+interface Props {
+	heading: string;
+	buttonText?: string;
+}
+const { heading, buttonText = 'Get a Free Audit' } = Astro.props;
+---
+
+<section class="cta-band">
+	<div class="cta-band-inner">
+		<h2>{heading}</h2>
+		<a class="btn primary large" href="/contact/">{buttonText}</a>
+	</div>
+</section>
+
+<style>
+	.cta-band {
+		width: auto;
+		margin-inline: calc(50% - 50vw);
+		background: #0b0d12;
+		color: #f5f6fa;
+		padding: 4.5rem 1.5rem;
+		text-align: center;
+	}
+	.cta-band-inner {
+		max-width: 960px;
+		margin: 0 auto;
+	}
+	h2 {
+		color: #fff;
+		font-size: 2rem;
+		max-width: 24ch;
+		margin: 0 auto 2rem;
+	}
+	.btn {
+		display: inline-block;
+		padding: 0.85rem 1.75rem;
+		border-radius: var(--radius);
+		text-decoration: none;
+		font-weight: 700;
+		transition: background 0.15s ease;
+	}
+	.btn.primary {
+		background: var(--color-accent);
+		color: #fff;
+	}
+	.btn.primary:hover {
+		background: var(--color-accent-hover);
+	}
+	.btn.large {
+		padding: 1rem 2.25rem;
+		font-size: 1.05rem;
+	}
+</style>

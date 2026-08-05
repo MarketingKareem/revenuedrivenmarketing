@@ -1,0 +1,91 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ServiceHero from '../../components/ServiceHero.astro';
+import ProcessSteps from '../../components/ProcessSteps.astro';
+import FAQSection from '../../components/FAQSection.astro';
+import CTABand from '../../components/CTABand.astro';
+
+const included = [
+	'Campaign structure across Search, Shopping, and Performance Max — built around your actual customers, not a generic template.',
+	'Conversion tracking and GA4 setup audited and fixed first, before any optimization starts.',
+	'Keyword and negative keyword management, so Performance Max and broad match aren’t quietly eating your brand search budget.',
+	'Bid strategy management matched to real business goals, not platform-recommended defaults.',
+	'Ad copy, asset, and landing page testing on an ongoing basis.',
+	'Reporting tied to revenue and cost per acquisition, not clicks and impression share.',
+];
+
+const faqs = [
+	{
+		q: 'What Does a Google Ads Management Company Actually Do Day to Day?',
+		a: "Monitoring account health, testing ad copy and audiences, managing bids and budgets, watching for wasted spend in search terms, and fixing tracking issues before they distort your data. It's ongoing account management, not a one-time setup.",
+	},
+	{
+		q: 'Do You Work With Businesses Outside a Specific Area?',
+		a: "Yes — Google Ads management is done entirely remotely, so location isn't a constraint. We work with businesses wherever their customers are.",
+	},
+	{
+		q: "What's the Difference Between a Google Ads Consultant and a Managed Service?",
+		a: 'A consultant typically advises or audits and hands recommendations back to your team to implement. Managed service means we run the account directly — builds, bid changes, testing, and reporting are on us.',
+	},
+	{
+		q: 'Is This the Same as "AdWords Management"?',
+		a: 'Yes — Google renamed AdWords to Google Ads in 2018. Same platform, same service.',
+	},
+	{
+		q: 'How Much Does Google Ads Management Cost?',
+		a: "Management fees typically scale with ad spend and account complexity. We'll give you a real number after seeing your account, not a generic tier.",
+	},
+];
+---
+
+<BaseLayout
+	title="Google Ads Management"
+	description="Google Ads management across Search, Shopping, and Performance Max, built around revenue and accurate conversion tracking, not impression share."
+>
+	<ServiceHero eyebrow="Google Ads Management" title="Google Ads Management Focused on Revenue, Not Impression Share">
+		Impression share and Quality Score are diagnostic numbers, not goals. We manage Google Ads
+		accounts toward the number that actually matters: revenue per dollar spent.
+	</ServiceHero>
+
+	<section class="included">
+		<h2>What's Included</h2>
+		<ul>
+			{included.map((item) => <li>{item}</li>)}
+		</ul>
+	</section>
+
+	<ProcessSteps />
+
+	<CTABand heading="Ready to See What Your Google Ads Account Is Actually Doing?" />
+
+	<FAQSection items={faqs} />
+
+	<p class="cross-link">
+		Also running paid social? See <a href="/meta-ads-management/">Meta Ads Management</a> or the
+		full <a href="/ppc-management/">PPC Management</a> overview.
+	</p>
+</BaseLayout>
+
+<style>
+	.included {
+		padding: 4.5rem 0;
+		border-top: 1px solid var(--color-border);
+	}
+	.included h2 {
+		font-size: 1.75rem;
+		margin: 0 0 2rem;
+	}
+	.included ul {
+		padding-left: 1.25rem;
+		max-width: 68ch;
+	}
+	.included li {
+		margin-bottom: 0.75rem;
+		color: var(--color-text-muted);
+	}
+	.cross-link {
+		border-top: 1px solid var(--color-border);
+		padding-top: 2rem;
+		color: var(--color-text-muted);
+	}
+</style>

@@ -1,0 +1,125 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ServiceHero from '../../components/ServiceHero.astro';
+import ProcessSteps from '../../components/ProcessSteps.astro';
+import FAQSection from '../../components/FAQSection.astro';
+import CTABand from '../../components/CTABand.astro';
+
+const included = [
+	'Account structure and campaign build-out, matched to how your customers actually search and buy.',
+	'Conversion tracking audit and setup — so the numbers you optimize against are real.',
+	'Bid, budget, and audience management across the platforms that actually drive revenue for your business.',
+	'Ongoing testing: ad copy, creative, targeting, and landing pages.',
+	'Reporting you can actually read — revenue and cost per acquisition, not just clicks and impressions.',
+];
+
+const faqs = [
+	{
+		q: 'How Much Does PPC Management Cost?',
+		a: "It depends on ad spend and the number of platforms/campaigns involved — there's no flat rate that makes sense across every business. We'll give you a real number after a free account audit, not a generic package price.",
+	},
+	{
+		q: 'What Does PPC Management Actually Include?',
+		a: 'Account structure, conversion tracking, bid and budget management, creative testing, and reporting — all of it, not just "campaign optimization." Most of the damage we find in audits is in tracking and structure, not bids.',
+	},
+	{
+		q: 'Do I Need a PPC Agency, or Can I Manage This In-House?',
+		a: "If you have someone whose full-time job is watching these accounts daily, in-house can work. Most businesses don't — PPC platforms change constantly, and part-time attention is how budget gets wasted. An outside PPC management service is worth it when the alternative is nobody really owning it.",
+	},
+	{
+		q: 'Which Platforms Do You Manage?',
+		a: "Primarily Google Ads and Meta Ads (Facebook and Instagram) — see our dedicated Google Ads Management and Meta Ads Management pages for platform-specific detail.",
+	},
+	{
+		q: 'How Long Until PPC Management Shows Results?',
+		a: "Tracking and structural fixes show up immediately — you'll finally see accurate numbers. Real performance gains from testing and optimization typically take 4-8 weeks, since platforms need data to optimize against.",
+	},
+];
+---
+
+<BaseLayout
+	title="PPC Management Services"
+	description="PPC management built around revenue, not spend. Account audits, conversion tracking, and hands-on management across Google Ads and Meta Ads."
+>
+	<ServiceHero eyebrow="PPC Management Services" title="PPC Management That's Built Around Revenue, Not Spend">
+		Most PPC management services report on clicks and impressions because those numbers always go
+		up. We manage toward revenue and cost per acquisition — the numbers that actually decide
+		whether your ad spend is working.
+	</ServiceHero>
+
+	<section class="included">
+		<h2>What's Included</h2>
+		<ul>
+			{included.map((item) => <li>{item}</li>)}
+		</ul>
+	</section>
+
+	<section class="platforms">
+		<h2>PPC Management by Platform</h2>
+		<div class="grid">
+			<a class="card" href="/google-ads-management/">
+				<h3>Google Ads Management &rarr;</h3>
+				<p>Search, Shopping, and Performance Max, structured around what actually converts.</p>
+			</a>
+			<a class="card" href="/meta-ads-management/">
+				<h3>Meta Ads Management &rarr;</h3>
+				<p>Facebook and Instagram campaigns built for revenue, not just reach.</p>
+			</a>
+		</div>
+	</section>
+
+	<ProcessSteps />
+
+	<CTABand heading="Ready to See What Your PPC Account Is Actually Doing?" />
+
+	<FAQSection items={faqs} />
+</BaseLayout>
+
+<style>
+	.included,
+	.platforms {
+		padding: 4.5rem 0;
+		border-top: 1px solid var(--color-border);
+	}
+	.included h2,
+	.platforms h2 {
+		font-size: 1.75rem;
+		margin: 0 0 2rem;
+	}
+	.included ul {
+		padding-left: 1.25rem;
+		max-width: 68ch;
+	}
+	.included li {
+		margin-bottom: 0.75rem;
+		color: var(--color-text-muted);
+	}
+	.platforms .grid {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		gap: 1.75rem;
+	}
+	.card {
+		padding: 1.75rem;
+		border: 1px solid var(--color-border);
+		border-radius: 12px;
+		background: var(--color-bg-subtle);
+		text-decoration: none;
+		display: block;
+	}
+	.card h3 {
+		margin: 0 0 0.6rem;
+		font-size: 1.1rem;
+		color: var(--color-accent);
+	}
+	.card p {
+		margin: 0;
+		font-size: 0.95rem;
+	}
+
+	@media (max-width: 640px) {
+		.platforms .grid {
+			grid-template-columns: 1fr;
+		}
+	}
+</style>

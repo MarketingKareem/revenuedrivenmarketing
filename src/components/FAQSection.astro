@@ -1,0 +1,61 @@
+---
+interface Props {
+	items: { q: string; a: string }[];
+}
+const { items } = Astro.props;
+---
+
+<section class="faq" id="faq">
+	<h2>Common Questions</h2>
+	<div class="faq-list">
+		{
+			items.map((item) => (
+				<details>
+					<summary>{item.q}</summary>
+					<p>{item.a}</p>
+				</details>
+			))
+		}
+	</div>
+</section>
+
+<style>
+	.faq {
+		padding: 4.5rem 0;
+		border-top: 1px solid var(--color-border);
+	}
+	.faq h2 {
+		font-size: 1.75rem;
+		margin: 0 0 2rem;
+	}
+	.faq-list {
+		display: flex;
+		flex-direction: column;
+		gap: 0.75rem;
+		max-width: 68ch;
+	}
+	details {
+		border: 1px solid var(--color-border);
+		border-radius: var(--radius);
+		padding: 1rem 1.25rem;
+	}
+	summary {
+		font-weight: 600;
+		cursor: pointer;
+		list-style: none;
+	}
+	summary::-webkit-details-marker {
+		display: none;
+	}
+	summary::before {
+		content: '+ ';
+		color: var(--color-accent);
+		font-weight: 800;
+	}
+	details[open] summary::before {
+		content: '\2212 ';
+	}
+	details p {
+		margin: 0.75rem 0 0;
+	}
+</style>
