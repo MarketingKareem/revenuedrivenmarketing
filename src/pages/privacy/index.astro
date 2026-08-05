@@ -1,0 +1,159 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+	title="Privacy Policy"
+	description="How Revenue Driven Marketing collects, uses, and protects information across this website and our Meta Marketing API integration."
+>
+	<article class="policy">
+		<h1>Privacy Policy</h1>
+		<p class="updated">Last updated: August 4, 2026</p>
+
+		<p>
+			This policy explains how Revenue Driven Marketing ("we," "us") handles information
+			collected through this website (revenuedrivenmarketing.com) and through our use of the
+			Meta Marketing API to manage advertising accounts for our agency and our authorized
+			clients.
+		</p>
+
+		<h2>Information We Collect</h2>
+
+		<h3>Information You Provide</h3>
+		<p>
+			When you submit our contact form, we collect your name, email address, and any details you
+			include in your message (such as current ad spend). This is processed through Formspree, a
+			third-party form service, and used solely to respond to your inquiry.
+		</p>
+
+		<h3>Information Collected Automatically</h3>
+		<p>
+			We use Google Analytics (GA4) and Google Tag Manager to understand how visitors use this
+			site &mdash; pages viewed, general usage patterns, and referral sources. This data is
+			aggregated and does not include sensitive personal information.
+		</p>
+
+		<h3>Meta Advertising Data</h3>
+		<p>
+			We operate a Meta Marketing API integration, authorized through Meta Business Manager via a
+			System User token, to create, manage, and report on advertising campaigns for ad accounts
+			and Pages that we or our authorized clients control. This integration accesses ad account,
+			Page, campaign, and creative data &mdash; it does not collect personal data from individual
+			consumers who view or interact with the ads themselves.
+		</p>
+
+		<h2>How We Use Information</h2>
+		<ul>
+			<li>To respond to inquiries submitted through this site.</li>
+			<li>To create, manage, optimize, and report on advertising campaigns on behalf of our agency and our authorized clients.</li>
+			<li>To understand and improve how this website performs.</li>
+		</ul>
+
+		<h2>Meta Platform Data</h2>
+		<p>
+			Our use of the Meta Marketing API is limited to providing advertising management services
+			for accounts we or our clients have granted us access to through Business Manager. We do
+			not use Meta Platform Data for any purpose beyond delivering those services, and we do not
+			sell Meta Platform Data to any third party. Access can be revoked at any time by removing
+			our System User's permissions in Business Manager.
+		</p>
+
+		<h2>Cookies &amp; Analytics</h2>
+		<p>
+			This site uses cookies and similar technologies via Google Analytics and Google Tag
+			Manager. You can opt out of Google Analytics tracking using the
+			<a href="https://tools.google.com/dlpage/gaoptout" target="_blank" rel="noopener noreferrer">
+				Google Analytics Opt-out Browser Add-on
+			</a>, or block cookies entirely through your browser settings.
+		</p>
+
+		<h2>Third-Party Service Providers</h2>
+		<p>We rely on the following services to operate this site and our advertising management work:</p>
+		<ul>
+			<li><strong>Meta</strong> &mdash; advertising account and campaign management via the Marketing API.</li>
+			<li><strong>Google Analytics &amp; Google Tag Manager</strong> &mdash; site analytics and tag management.</li>
+			<li><strong>Formspree</strong> &mdash; contact form processing.</li>
+			<li><strong>Cloudflare</strong> &mdash; website hosting and content delivery.</li>
+			<li><strong>GitHub</strong> &mdash; source code and content version control.</li>
+		</ul>
+		<p>Each provider has its own privacy practices governing the data it processes on our behalf.</p>
+
+		<h2>Data Sharing</h2>
+		<p>
+			We do not sell personal information. We share information only with the service providers
+			listed above, as necessary to operate this site and deliver our advertising management
+			services, or when required by law.
+		</p>
+
+		<h2>Data Retention</h2>
+		<p>
+			Contact form submissions and analytics data are retained only as long as necessary to
+			respond to inquiries and understand site performance. Meta advertising data is retained
+			only as long as we are actively managing the associated ad accounts.
+		</p>
+
+		<h2>Your Rights</h2>
+		<p>
+			Depending on your location, you may have the right to access, correct, or request deletion
+			of personal information we hold about you. To exercise any of these rights, contact us at
+			the email below.
+		</p>
+
+		<h2>Data Deletion</h2>
+		<p>
+			To request deletion of personal information you've submitted to us (for example, through
+			our contact form), email us at
+			<a href="mailto:marketingbykareem@gmail.com">marketingbykareem@gmail.com</a> and we will
+			delete it within a reasonable timeframe. Access to Meta advertising data is controlled
+			directly through Business Manager &mdash; removing our System User's permissions there
+			immediately revokes our access to that account's data.
+		</p>
+
+		<h2>Children's Privacy</h2>
+		<p>
+			This site and our services are not directed at children under 13, and we do not knowingly
+			collect personal information from children.
+		</p>
+
+		<h2>Changes to This Policy</h2>
+		<p>
+			We may update this policy from time to time. Changes will be posted on this page with an
+			updated "Last updated" date.
+		</p>
+
+		<h2>Contact Us</h2>
+		<p>
+			Questions about this policy? Email us at
+			<a href="mailto:marketingbykareem@gmail.com">marketingbykareem@gmail.com</a>.
+		</p>
+	</article>
+</BaseLayout>
+
+<style>
+	.policy {
+		max-width: 68ch;
+	}
+	h1 {
+		font-size: 2rem;
+		margin-bottom: 0.25rem;
+	}
+	.updated {
+		color: var(--color-text-muted);
+		font-size: 0.9rem;
+		margin-top: 0;
+	}
+	h2 {
+		font-size: 1.3rem;
+		margin-top: 2.25rem;
+	}
+	h3 {
+		font-size: 1.05rem;
+		margin-top: 1.5rem;
+	}
+	ul {
+		padding-left: 1.25rem;
+	}
+	li {
+		margin-bottom: 0.4rem;
+	}
+</style>

@@ -5,7 +5,10 @@ const year = new Date().getFullYear();
 <footer class="site-footer">
 	<div class="wrap">
 		<p>&copy; {year} Revenue Driven Marketing. All rights reserved.</p>
-		<a href="/contact/">Work With Us</a>
+		<div class="links">
+			<a href="/privacy/">Privacy Policy</a>
+			<a href="/contact/">Work With Us</a>
+		</div>
 	</div>
 </footer>
 
@@ -26,6 +29,10 @@ const year = new Date().getFullYear();
 		flex-wrap: wrap;
 		font-size: 0.9rem;
 		color: var(--color-text-muted);
+	}
+	.links {
+		display: flex;
+		gap: 1.5rem;
 	}
 	.wrap a {
 		color: var(--color-accent);
