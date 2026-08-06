@@ -3,6 +3,19 @@ interface Props {
 	items: { q: string; a: string }[];
 }
 const { items } = Astro.props;
+
+const faqSchema = {
+	'@context': 'https://schema.org',
+	'@type': 'FAQPage',
+	mainEntity: items.map((item) => ({
+		'@type': 'Question',
+		name: item.q,
+		acceptedAnswer: {
+			'@type': 'Answer',
+			text: item.a,
+		},
+	})),
+};
 ---
 
 <section class="faq" id="faq">
@@ -18,6 +31,8 @@ const { items } = Astro.props;
 		}
 	</div>
 </section>
+
+<script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
 
 <style>
 	.faq {
