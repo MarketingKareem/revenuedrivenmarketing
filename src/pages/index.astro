@@ -9,12 +9,12 @@ const posts = (await getCollection('blog', ({ data }) => !data.draft))
 const services = [
 	{
 		name: 'PPC Management',
-		desc: 'The full picture across every platform — structured around revenue, not spend.',
+		desc: 'The full picture across every platform, structured around revenue, not spend.',
 		href: '/ppc-management/',
 	},
 	{
 		name: 'Google Ads Management',
-		desc: 'Search, Shopping, and Performance Max — structured around what actually converts, not platform-recommended defaults.',
+		desc: 'Search, Shopping, and Performance Max, structured around what actually converts, not platform-recommended defaults.',
 		href: '/google-ads-management/',
 	},
 	{
@@ -24,11 +24,13 @@ const services = [
 	},
 	{
 		name: 'Revenue Attribution & Analytics',
-		desc: 'GA4, conversion tracking, and multi-touch attribution set up correctly — so the numbers you optimize against are actually true.',
+		desc: 'GA4, conversion tracking, and multi-touch attribution set up correctly, so the numbers you optimize against are actually true.',
+		href: '/revenue-attribution/',
 	},
 	{
 		name: 'Account Audits & Teardowns',
 		desc: "A full diagnostic of what's broken, what's wasted, and what's working before you spend another dollar.",
+		href: '/account-audits/',
 	},
 ];
 
@@ -36,12 +38,12 @@ const process = [
 	{
 		step: '01',
 		name: 'Audit',
-		desc: "We tear the account down to see what's actually happening — tracking accuracy, wasted spend, structural issues the platform dashboard won't show you.",
+		desc: "We tear the account down to see what's actually happening: tracking accuracy, wasted spend, structural issues the platform dashboard won't show you.",
 	},
 	{
 		step: '02',
 		name: 'Rebuild',
-		desc: "Fix what's broken first — tracking, structure, targeting — before touching a single bid.",
+		desc: "Fix what's broken first: tracking, structure, targeting, before touching a single bid.",
 	},
 	{
 		step: '03',
@@ -61,7 +63,7 @@ const process = [
 			<h1>Your Ads Are Spending Money. Are They Actually Driving Revenue?</h1>
 			<p class="lede">
 				Revenue Driven Marketing runs Google Ads and Meta Ads accounts with attribution as the
-				starting point, not an afterthought &mdash; so budget goes where it actually converts,
+				starting point, not an afterthought, so budget goes where it actually converts,
 				not just where it gets clicks.
 			</p>
 			<div class="cta-row">

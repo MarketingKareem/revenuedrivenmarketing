@@ -1,0 +1,146 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ServiceHero from '../../components/ServiceHero.astro';
+import ProcessSteps from '../../components/ProcessSteps.astro';
+import FAQSection from '../../components/FAQSection.astro';
+import CTABand from '../../components/CTABand.astro';
+
+const included = [
+	'GA4 property setup and audit, checked against how your business actually converts.',
+	'Conversion tracking across every ad platform you run, corrected for duplicate counting and misconfigured events.',
+	'Multi-touch attribution modeling, so credit for a sale reflects the real path a customer took, not just the last click.',
+	'Cross-platform reconciliation between Google Ads, Meta Ads, GA4, and your CRM or backend revenue data.',
+	'Reporting and dashboards built around the numbers that actually inform budget decisions.',
+];
+
+const problems = [
+	{
+		name: 'Platforms That Disagree With Each Other',
+		desc: 'Google Ads, Meta Ads, and GA4 all use different attribution windows and counting methods. Left alone, each one over-reports in its own way, and none of them agree with your actual revenue.',
+	},
+	{
+		name: 'Conversion Actions Counted More Than Once',
+		desc: 'A common setup mistake: a platform pixel and a GA4 import both firing on the same event, quietly doubling or tripling reported conversions without anyone noticing.',
+	},
+	{
+		name: 'Last-Click Bias',
+		desc: 'Default attribution models give all the credit to whichever channel happened to close the sale, even when other channels did the real work earlier in the customer journey. That bias pushes budget toward the wrong channels.',
+	},
+	{
+		name: 'No Single Source of Truth',
+		desc: 'When every platform reports a different number and nobody has reconciled them against actual revenue, budget decisions end up based on whichever dashboard is open at the time.',
+	},
+];
+
+const faqs = [
+	{
+		q: 'What Is Revenue Attribution?',
+		a: 'Revenue attribution is the process of connecting ad spend to actual revenue, correctly crediting the channels and touchpoints that led to a sale, instead of relying on whatever a single platform self-reports.',
+	},
+	{
+		q: 'Why Don’t My Google Ads and Meta Ads Numbers Match?',
+		a: 'Each platform uses a different attribution window and counting method. Meta defaults to a 7-day click and 1-day view window, Google Ads defaults to 30 days on a click, and both can include modeled conversions. Neither is wrong, they are just measuring differently. See our blog post on this for the full breakdown.',
+	},
+	{
+		q: 'Do I Need GA4 If I Already Have Platform-Level Reporting?',
+		a: 'Yes. Platform reporting is inherently biased toward that platform. GA4, set up correctly, gives you a neutral cross-channel view, and is also what most attribution and reconciliation work is built on top of.',
+	},
+	{
+		q: 'What Is Multi-Touch Attribution?',
+		a: 'A model that distributes conversion credit across multiple touchpoints in a customer journey, rather than giving 100% of the credit to the last click. It gives a more accurate picture of which channels are actually contributing, especially for longer sales cycles.',
+	},
+	{
+		q: 'How Long Does an Attribution Setup or Audit Take?',
+		a: 'A full audit and GA4 correction typically takes 1 to 2 weeks, depending on how many platforms and conversion actions are involved and how much historical tracking debt needs to be untangled.',
+	},
+	{
+		q: 'Can You Fix Attribution Without Touching Our Active Campaigns?',
+		a: 'Yes. Attribution and tracking work is largely independent of campaign structure. We can correct tracking and reporting without pausing or restructuring anything that is currently running.',
+	},
+];
+---
+
+<BaseLayout
+	title="Revenue Attribution & Analytics"
+	description="GA4 setup, conversion tracking, and multi-touch attribution built correctly, so the numbers you make budget decisions on are actually true."
+>
+	<ServiceHero
+		eyebrow="Revenue Attribution & Analytics"
+		title="Revenue Attribution That Tells You What's Actually Working"
+	>
+		Every ad platform grades its own homework. Revenue attribution is how you find out what's
+		actually converting, cross-checked against real revenue instead of a single platform's
+		self-reported numbers.
+	</ServiceHero>
+
+	<section class="included">
+		<h2>What's Included</h2>
+		<ul>
+			{included.map((item) => <li>{item}</li>)}
+		</ul>
+	</section>
+
+	<section class="problems">
+		<h2>What Broken Attribution Actually Looks Like</h2>
+		<div class="stack">
+			{
+				problems.map((p) => (
+					<div class="row">
+						<h3>{p.name}</h3>
+						<p>{p.desc}</p>
+					</div>
+				))
+			}
+		</div>
+	</section>
+
+	<ProcessSteps />
+
+	<CTABand heading="Ready to Know What's Actually Driving Revenue?" />
+
+	<FAQSection items={faqs} />
+
+	<p class="cross-link">
+		See the full <a href="/ppc-management/">PPC Management</a> overview, or read more on
+		<a href="/blog/">the blog</a>.
+	</p>
+</BaseLayout>
+
+<style>
+	.included,
+	.problems {
+		padding: 4.5rem 0;
+		border-top: 1px solid var(--color-border);
+	}
+	.included h2,
+	.problems h2 {
+		font-size: 1.75rem;
+		margin: 0 0 2rem;
+	}
+	.included ul {
+		padding-left: 1.25rem;
+		max-width: 68ch;
+	}
+	.included li {
+		margin-bottom: 0.75rem;
+		color: var(--color-text-muted);
+	}
+	.stack {
+		display: flex;
+		flex-direction: column;
+		gap: 1.75rem;
+		max-width: 68ch;
+	}
+	.row h3 {
+		margin: 0 0 0.5rem;
+		font-size: 1.1rem;
+	}
+	.row p {
+		margin: 0;
+	}
+	.cross-link {
+		border-top: 1px solid var(--color-border);
+		padding-top: 2rem;
+		color: var(--color-text-muted);
+	}
+</style>

@@ -1,0 +1,114 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ServiceHero from '../../components/ServiceHero.astro';
+import FAQSection from '../../components/FAQSection.astro';
+import CTABand from '../../components/CTABand.astro';
+
+const checks = [
+	'Conversion tracking accuracy: duplicate counting, misconfigured events, and whether the numbers you are optimizing against are real.',
+	'Account structure: campaign and ad group organization, match types, and whether the structure reflects how customers actually search and buy.',
+	'Wasted spend: search terms, placements, and audiences quietly burning budget without producing revenue.',
+	'Bid strategy fit: whether the current bidding approach matches your actual business goals, or just the platform default.',
+	'Performance Max and broad match behavior: whether either is cannibalizing traffic you were already getting for free.',
+	'Landing page and offer alignment: whether the page traffic lands on actually matches what the ad promised.',
+];
+
+const deliverables = [
+	'A written report ranking every issue found by dollar impact, not just a list of technical findings.',
+	'A clear answer on whether your current tracking numbers can be trusted.',
+	'Specific, actionable fixes, not vague recommendations to "improve optimization."',
+	'An honest read on whether your current spend level can realistically support the account\'s goals.',
+];
+
+const faqs = [
+	{
+		q: 'Is the Account Audit Actually Free?',
+		a: 'Yes. It is how we determine whether we are a good fit to work together, and it gives you a real, independent look at your account either way.',
+	},
+	{
+		q: 'How Long Does an Audit Take?',
+		a: 'Most audits take 3 to 5 business days, depending on account size, how many platforms are involved, and how much historical data there is to review.',
+	},
+	{
+		q: 'What If the Audit Doesn’t Find Anything Wrong?',
+		a: 'That happens, and we will tell you so directly. An audit that confirms your account is healthy is still useful information, and it costs you nothing to find out.',
+	},
+	{
+		q: 'Do You Need Admin Access to Run an Audit?',
+		a: 'We need read-only access to the ad accounts and analytics properties involved. No changes are made during the audit itself, and no admin or billing access is required.',
+	},
+	{
+		q: 'Will You Try to Sell Me Management Services Regardless of What You Find?',
+		a: 'No. If the audit turns up nothing worth fixing, or if we are not the right fit for your account, we will say so. The audit is a diagnostic, not a sales script.',
+	},
+	{
+		q: 'Can You Audit an Account Managed by Another Agency?',
+		a: 'Yes, this is a common reason people request an audit: getting an independent second opinion on what a current agency or in-house team is running.',
+	},
+	{
+		q: 'Do You Audit Both Google Ads and Meta Ads?',
+		a: 'Yes, and where both are running, we also check whether their reported numbers reconcile with each other and with your actual revenue. See our Revenue Attribution page for more on that specifically.',
+	},
+];
+---
+
+<BaseLayout
+	title="Account Audits & Teardowns"
+	description="A full diagnostic of your Google Ads and Meta Ads accounts: tracking accuracy, wasted spend, and structural issues, before you spend another dollar."
+>
+	<ServiceHero eyebrow="Account Audits & Teardowns" title="A Full Audit Before You Spend Another Dollar">
+		Most agencies start with recommendations. We start with a diagnosis. An account audit tells
+		you what's actually broken, what's wasted, and what's working, before anything changes.
+	</ServiceHero>
+
+	<section class="checks">
+		<h2>What We Check</h2>
+		<ul>
+			{checks.map((item) => <li>{item}</li>)}
+		</ul>
+	</section>
+
+	<section class="deliverables">
+		<h2>What You Get</h2>
+		<ul>
+			{deliverables.map((item) => <li>{item}</li>)}
+		</ul>
+	</section>
+
+	<CTABand heading="Get a Free Audit of Your Ad Accounts" buttonText="Get a Free Account Audit" />
+
+	<FAQSection items={faqs} />
+
+	<p class="cross-link">
+		See the full <a href="/ppc-management/">PPC Management</a> overview, or read about
+		<a href="/revenue-attribution/">Revenue Attribution</a>.
+	</p>
+</BaseLayout>
+
+<style>
+	.checks,
+	.deliverables {
+		padding: 4.5rem 0;
+		border-top: 1px solid var(--color-border);
+	}
+	.checks h2,
+	.deliverables h2 {
+		font-size: 1.75rem;
+		margin: 0 0 2rem;
+	}
+	.checks ul,
+	.deliverables ul {
+		padding-left: 1.25rem;
+		max-width: 68ch;
+	}
+	.checks li,
+	.deliverables li {
+		margin-bottom: 0.75rem;
+		color: var(--color-text-muted);
+	}
+	.cross-link {
+		border-top: 1px solid var(--color-border);
+		padding-top: 2rem;
+		color: var(--color-text-muted);
+	}
+</style>

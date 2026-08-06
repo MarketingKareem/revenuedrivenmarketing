@@ -7,39 +7,70 @@ import CTABand from '../../components/CTABand.astro';
 
 const included = [
 	'Campaign structure across prospecting and retargeting, built for Facebook and Instagram together.',
-	'Conversions API and pixel setup audited and fixed — Meta can only optimize toward events it receives accurately.',
+	'Conversions API and pixel setup audited and fixed. Meta can only optimize toward events it receives accurately.',
 	'Creative testing on an ongoing basis, so performance doesn’t stall out once the first batch of ads fatigues.',
 	'Audience and budget management built around post-iOS14 targeting reality, not pre-2021 playbooks.',
-	'Reporting tied to revenue, cross-checked against GA4 and backend data — not just what Meta self-reports.',
+	'Reporting tied to revenue, cross-checked against GA4 and backend data, not just what Meta self-reports.',
+];
+
+const campaignTypes = [
+	{
+		name: 'Prospecting Campaigns',
+		desc: 'Broad and lookalike audience testing built to find new customers, structured with enough budget per ad set to actually exit the learning phase instead of stalling before Meta has data to optimize with.',
+	},
+	{
+		name: 'Retargeting Campaigns',
+		desc: 'Warm-audience campaigns built off site visitors, cart abandoners, and past customers. Usually the highest return segment in the account, and the easiest to under-invest in.',
+	},
+	{
+		name: 'Advantage+ Shopping and Catalog Ads',
+		desc: 'For ecommerce accounts, dynamic catalog ads that show the right product to the right person automatically, set up with clean product feed data so Meta’s automation has something accurate to work with.',
+	},
+	{
+		name: 'Creative Testing',
+		desc: 'Ongoing rotation of new ad concepts, formats, and hooks. The single biggest lever in most Meta accounts, and the one most agencies quietly stop doing after the first month.',
+	},
 ];
 
 const faqs = [
 	{
 		q: 'Why Do Meta Ads Perform Well and Then Drop Off?',
-		a: 'Creative fatigue is the most common cause — the same audience sees the same ads too many times and performance decays. It\'s also the most fixable, with a real creative testing cadence instead of a "set it and forget it" campaign.',
+		a: 'Creative fatigue is the most common cause. The same audience sees the same ads too many times and performance decays. It is also the most fixable, with a real creative testing cadence instead of a campaign that runs untouched for months.',
 	},
 	{
 		q: 'Do You Manage Instagram Ads Separately From Facebook?',
-		a: "No — Meta runs both through the same ad platform (Meta Ads Manager), so campaigns are typically built to run across both placements together, not as separate services.",
+		a: 'No. Meta runs both through the same ad platform (Meta Ads Manager), so campaigns are typically built to run across both placements together, not as separate services.',
 	},
 	{
 		q: 'How Does iOS Tracking Affect Meta Ads Performance?',
-		a: "iOS 14+ privacy changes limited how much Meta can see about what happens after someone clicks an ad, which is a real part of why reported conversions can look inflated or delayed. Correct Conversions API setup (server-side, not just the browser pixel) is how you recover as much signal as possible.",
+		a: 'iOS 14+ privacy changes limited how much Meta can see about what happens after someone clicks an ad, which is a real part of why reported conversions can look inflated or delayed. Correct Conversions API setup, sent server-side rather than relying only on the browser pixel, is how you recover as much signal as possible.',
 	},
 	{
 		q: 'What Budget Do I Need for Meta Ads to Work?',
-		a: "It depends on your industry and cost per acquisition, not a fixed minimum. What matters more than total budget is whether each campaign has enough budget to exit the learning phase — spreading too thin across too many campaigns is a common way budget gets wasted.",
+		a: 'It depends on your industry and cost per acquisition, not a fixed minimum. What matters more than total budget is whether each campaign has enough budget to exit the learning phase. Spreading too thin across too many campaigns is a common way budget gets wasted.',
 	},
 	{
 		q: 'Is Meta Ads Worth It If I Already Run Google Ads?',
-		a: "Often yes, since they reach people at different points — Google Ads captures existing intent, Meta builds it. See our full PPC Management overview for how we think about running both together.",
+		a: 'Often yes, since they reach people at different points. Google Ads captures existing intent, Meta builds it. See our full PPC Management overview for how we think about running both together.',
+	},
+	{
+		q: 'How Often Should Ad Creative Be Refreshed?',
+		a: 'It depends on spend and audience size, but most accounts need new creative variations every 2 to 4 weeks to stay ahead of fatigue. Smaller audiences fatigue faster than larger ones.',
+	},
+	{
+		q: 'Do You Handle Ad Creative Production, or Just Media Buying?',
+		a: 'We manage strategy, targeting, budgets, and testing frameworks. Creative production needs vary by account. We will tell you upfront during the audit what creative support makes sense for your situation.',
+	},
+	{
+		q: 'What Reporting Do I Get for Meta Ads?',
+		a: 'Reporting built around revenue and cost per acquisition, cross-checked against GA4 and backend data rather than relying only on Meta Ads Manager numbers, which have well-documented attribution differences from platform to platform.',
 	},
 ];
 ---
 
 <BaseLayout
 	title="Meta Ads Management"
-	description="Meta Ads management for Facebook and Instagram, built around creative testing, accurate conversion tracking, and revenue — not just reach."
+	description="Meta Ads management for Facebook and Instagram, built around creative testing, accurate conversion tracking, and revenue, not just reach."
 >
 	<ServiceHero eyebrow="Meta Ads Management" title="Meta Ads Management That Doesn't Stall Out After Week Two">
 		Most Meta campaigns perform well for the first couple of weeks and then quietly decay. We
@@ -52,6 +83,30 @@ const faqs = [
 		<ul>
 			{included.map((item) => <li>{item}</li>)}
 		</ul>
+	</section>
+
+	<section class="campaigns">
+		<h2>Meta Ads Campaign Types We Manage</h2>
+		<div class="stack">
+			{
+				campaignTypes.map((c) => (
+					<div class="row">
+						<h3>{c.name}</h3>
+						<p>{c.desc}</p>
+					</div>
+				))
+			}
+		</div>
+	</section>
+
+	<section class="why">
+		<h2>Why Meta Ads Accounts Plateau</h2>
+		<p>
+			Creative fatigue, thin tracking signal, and budgets spread across too many ad sets are the
+			three most common causes of a Meta account that starts strong and quietly flattens out. All
+			three are fixable, and none of them show up if the only thing being watched is
+			cost-per-click.
+		</p>
 	</section>
 
 	<ProcessSteps />
@@ -67,11 +122,15 @@ const faqs = [
 </BaseLayout>
 
 <style>
-	.included {
+	.included,
+	.campaigns,
+	.why {
 		padding: 4.5rem 0;
 		border-top: 1px solid var(--color-border);
 	}
-	.included h2 {
+	.included h2,
+	.campaigns h2,
+	.why h2 {
 		font-size: 1.75rem;
 		margin: 0 0 2rem;
 	}
@@ -82,6 +141,22 @@ const faqs = [
 	.included li {
 		margin-bottom: 0.75rem;
 		color: var(--color-text-muted);
+	}
+	.stack {
+		display: flex;
+		flex-direction: column;
+		gap: 1.75rem;
+		max-width: 68ch;
+	}
+	.row h3 {
+		margin: 0 0 0.5rem;
+		font-size: 1.1rem;
+	}
+	.row p {
+		margin: 0;
+	}
+	.why p {
+		max-width: 68ch;
 	}
 	.cross-link {
 		border-top: 1px solid var(--color-border);
