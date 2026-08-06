@@ -3,6 +3,9 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import ServiceHero from '../../components/ServiceHero.astro';
 import FAQSection from '../../components/FAQSection.astro';
 import CTABand from '../../components/CTABand.astro';
+import Testimonials from '../../components/Testimonials.astro';
+import CaseStudies from '../../components/CaseStudies.astro';
+import Guarantee from '../../components/Guarantee.astro';
 
 const checks = [
 	'Conversion tracking accuracy: duplicate counting, misconfigured events, and whether the numbers you are optimizing against are real.',
@@ -20,6 +23,33 @@ const deliverables = [
 	'An honest read on whether your current spend level can realistically support the account\'s goals.',
 ];
 
+const glossary = [
+	{
+		term: 'Conversion Tracking Audit',
+		def: 'A systematic check of every conversion action in an ad account to confirm it fires correctly, fires once per real conversion, and reflects an outcome that actually matters to the business. The single most common source of misleading account data.',
+	},
+	{
+		term: 'Account Structure Audit',
+		def: 'A review of how campaigns, ad groups, and keywords or audiences are organized, checking whether that structure actually matches business goals and customer behavior, rather than however it happened to get built originally.',
+	},
+	{
+		term: 'Wasted Spend',
+		def: 'Ad spend on clicks, placements, or audiences that have a track record of producing no conversions or revenue. Identified through search term reports and placement reports, not guessed at.',
+	},
+	{
+		term: 'Landing Page Experience',
+		def: "Whether the page traffic lands on actually matches what the ad promised and is capable of converting. A factor in Google's Quality Score, and a direct factor in conversion rate regardless of platform.",
+	},
+	{
+		term: 'Competitive Audit',
+		def: "Reviewing auction insights and market presence to understand how an account's bidding and visibility compare to competitors running in the same space, useful context for interpreting performance, not a diagnosis on its own.",
+	},
+	{
+		term: 'Read-Only Access',
+		def: 'An account permission level that allows viewing data and settings without the ability to make any changes. This is the standard, and only, access level needed to conduct an audit.',
+	},
+];
+
 const faqs = [
 	{
 		q: 'Is the Account Audit Actually Free?',
@@ -30,7 +60,7 @@ const faqs = [
 		a: 'Most audits take 3 to 5 business days, depending on account size, how many platforms are involved, and how much historical data there is to review.',
 	},
 	{
-		q: 'What If the Audit Doesn’t Find Anything Wrong?',
+		q: "What If the Audit Doesn't Find Anything Wrong?",
 		a: 'That happens, and we will tell you so directly. An audit that confirms your account is healthy is still useful information, and it costs you nothing to find out.',
 	},
 	{
@@ -48,6 +78,18 @@ const faqs = [
 	{
 		q: 'Do You Audit Both Google Ads and Meta Ads?',
 		a: 'Yes, and where both are running, we also check whether their reported numbers reconcile with each other and with your actual revenue. See our Revenue Attribution page for more on that specifically.',
+	},
+	{
+		q: 'What Format Does the Audit Report Come In?',
+		a: 'A written report, ranked by dollar impact rather than a raw checklist, walked through with you directly so you can ask questions about anything that is unclear.',
+	},
+	{
+		q: 'How Far Back Do You Look When Auditing an Account?',
+		a: "Typically the last 12 months where data is available, since that's usually enough to spot patterns like seasonal wasted spend or a tracking break that happened at a specific point in time. Newer accounts get audited against whatever history exists.",
+	},
+	{
+		q: 'Will an Audit Disrupt My Currently Running Campaigns?',
+		a: 'No. An audit is read-only by design. Nothing about your live campaigns changes as a result of us reviewing the account.',
 	},
 ];
 ---
@@ -68,12 +110,36 @@ const faqs = [
 		</ul>
 	</section>
 
+	<Testimonials />
+
+	<Guarantee
+		eyebrow="No Pressure, No Pitch"
+		heading="A Diagnosis First, Not a Sales Pitch"
+		body="You get the full findings whether or not you ever work with us. If the account is healthy, or we're not the right fit to help, we'll tell you plainly instead of manufacturing a reason to sell you management services."
+	/>
+
 	<section class="deliverables">
 		<h2>What You Get</h2>
 		<ul>
 			{deliverables.map((item) => <li>{item}</li>)}
 		</ul>
 	</section>
+
+	<section class="glossary">
+		<h2>Key Audit Terms Explained</h2>
+		<div class="stack">
+			{
+				glossary.map((g) => (
+					<div class="row">
+						<h3>{g.term}</h3>
+						<p>{g.def}</p>
+					</div>
+				))
+			}
+		</div>
+	</section>
+
+	<CaseStudies />
 
 	<CTABand heading="Get a Free Audit of Your Ad Accounts" buttonText="Get a Free Account Audit" />
 
@@ -87,12 +153,14 @@ const faqs = [
 
 <style>
 	.checks,
-	.deliverables {
+	.deliverables,
+	.glossary {
 		padding: 4.5rem 0;
 		border-top: 1px solid var(--color-border);
 	}
 	.checks h2,
-	.deliverables h2 {
+	.deliverables h2,
+	.glossary h2 {
 		font-size: 1.75rem;
 		margin: 0 0 2rem;
 	}
@@ -105,6 +173,19 @@ const faqs = [
 	.deliverables li {
 		margin-bottom: 0.75rem;
 		color: var(--color-text-muted);
+	}
+	.stack {
+		display: flex;
+		flex-direction: column;
+		gap: 1.75rem;
+		max-width: 68ch;
+	}
+	.row h3 {
+		margin: 0 0 0.5rem;
+		font-size: 1.1rem;
+	}
+	.row p {
+		margin: 0;
 	}
 	.cross-link {
 		border-top: 1px solid var(--color-border);

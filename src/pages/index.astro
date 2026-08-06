@@ -2,6 +2,9 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Icon from '../components/Icon.astro';
 import FAQSection from '../components/FAQSection.astro';
+import Testimonials from '../components/Testimonials.astro';
+import CaseStudies from '../components/CaseStudies.astro';
+import Guarantee from '../components/Guarantee.astro';
 import { getCollection } from 'astro:content';
 
 const posts = (await getCollection('blog', ({ data }) => !data.draft))
@@ -242,17 +245,9 @@ const faqs = [
 		</div>
 	</section>
 
-	<section class="honesty">
-		<div class="honesty-inner">
-			<p class="eyebrow">No Long-Term Lock-In</p>
-			<h2>A Free Audit, Straight Answers, and No Obligation</h2>
-			<p>
-				You get a real diagnostic of your account before anything changes and before you commit
-				to anything. If the honest answer is "spend less here," that's what you'll hear. If we're
-				not the right fit, we'll tell you that too.
-			</p>
-		</div>
-	</section>
+	<Testimonials />
+
+	<Guarantee />
 
 	<section class="cta-band">
 		<div class="cta-band-inner">
@@ -260,6 +255,8 @@ const faqs = [
 			<a class="btn primary large" href="/contact/">Get a Free Audit</a>
 		</div>
 	</section>
+
+	<CaseStudies />
 
 	<FAQSection items={faqs} />
 
@@ -286,8 +283,7 @@ const faqs = [
 <style>
 	/* Full-bleed section technique: break out of main's centered max-width */
 	.hero,
-	.cta-band,
-	.honesty {
+	.cta-band {
 		width: auto;
 		margin-inline: calc(50% - 50vw);
 		background: #0b0d12;
@@ -298,8 +294,7 @@ const faqs = [
 		padding: 5.5rem 1.5rem 5rem;
 	}
 	.hero-inner,
-	.cta-band-inner,
-	.honesty-inner {
+	.cta-band-inner {
 		max-width: 960px;
 		margin: 0 auto;
 	}
@@ -520,21 +515,6 @@ const faqs = [
 		left: 0;
 		color: #b00020;
 		font-weight: 800;
-	}
-
-	.honesty {
-		padding: 4.5rem 1.5rem;
-	}
-	.honesty h2 {
-		color: #fff;
-		font-size: 2rem;
-		max-width: 22ch;
-		margin: 0 0 1.25rem;
-	}
-	.honesty p:last-child {
-		max-width: 60ch;
-		color: #c2c5d6;
-		font-size: 1.05rem;
 	}
 
 	.cta-band {

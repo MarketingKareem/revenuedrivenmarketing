@@ -4,11 +4,14 @@ import ServiceHero from '../../components/ServiceHero.astro';
 import ProcessSteps from '../../components/ProcessSteps.astro';
 import FAQSection from '../../components/FAQSection.astro';
 import CTABand from '../../components/CTABand.astro';
+import Testimonials from '../../components/Testimonials.astro';
+import CaseStudies from '../../components/CaseStudies.astro';
+import Guarantee from '../../components/Guarantee.astro';
 
 const included = [
 	'Campaign structure across Search, Shopping, and Performance Max, built around your actual customers, not a generic template.',
 	'Conversion tracking and GA4 setup audited and fixed first, before any optimization starts.',
-	'Keyword and negative keyword management, so Performance Max and broad match aren’t quietly eating your brand search budget.',
+	"Keyword and negative keyword management, so Performance Max and broad match aren't quietly eating your brand search budget.",
 	'Bid strategy management matched to real business goals, not platform-recommended defaults.',
 	'Ad copy, asset, and landing page testing on an ongoing basis.',
 	'Reporting tied to revenue and cost per acquisition, not clicks and impression share.',
@@ -25,11 +28,38 @@ const campaignTypes = [
 	},
 	{
 		name: 'Performance Max',
-		desc: 'PMax can be a genuine growth channel or a quiet way to cannibalize branded search traffic you were already getting for free. We structure it, exclude what needs excluding, and watch the search term insights it doesn’t make easy to see.',
+		desc: "PMax can be a genuine growth channel or a quiet way to cannibalize branded search traffic you were already getting for free. We structure it, exclude what needs excluding, and watch the search term insights it doesn't make easy to see.",
 	},
 	{
 		name: 'Display and YouTube',
 		desc: 'Used for remarketing and top-of-funnel reach when the account has a reason to run them, not added by default to pad channel count.',
+	},
+];
+
+const glossary = [
+	{
+		term: 'Quality Score',
+		def: "Google's 1-10 rating of how relevant an ad is, based on expected click-through rate, ad relevance, and landing page experience. A higher Quality Score generally lowers your cost per click for the same ad position, which is why fixing relevance problems often matters more than raising bids.",
+	},
+	{
+		term: 'Impression Share',
+		def: "The percentage of eligible impressions your ads actually received. Lost impression share splits into two causes: budget (you ran out of money) and rank (you didn't win the auction). They require completely different fixes, which is why the split matters more than the headline number.",
+	},
+	{
+		term: 'Smart Bidding',
+		def: "Google's automated bid strategies, including Target CPA, Target ROAS, and Maximize Conversions, that set bids using machine learning signals at auction time. Smart Bidding is only as good as the conversion data feeding it, which is why tracking accuracy matters more than which strategy you pick.",
+	},
+	{
+		term: 'Search Term Report',
+		def: 'The actual queries that triggered your ads, as opposed to the keywords you bid on. This is where wasted spend is usually found, since broad match and Performance Max can match to search terms that have nothing to do with your business.',
+	},
+	{
+		term: 'Conversion Value / Target ROAS',
+		def: "Assigning a dollar value to each conversion so Smart Bidding can optimize toward revenue instead of just conversion count. Target ROAS bidding is only reliable when those values are accurate, which ties directly back to conversion tracking setup.",
+	},
+	{
+		term: 'Auction Insights',
+		def: 'A report comparing your account to competitors bidding on the same auctions, including overlap rate and outranking share. Useful for understanding competitive pressure, not for diagnosing your own account\'s problems on its own.',
 	},
 ];
 
@@ -70,6 +100,18 @@ const faqs = [
 		q: 'Will You Take Over an Existing Google Ads Account?',
 		a: "Yes. Most new accounts we take on already exist. We start with a full audit of what's currently running, tracking accuracy, and past spend before making any changes.",
 	},
+	{
+		q: 'What Is Google Ads Broad Match, and Should I Use It?',
+		a: 'Broad match shows your ad for any search Google judges related to your keyword, including loosely related ones. It can work well when paired with Smart Bidding and strong negative keyword lists, and can waste significant budget without them. Whether to use it depends on how tightly the rest of the account is managed.',
+	},
+	{
+		q: 'Why Did My Google Ads Costs Go Up Without More Conversions?',
+		a: 'Usually one of three things: rising competition in the auction, a Quality Score drop from an ad relevance or landing page issue, or a tracking problem making real conversions look like they stopped happening. An audit identifies which one it actually is instead of guessing.',
+	},
+	{
+		q: 'Can I Keep My Current Account History If I Switch Agencies?',
+		a: 'Yes. Google Ads account history stays with the Google Ads account itself, not with whoever manages it. Switching who manages your account does not reset your history, Quality Scores, or past conversion data.',
+	},
 ];
 ---
 
@@ -89,6 +131,14 @@ const faqs = [
 		</ul>
 	</section>
 
+	<Testimonials />
+
+	<Guarantee
+		eyebrow="Before Any Changes"
+		heading="A Free Audit of Your Google Ads Account First"
+		body="You'll see exactly what's working, what's wasted, and what your tracking is actually telling you before you commit to anything. If the account doesn't need our help, we'll say so."
+	/>
+
 	<section class="campaigns">
 		<h2>Google Ads Campaign Types We Manage</h2>
 		<div class="stack">
@@ -97,6 +147,20 @@ const faqs = [
 					<div class="row">
 						<h3>{c.name}</h3>
 						<p>{c.desc}</p>
+					</div>
+				))
+			}
+		</div>
+	</section>
+
+	<section class="glossary">
+		<h2>Key Google Ads Terms Explained</h2>
+		<div class="stack">
+			{
+				glossary.map((g) => (
+					<div class="row">
+						<h3>{g.term}</h3>
+						<p>{g.def}</p>
 					</div>
 				))
 			}
@@ -114,6 +178,8 @@ const faqs = [
 		</p>
 	</section>
 
+	<CaseStudies />
+
 	<ProcessSteps />
 
 	<CTABand heading="Ready to See What Your Google Ads Account Is Actually Doing?" />
@@ -129,12 +195,14 @@ const faqs = [
 <style>
 	.included,
 	.campaigns,
+	.glossary,
 	.why {
 		padding: 4.5rem 0;
 		border-top: 1px solid var(--color-border);
 	}
 	.included h2,
 	.campaigns h2,
+	.glossary h2,
 	.why h2 {
 		font-size: 1.75rem;
 		margin: 0 0 2rem;

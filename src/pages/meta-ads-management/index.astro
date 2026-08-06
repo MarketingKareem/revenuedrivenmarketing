@@ -4,11 +4,14 @@ import ServiceHero from '../../components/ServiceHero.astro';
 import ProcessSteps from '../../components/ProcessSteps.astro';
 import FAQSection from '../../components/FAQSection.astro';
 import CTABand from '../../components/CTABand.astro';
+import Testimonials from '../../components/Testimonials.astro';
+import CaseStudies from '../../components/CaseStudies.astro';
+import Guarantee from '../../components/Guarantee.astro';
 
 const included = [
 	'Campaign structure across prospecting and retargeting, built for Facebook and Instagram together.',
 	'Conversions API and pixel setup audited and fixed. Meta can only optimize toward events it receives accurately.',
-	'Creative testing on an ongoing basis, so performance doesn’t stall out once the first batch of ads fatigues.',
+	"Creative testing on an ongoing basis, so performance doesn't stall out once the first batch of ads fatigues.",
 	'Audience and budget management built around post-iOS14 targeting reality, not pre-2021 playbooks.',
 	'Reporting tied to revenue, cross-checked against GA4 and backend data, not just what Meta self-reports.',
 ];
@@ -24,11 +27,38 @@ const campaignTypes = [
 	},
 	{
 		name: 'Advantage+ Shopping and Catalog Ads',
-		desc: 'For ecommerce accounts, dynamic catalog ads that show the right product to the right person automatically, set up with clean product feed data so Meta’s automation has something accurate to work with.',
+		desc: "For ecommerce accounts, dynamic catalog ads that show the right product to the right person automatically, set up with clean product feed data so Meta's automation has something accurate to work with.",
 	},
 	{
 		name: 'Creative Testing',
 		desc: 'Ongoing rotation of new ad concepts, formats, and hooks. The single biggest lever in most Meta accounts, and the one most agencies quietly stop doing after the first month.',
+	},
+];
+
+const glossary = [
+	{
+		term: 'Campaign Budget Optimization (CBO)',
+		def: 'Meta automatically distributes budget across ad sets within a campaign toward whichever ones are performing best, instead of fixed budgets per ad set. Useful when ad sets are genuinely comparable, and a common cause of one audience starving another when they are not.',
+	},
+	{
+		term: 'Learning Phase',
+		def: "The period after a campaign or ad set launches, or has a major edit, where Meta's algorithm is still gathering data, typically until around 50 optimization events. Performance is often unstable during this window, which is why judging results too early leads to bad decisions.",
+	},
+	{
+		term: 'Conversions API (CAPI)',
+		def: 'Server-side event tracking that sends conversion data directly from your server to Meta, supplementing the browser pixel. This is how you recover signal lost to ad blockers and iOS privacy restrictions, and it is one of the first things we check in an audit.',
+	},
+	{
+		term: 'Lookalike Audience',
+		def: 'An audience Meta builds by finding people who share characteristics with an existing source audience, like past purchasers, used for prospecting. Quality depends entirely on the quality and size of the source audience feeding it.',
+	},
+	{
+		term: 'Advantage+ Shopping Campaigns',
+		def: "Meta's automated campaign type for ecommerce that handles targeting, placement, and creative optimization with minimal manual input. Trades control for automation, and works best with a clean product feed and enough historical conversion data to learn from.",
+	},
+	{
+		term: 'Frequency',
+		def: 'The average number of times a unique person has seen your ad. Rising frequency paired with falling performance is one of the clearest, earliest signs of creative fatigue, well before cost per result visibly climbs.',
 	},
 ];
 
@@ -65,6 +95,22 @@ const faqs = [
 		q: 'What Reporting Do I Get for Meta Ads?',
 		a: 'Reporting built around revenue and cost per acquisition, cross-checked against GA4 and backend data rather than relying only on Meta Ads Manager numbers, which have well-documented attribution differences from platform to platform.',
 	},
+	{
+		q: 'What Is Campaign Budget Optimization, and Should I Use It?',
+		a: 'CBO lets Meta shift budget automatically toward whichever ad set in a campaign is performing best. It works well when the ad sets are genuinely comparable in audience size and offer. It can also starve a smaller but valuable audience of budget if left unmanaged, which is why we check it as part of every audit.',
+	},
+	{
+		q: 'Why Are My Meta Ads Costs Rising Even Though Nothing Changed?',
+		a: 'Usually one of three things: audience fatigue from rising frequency, increased competition in the auction, or a tracking gap making the algorithm optimize against incomplete data. An audit identifies which one it actually is.',
+	},
+	{
+		q: 'Do You Need Admin Access to My Facebook Business Manager?',
+		a: 'We need Partner or Admin access appropriate to the work, granted through Business Manager, which you can revoke at any time. We never ask for your personal Facebook login.',
+	},
+	{
+		q: 'Can You Fix a Meta Ads Account That Was Previously Restricted or Disabled?',
+		a: "It depends on the reason for the restriction. Policy violations tied to the ad account or Business Manager itself require an appeal directly with Meta. We can review what happened and advise, but we can't guarantee reinstatement, since that decision sits with Meta, not with us.",
+	},
 ];
 ---
 
@@ -85,6 +131,14 @@ const faqs = [
 		</ul>
 	</section>
 
+	<Testimonials />
+
+	<Guarantee
+		eyebrow="Before Any Changes"
+		heading="A Free Audit of Your Meta Ads Account First"
+		body="You'll see exactly what's working, what's fatigued, and whether your tracking is telling you the truth before you commit to anything. If the account doesn't need our help, we'll say so."
+	/>
+
 	<section class="campaigns">
 		<h2>Meta Ads Campaign Types We Manage</h2>
 		<div class="stack">
@@ -93,6 +147,20 @@ const faqs = [
 					<div class="row">
 						<h3>{c.name}</h3>
 						<p>{c.desc}</p>
+					</div>
+				))
+			}
+		</div>
+	</section>
+
+	<section class="glossary">
+		<h2>Key Meta Ads Terms Explained</h2>
+		<div class="stack">
+			{
+				glossary.map((g) => (
+					<div class="row">
+						<h3>{g.term}</h3>
+						<p>{g.def}</p>
 					</div>
 				))
 			}
@@ -109,6 +177,8 @@ const faqs = [
 		</p>
 	</section>
 
+	<CaseStudies />
+
 	<ProcessSteps />
 
 	<CTABand heading="Ready to See What Your Meta Ads Account Is Actually Doing?" />
@@ -124,12 +194,14 @@ const faqs = [
 <style>
 	.included,
 	.campaigns,
+	.glossary,
 	.why {
 		padding: 4.5rem 0;
 		border-top: 1px solid var(--color-border);
 	}
 	.included h2,
 	.campaigns h2,
+	.glossary h2,
 	.why h2 {
 		font-size: 1.75rem;
 		margin: 0 0 2rem;

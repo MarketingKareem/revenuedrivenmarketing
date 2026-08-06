@@ -4,6 +4,9 @@ import ServiceHero from '../../components/ServiceHero.astro';
 import ProcessSteps from '../../components/ProcessSteps.astro';
 import FAQSection from '../../components/FAQSection.astro';
 import CTABand from '../../components/CTABand.astro';
+import Testimonials from '../../components/Testimonials.astro';
+import CaseStudies from '../../components/CaseStudies.astro';
+import Guarantee from '../../components/Guarantee.astro';
 
 const included = [
 	'GA4 property setup and audit, checked against how your business actually converts.',
@@ -32,13 +35,40 @@ const problems = [
 	},
 ];
 
+const glossary = [
+	{
+		term: 'Multi-Touch Attribution',
+		def: 'A model that distributes conversion credit across multiple touchpoints in a customer journey instead of giving 100% credit to a single interaction. Gives a more accurate picture of which channels actually contribute, especially for longer sales cycles.',
+	},
+	{
+		term: 'Last-Click Attribution',
+		def: 'The default model on most platforms: 100% of conversion credit goes to the final click before a conversion, and everything earlier in the journey gets ignored. Simple, and consistently biased toward bottom-of-funnel channels like branded search.',
+	},
+	{
+		term: 'UTM Parameters',
+		def: 'Tags added to the end of a URL that let analytics tools identify exactly which campaign, source, and medium drove a visit. The foundation of accurate channel reporting, and one of the first things we check in an attribution audit.',
+	},
+	{
+		term: 'Data-Driven Attribution',
+		def: "Google's machine-learning attribution model, which distributes conversion credit based on actual conversion path data specific to your account rather than a fixed rule like last-click. Generally more accurate, and requires enough conversion volume to work well.",
+	},
+	{
+		term: 'View-Through Conversion',
+		def: 'A conversion counted when someone saw an ad, without clicking it, and converted within a set window afterward. A real signal for brand awareness impact, and a common source of inflated conversion counts when not clearly separated from click conversions.',
+	},
+	{
+		term: 'Server-Side Tracking',
+		def: 'Sending conversion data from your own server directly to ad platforms, instead of relying only on browser-based pixels and cookies, which are increasingly blocked or limited by privacy tools and iOS restrictions. More reliable, and requires correct implementation to actually help.',
+	},
+];
+
 const faqs = [
 	{
 		q: 'What Is Revenue Attribution?',
 		a: 'Revenue attribution is the process of connecting ad spend to actual revenue, correctly crediting the channels and touchpoints that led to a sale, instead of relying on whatever a single platform self-reports.',
 	},
 	{
-		q: 'Why Don’t My Google Ads and Meta Ads Numbers Match?',
+		q: "Why Don't My Google Ads and Meta Ads Numbers Match?",
 		a: 'Each platform uses a different attribution window and counting method. Meta defaults to a 7-day click and 1-day view window, Google Ads defaults to 30 days on a click, and both can include modeled conversions. Neither is wrong, they are just measuring differently. See our blog post on this for the full breakdown.',
 	},
 	{
@@ -56,6 +86,14 @@ const faqs = [
 	{
 		q: 'Can You Fix Attribution Without Touching Our Active Campaigns?',
 		a: 'Yes. Attribution and tracking work is largely independent of campaign structure. We can correct tracking and reporting without pausing or restructuring anything that is currently running.',
+	},
+	{
+		q: 'What Is a UTM Parameter, and Why Does It Matter?',
+		a: 'A UTM parameter is a small tag added to a URL that tells analytics tools which campaign, source, and medium sent that visitor. Without consistent UTM tagging, GA4 has to guess at traffic source, which is a common reason channel reports look wrong even when tracking itself is technically working.',
+	},
+	{
+		q: "Should I Trust Google Ads' Data-Driven Attribution Model?",
+		a: "It's generally more accurate than last-click, but it needs enough conversion volume in your account to work well. For lower-volume accounts, it can behave inconsistently. Whether it's the right model for your account is something we check as part of an attribution audit, not something to assume.",
 	},
 ];
 ---
@@ -80,6 +118,14 @@ const faqs = [
 		</ul>
 	</section>
 
+	<Testimonials />
+
+	<Guarantee
+		eyebrow="Before Any Changes"
+		heading="A Free Audit of Your Tracking and Attribution Setup"
+		body="You'll see exactly where your numbers are wrong, duplicated, or disagreeing with each other before you commit to anything. If your tracking checks out, we'll tell you that too."
+	/>
+
 	<section class="problems">
 		<h2>What Broken Attribution Actually Looks Like</h2>
 		<div class="stack">
@@ -93,6 +139,22 @@ const faqs = [
 			}
 		</div>
 	</section>
+
+	<section class="glossary">
+		<h2>Key Attribution Terms Explained</h2>
+		<div class="stack">
+			{
+				glossary.map((g) => (
+					<div class="row">
+						<h3>{g.term}</h3>
+						<p>{g.def}</p>
+					</div>
+				))
+			}
+		</div>
+	</section>
+
+	<CaseStudies />
 
 	<ProcessSteps />
 
@@ -108,12 +170,14 @@ const faqs = [
 
 <style>
 	.included,
-	.problems {
+	.problems,
+	.glossary {
 		padding: 4.5rem 0;
 		border-top: 1px solid var(--color-border);
 	}
 	.included h2,
-	.problems h2 {
+	.problems h2,
+	.glossary h2 {
 		font-size: 1.75rem;
 		margin: 0 0 2rem;
 	}
