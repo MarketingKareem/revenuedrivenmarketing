@@ -6,6 +6,34 @@ const posts = (await getCollection('blog', ({ data }) => !data.draft))
 	.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
 	.slice(0, 3);
 
+// TODO(Kareem): drop in your real numbers here. Left honest and vague on
+// purpose rather than inventing figures.
+const stats = [
+	{ value: 'Years', label: 'Managing Live Ad Accounts' },
+	{ value: 'Real Dollars', label: 'In Ad Spend Managed, Not a Sandbox' },
+	{ value: 'Google + Meta', label: 'Platforms We Run Daily' },
+	{ value: 'Multiple Industries', label: 'Healthcare, Legal, Home Services, and More' },
+];
+
+const problems = [
+	{
+		name: "Conversion Tracking That's Quietly Wrong",
+		desc: 'Duplicate counting, misfired events, and inflated numbers are common in accounts nobody has actually audited. If the tracking is wrong, everything built on top of it is wrong too.',
+	},
+	{
+		name: 'Performance Max Eating Brand Search',
+		desc: 'PMax can be a real growth channel, or a quiet way to pay for traffic you were already getting for free. Most accounts never check which one is happening.',
+	},
+	{
+		name: "Platforms That Don't Agree With Each Other",
+		desc: 'Google Ads, Meta Ads, and GA4 all use different attribution windows and counting methods. Left alone, none of them match your actual revenue.',
+	},
+	{
+		name: 'Creative That Stalls After Month One',
+		desc: 'Strong early performance that quietly decays is usually fatigue, not a bad channel. Most accounts stop testing right when testing matters most.',
+	},
+];
+
 const services = [
 	{
 		name: 'PPC Management',
@@ -63,14 +91,46 @@ const process = [
 			<h1>Your Ads Are Spending Money. Are They Actually Driving Revenue?</h1>
 			<p class="lede">
 				Revenue Driven Marketing runs Google Ads and Meta Ads accounts with attribution as the
-				starting point, not an afterthought, so budget goes where it actually converts,
-				not just where it gets clicks.
+				starting point, not an afterthought, so budget goes where it actually converts, not just
+				where it gets clicks.
 			</p>
 			<div class="cta-row">
 				<a class="btn primary" href="/contact/">Get a Free Account Audit</a>
 				<a class="btn ghost" href="#process">See How We Work</a>
 			</div>
 		</div>
+	</section>
+
+	<section class="stats">
+		<div class="stats-grid">
+			{
+				stats.map((s) => (
+					<div class="stat">
+						<span class="stat-value">{s.value}</span>
+						<span class="stat-label">{s.label}</span>
+					</div>
+				))
+			}
+		</div>
+	</section>
+
+	<section class="problems">
+		<h2>What's Actually Going Wrong in Most Ad Accounts</h2>
+		<p class="section-lede">
+			Not bad luck. The same handful of problems, over and over, in accounts nobody has actually
+			looked at closely.
+		</p>
+		<div class="grid">
+			{
+				problems.map((p) => (
+					<div class="card">
+						<h3>{p.name}</h3>
+						<p>{p.desc}</p>
+					</div>
+				))
+			}
+		</div>
+		<a class="mid-cta" href="/contact/">Find Out What's Actually Happening in Your Account &rarr;</a>
 	</section>
 
 	<section class="services">
@@ -109,6 +169,18 @@ const process = [
 		</div>
 	</section>
 
+	<section class="honesty">
+		<div class="honesty-inner">
+			<p class="eyebrow">No Long-Term Lock-In</p>
+			<h2>A Free Audit, Straight Answers, and No Obligation</h2>
+			<p>
+				You get a real diagnostic of your account before anything changes and before you commit
+				to anything. If the honest answer is "spend less here," that's what you'll hear. If we're
+				not the right fit, we'll tell you that too.
+			</p>
+		</div>
+	</section>
+
 	<section class="cta-band">
 		<div class="cta-band-inner">
 			<h2>Ready to See What Your Ad Account Is Actually Doing?</h2>
@@ -139,7 +211,8 @@ const process = [
 <style>
 	/* Full-bleed section technique: break out of main's centered max-width */
 	.hero,
-	.cta-band {
+	.cta-band,
+	.honesty {
 		width: auto;
 		margin-inline: calc(50% - 50vw);
 		background: #0b0d12;
@@ -150,7 +223,8 @@ const process = [
 		padding: 5.5rem 1.5rem 5rem;
 	}
 	.hero-inner,
-	.cta-band-inner {
+	.cta-band-inner,
+	.honesty-inner {
 		max-width: 960px;
 		margin: 0 auto;
 	}
@@ -218,16 +292,51 @@ const process = [
 		color: #fff;
 	}
 
+	.stats {
+		padding: 3rem 0;
+		border-bottom: 1px solid var(--color-border);
+	}
+	.stats-grid {
+		display: grid;
+		grid-template-columns: repeat(4, 1fr);
+		gap: 1.5rem;
+	}
+	.stat {
+		display: flex;
+		flex-direction: column;
+		gap: 0.35rem;
+	}
+	.stat-value {
+		font-size: 1.3rem;
+		font-weight: 800;
+		color: var(--color-accent);
+	}
+	.stat-label {
+		font-size: 0.85rem;
+		color: var(--color-text-muted);
+	}
+
+	.problems,
 	.services,
 	.process {
 		padding: 4.5rem 0;
 		border-top: 1px solid var(--color-border);
 	}
+	.problems h2,
 	.services h2,
 	.process h2,
 	.posts h2 {
 		font-size: 1.75rem;
+		margin: 0 0 0.75rem;
+	}
+	.section-lede {
+		color: var(--color-text-muted);
+		max-width: 60ch;
 		margin: 0 0 2.5rem;
+	}
+	.services h2,
+	.process h2 {
+		margin-bottom: 2.5rem;
 	}
 	.grid {
 		display: grid;
@@ -258,6 +367,12 @@ const process = [
 		margin: 0;
 		font-size: 0.95rem;
 	}
+	.mid-cta {
+		display: inline-block;
+		margin-top: 2rem;
+		font-weight: 600;
+		text-decoration: none;
+	}
 
 	.process .grid {
 		grid-template-columns: repeat(3, 1fr);
@@ -277,6 +392,21 @@ const process = [
 	.step p {
 		margin: 0;
 		font-size: 0.95rem;
+	}
+
+	.honesty {
+		padding: 4.5rem 1.5rem;
+	}
+	.honesty h2 {
+		color: #fff;
+		font-size: 2rem;
+		max-width: 22ch;
+		margin: 0 0 1.25rem;
+	}
+	.honesty p:last-child {
+		max-width: 60ch;
+		color: #c2c5d6;
+		font-size: 1.05rem;
 	}
 
 	.cta-band {
@@ -327,6 +457,9 @@ const process = [
 		.grid,
 		.process .grid {
 			grid-template-columns: 1fr;
+		}
+		.stats-grid {
+			grid-template-columns: repeat(2, 1fr);
 		}
 	}
 </style>
