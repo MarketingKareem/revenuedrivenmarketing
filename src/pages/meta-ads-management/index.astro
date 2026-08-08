@@ -1,0 +1,238 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ServiceHero from '../../components/ServiceHero.astro';
+import ProcessSteps from '../../components/ProcessSteps.astro';
+import FAQSection from '../../components/FAQSection.astro';
+import CTABand from '../../components/CTABand.astro';
+import Testimonials from '../../components/Testimonials.astro';
+import CaseStudies from '../../components/CaseStudies.astro';
+import Guarantee from '../../components/Guarantee.astro';
+
+const included = [
+	'Campaign structure across prospecting and retargeting, built for Facebook and Instagram together.',
+	'Conversions API and pixel setup audited and fixed. Meta can only optimize toward events it receives accurately.',
+	"Creative testing on an ongoing basis, so performance doesn't stall out once the first batch of ads fatigues.",
+	'Audience and budget management built around post-iOS14 targeting reality, not pre-2021 playbooks.',
+	'Reporting tied to revenue, cross-checked against GA4 and backend data, not just what Meta self-reports.',
+];
+
+const campaignTypes = [
+	{
+		name: 'Prospecting Campaigns',
+		desc: 'Broad and lookalike audience testing built to find new customers, structured with enough budget per ad set to actually exit the learning phase instead of stalling before Meta has data to optimize with.',
+	},
+	{
+		name: 'Retargeting Campaigns',
+		desc: 'Warm-audience campaigns built off site visitors, cart abandoners, and past customers. Usually the highest return segment in the account, and the easiest to under-invest in.',
+	},
+	{
+		name: 'Advantage+ Shopping and Catalog Ads',
+		desc: "For ecommerce accounts, dynamic catalog ads that show the right product to the right person automatically, set up with clean product feed data so Meta's automation has something accurate to work with.",
+	},
+	{
+		name: 'Creative Testing',
+		desc: 'Ongoing rotation of new ad concepts, formats, and hooks. The single biggest lever in most Meta accounts, and the one most agencies quietly stop doing after the first month.',
+	},
+];
+
+const glossary = [
+	{
+		term: 'Campaign Budget Optimization (CBO)',
+		def: 'Meta automatically distributes budget across ad sets within a campaign toward whichever ones are performing best, instead of fixed budgets per ad set. Useful when ad sets are genuinely comparable, and a common cause of one audience starving another when they are not.',
+	},
+	{
+		term: 'Learning Phase',
+		def: "The period after a campaign or ad set launches, or has a major edit, where Meta's algorithm is still gathering data, typically until around 50 optimization events. Performance is often unstable during this window, which is why judging results too early leads to bad decisions.",
+	},
+	{
+		term: 'Conversions API (CAPI)',
+		def: 'Server-side event tracking that sends conversion data directly from your server to Meta, supplementing the browser pixel. This is how you recover signal lost to ad blockers and iOS privacy restrictions, and it is one of the first things we check in an audit.',
+	},
+	{
+		term: 'Lookalike Audience',
+		def: 'An audience Meta builds by finding people who share characteristics with an existing source audience, like past purchasers, used for prospecting. Quality depends entirely on the quality and size of the source audience feeding it.',
+	},
+	{
+		term: 'Advantage+ Shopping Campaigns',
+		def: "Meta's automated campaign type for ecommerce that handles targeting, placement, and creative optimization with minimal manual input. Trades control for automation, and works best with a clean product feed and enough historical conversion data to learn from.",
+	},
+	{
+		term: 'Frequency',
+		def: 'The average number of times a unique person has seen your ad. Rising frequency paired with falling performance is one of the clearest, earliest signs of creative fatigue, well before cost per result visibly climbs.',
+	},
+];
+
+const faqs = [
+	{
+		q: 'Why Do Meta Ads Perform Well and Then Drop Off?',
+		a: 'Creative fatigue is the most common cause. The same audience sees the same ads too many times and performance decays. It is also the most fixable, with a real creative testing cadence instead of a campaign that runs untouched for months.',
+	},
+	{
+		q: 'Do You Manage Instagram Ads Separately From Facebook?',
+		a: 'No. Meta runs both through the same ad platform (Meta Ads Manager), so campaigns are typically built to run across both placements together, not as separate services.',
+	},
+	{
+		q: 'How Does iOS Tracking Affect Meta Ads Performance?',
+		a: 'iOS 14+ privacy changes limited how much Meta can see about what happens after someone clicks an ad, which is a real part of why reported conversions can look inflated or delayed. Correct Conversions API setup, sent server-side rather than relying only on the browser pixel, is how you recover as much signal as possible.',
+	},
+	{
+		q: 'What Budget Do I Need for Meta Ads to Work?',
+		a: 'It depends on your industry and cost per acquisition, not a fixed minimum. What matters more than total budget is whether each campaign has enough budget to exit the learning phase. Spreading too thin across too many campaigns is a common way budget gets wasted.',
+	},
+	{
+		q: 'Is Meta Ads Worth It If I Already Run Google Ads?',
+		a: 'Often yes, since they reach people at different points. Google Ads captures existing intent, Meta builds it. See our full PPC Management overview for how we think about running both together.',
+	},
+	{
+		q: 'How Often Should Ad Creative Be Refreshed?',
+		a: 'It depends on spend and audience size, but most accounts need new creative variations every 2 to 4 weeks to stay ahead of fatigue. Smaller audiences fatigue faster than larger ones.',
+	},
+	{
+		q: 'Do You Handle Ad Creative Production, or Just Media Buying?',
+		a: 'We manage strategy, targeting, budgets, and testing frameworks. Creative production needs vary by account. We will tell you upfront during the audit what creative support makes sense for your situation.',
+	},
+	{
+		q: 'What Reporting Do I Get for Meta Ads?',
+		a: 'Reporting built around revenue and cost per acquisition, cross-checked against GA4 and backend data rather than relying only on Meta Ads Manager numbers, which have well-documented attribution differences from platform to platform.',
+	},
+	{
+		q: 'What Is Campaign Budget Optimization, and Should I Use It?',
+		a: 'CBO lets Meta shift budget automatically toward whichever ad set in a campaign is performing best. It works well when the ad sets are genuinely comparable in audience size and offer. It can also starve a smaller but valuable audience of budget if left unmanaged, which is why we check it as part of every audit.',
+	},
+	{
+		q: 'Why Are My Meta Ads Costs Rising Even Though Nothing Changed?',
+		a: 'Usually one of three things: audience fatigue from rising frequency, increased competition in the auction, or a tracking gap making the algorithm optimize against incomplete data. An audit identifies which one it actually is.',
+	},
+	{
+		q: 'Do You Need Admin Access to My Facebook Business Manager?',
+		a: 'We need Partner or Admin access appropriate to the work, granted through Business Manager, which you can revoke at any time. We never ask for your personal Facebook login.',
+	},
+	{
+		q: 'Can You Fix a Meta Ads Account That Was Previously Restricted or Disabled?',
+		a: "It depends on the reason for the restriction. Policy violations tied to the ad account or Business Manager itself require an appeal directly with Meta. We can review what happened and advise, but we can't guarantee reinstatement, since that decision sits with Meta, not with us.",
+	},
+];
+---
+
+<BaseLayout
+	title="Meta Ads Management"
+	description="Meta Ads management for Facebook and Instagram, built around creative testing, accurate conversion tracking, and revenue, not just reach."
+>
+	<ServiceHero eyebrow="Meta Ads Management" title="Meta Ads Management That Doesn't Stall Out After Week Two">
+		Most Meta campaigns perform well for the first couple of weeks and then quietly decay. We
+		manage toward a real testing cadence and accurate tracking, so performance doesn't depend on
+		the algorithm's honeymoon phase.
+	</ServiceHero>
+
+	<section class="included">
+		<h2>What's Included</h2>
+		<ul>
+			{included.map((item) => <li>{item}</li>)}
+		</ul>
+	</section>
+
+	<Testimonials />
+
+	<Guarantee
+		eyebrow="Before Any Changes"
+		heading="A Free Audit of Your Meta Ads Account First"
+		body="You'll see exactly what's working, what's fatigued, and whether your tracking is telling you the truth before you commit to anything. If the account doesn't need our help, we'll say so."
+	/>
+
+	<section class="campaigns">
+		<h2>Meta Ads Campaign Types We Manage</h2>
+		<div class="stack">
+			{
+				campaignTypes.map((c) => (
+					<div class="row">
+						<h3>{c.name}</h3>
+						<p>{c.desc}</p>
+					</div>
+				))
+			}
+		</div>
+	</section>
+
+	<section class="glossary">
+		<h2>Key Meta Ads Terms Explained</h2>
+		<div class="stack">
+			{
+				glossary.map((g) => (
+					<div class="row">
+						<h3>{g.term}</h3>
+						<p>{g.def}</p>
+					</div>
+				))
+			}
+		</div>
+	</section>
+
+	<section class="why">
+		<h2>Why Meta Ads Accounts Plateau</h2>
+		<p>
+			Creative fatigue, thin tracking signal, and budgets spread across too many ad sets are the
+			three most common causes of a Meta account that starts strong and quietly flattens out. All
+			three are fixable, and none of them show up if the only thing being watched is
+			cost-per-click.
+		</p>
+	</section>
+
+	<CaseStudies />
+
+	<ProcessSteps />
+
+	<CTABand heading="Ready to See What Your Meta Ads Account Is Actually Doing?" />
+
+	<FAQSection items={faqs} />
+
+	<p class="cross-link">
+		Also running search ads? See <a href="/google-ads-management/">Google Ads Management</a> or
+		the full <a href="/ppc-management/">PPC Management</a> overview.
+	</p>
+</BaseLayout>
+
+<style>
+	.included,
+	.campaigns,
+	.glossary,
+	.why {
+		padding: 4.5rem 0;
+		border-top: 1px solid var(--color-border);
+	}
+	.included h2,
+	.campaigns h2,
+	.glossary h2,
+	.why h2 {
+		font-size: 1.75rem;
+		margin: 0 0 2rem;
+	}
+	.included ul {
+		padding-left: 1.25rem;
+		max-width: 68ch;
+	}
+	.included li {
+		margin-bottom: 0.75rem;
+		color: var(--color-text-muted);
+	}
+	.stack {
+		display: flex;
+		flex-direction: column;
+		gap: 1.75rem;
+		max-width: 68ch;
+	}
+	.row h3 {
+		margin: 0 0 0.5rem;
+		font-size: 1.1rem;
+	}
+	.row p {
+		margin: 0;
+	}
+	.why p {
+		max-width: 68ch;
+	}
+	.cross-link {
+		border-top: 1px solid var(--color-border);
+		padding-top: 2rem;
+		color: var(--color-text-muted);
+	}
+</style>

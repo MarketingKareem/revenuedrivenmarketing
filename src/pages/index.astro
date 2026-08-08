@@ -1,45 +1,139 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import Icon from '../components/Icon.astro';
+import FAQSection from '../components/FAQSection.astro';
+import Testimonials from '../components/Testimonials.astro';
+import CaseStudies from '../components/CaseStudies.astro';
+import Guarantee from '../components/Guarantee.astro';
 import { getCollection } from 'astro:content';
 
 const posts = (await getCollection('blog', ({ data }) => !data.draft))
 	.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
 	.slice(0, 3);
 
+// TODO(Kareem): drop in your real numbers here. Left honest and vague on
+// purpose rather than inventing figures.
+const stats = [
+	{ value: 'Years', label: 'Managing Live Ad Accounts' },
+	{ value: 'Real Dollars', label: 'In Ad Spend Managed, Not a Sandbox' },
+	{ value: 'Google + Meta', label: 'Platforms We Run Daily' },
+	{ value: 'Multiple Industries', label: 'Healthcare, Legal, Home Services, and More' },
+];
+
+const problems = [
+	{
+		icon: 'alert-triangle' as const,
+		name: "Conversion Tracking That's Quietly Wrong",
+		desc: 'Duplicate counting, misfired events, and inflated numbers are common in accounts nobody has actually audited. If the tracking is wrong, everything built on top of it is wrong too.',
+	},
+	{
+		icon: 'trending-up' as const,
+		name: 'Performance Max Eating Brand Search',
+		desc: 'PMax can be a real growth channel, or a quiet way to pay for traffic you were already getting for free. Most accounts never check which one is happening.',
+	},
+	{
+		icon: 'shuffle' as const,
+		name: "Platforms That Don't Agree With Each Other",
+		desc: 'Google Ads, Meta Ads, and GA4 all use different attribution windows and counting methods. Left alone, none of them match your actual revenue.',
+	},
+	{
+		icon: 'refresh' as const,
+		name: 'Creative That Stalls After Month One',
+		desc: 'Strong early performance that quietly decays is usually fatigue, not a bad channel. Most accounts stop testing right when testing matters most.',
+	},
+];
+
 const services = [
 	{
-		name: 'Google Ads Management',
-		desc: 'Search, Shopping, and Performance Max — structured around what actually converts, not platform-recommended defaults.',
+		icon: 'target' as const,
+		name: 'PPC Management',
+		desc: 'The full picture across every platform, structured around revenue, not spend.',
+		href: '/ppc-management/',
 	},
 	{
+		icon: 'search' as const,
+		name: 'Google Ads Management',
+		desc: 'Search, Shopping, and Performance Max, structured around what actually converts, not platform-recommended defaults.',
+		href: '/google-ads-management/',
+	},
+	{
+		icon: 'share' as const,
 		name: 'Meta Ads Management',
 		desc: "Facebook and Instagram campaigns built for revenue, with creative and audience testing that doesn't stall out after week two.",
+		href: '/meta-ads-management/',
 	},
 	{
+		icon: 'bar-chart' as const,
 		name: 'Revenue Attribution & Analytics',
-		desc: 'GA4, conversion tracking, and multi-touch attribution set up correctly — so the numbers you optimize against are actually true.',
+		desc: 'GA4, conversion tracking, and multi-touch attribution set up correctly, so the numbers you optimize against are actually true.',
+		href: '/revenue-attribution/',
 	},
 	{
+		icon: 'clipboard-check' as const,
 		name: 'Account Audits & Teardowns',
 		desc: "A full diagnostic of what's broken, what's wasted, and what's working before you spend another dollar.",
+		href: '/account-audits/',
 	},
 ];
 
 const process = [
 	{
+		icon: 'search-check' as const,
 		step: '01',
 		name: 'Audit',
-		desc: "We tear the account down to see what's actually happening — tracking accuracy, wasted spend, structural issues the platform dashboard won't show you.",
+		desc: "We tear the account down to see what's actually happening: tracking accuracy, wasted spend, structural issues the platform dashboard won't show you.",
 	},
 	{
+		icon: 'wrench' as const,
 		step: '02',
 		name: 'Rebuild',
-		desc: "Fix what's broken first — tracking, structure, targeting — before touching a single bid.",
+		desc: "Fix what's broken first: tracking, structure, targeting, before touching a single bid.",
 	},
 	{
+		icon: 'trending-up' as const,
 		step: '03',
 		name: 'Scale',
 		desc: "Once the foundation is honest, we scale what's proven to convert and cut what isn't.",
+	},
+];
+
+const fitFor = [
+	'You are spending real money on Google Ads or Meta Ads and cannot fully trust the numbers you are seeing.',
+	'You have never had an outside, independent look at your account since it was first set up.',
+	'You want an agency that will tell you to spend less when that is the honest answer.',
+	'You are tired of reporting that highlights clicks and impressions instead of revenue.',
+];
+
+const notFitFor = [
+	'You are looking for the cheapest possible option regardless of results.',
+	'You want an agency that will never say no to a request, even a bad one.',
+	'You are not running any real ad budget yet and are only exploring options.',
+];
+
+const faqs = [
+	{
+		q: 'What Is a Performance Marketing Agency?',
+		a: 'An agency that manages paid advertising with revenue and cost per acquisition as the measure of success, not clicks or impressions. The distinction matters because platform-reported metrics can look great while actual revenue stays flat.',
+	},
+	{
+		q: 'How Is This Different From a Traditional Marketing Agency?',
+		a: 'Traditional agencies often bundle branding, content, and paid media together with broad, hard-to-measure goals. This is narrower and more accountable: Google Ads and Meta Ads, measured against revenue, with a free audit before anything changes.',
+	},
+	{
+		q: 'Do You Work With Small Businesses?',
+		a: "Yes, as long as there is enough real ad spend for ongoing management and testing to make sense. If your budget is too small for that, we'll say so honestly during the audit rather than take on an account that can't succeed.",
+	},
+	{
+		q: 'What Platforms Do You Manage?',
+		a: 'Primarily Google Ads and Meta Ads (Facebook and Instagram). See the PPC Management overview for how we think about running both together.',
+	},
+	{
+		q: 'How Do I Know If My Ad Accounts Need a Second Look?',
+		a: "If you cannot clearly explain what your ad spend produced last month in actual revenue, or nobody has checked your conversion tracking since it was first set up, that's usually enough reason on its own.",
+	},
+	{
+		q: 'What Happens After I Request a Free Audit?',
+		a: "We review your account, tracking setup, and reporting, then walk you through exactly what we found. No pressure to sign anything, and no changes are made to your account during the audit itself.",
 	},
 ];
 ---
@@ -54,8 +148,8 @@ const process = [
 			<h1>Your Ads Are Spending Money. Are They Actually Driving Revenue?</h1>
 			<p class="lede">
 				Revenue Driven Marketing runs Google Ads and Meta Ads accounts with attribution as the
-				starting point, not an afterthought &mdash; so budget goes where it actually converts,
-				not just where it gets clicks.
+				starting point, not an afterthought, so budget goes where it actually converts, not just
+				where it gets clicks.
 			</p>
 			<div class="cta-row">
 				<a class="btn primary" href="/contact/">Get a Free Account Audit</a>
@@ -64,15 +158,53 @@ const process = [
 		</div>
 	</section>
 
+	<section class="stats">
+		<div class="stats-grid">
+			{
+				stats.map((s) => (
+					<div class="stat">
+						<span class="stat-value">{s.value}</span>
+						<span class="stat-label">{s.label}</span>
+					</div>
+				))
+			}
+		</div>
+	</section>
+
+	<section class="problems">
+		<h2>What's Actually Going Wrong in Most Ad Accounts</h2>
+		<p class="section-lede">
+			Not bad luck. The same handful of problems, over and over, in accounts nobody has actually
+			looked at closely.
+		</p>
+		<div class="grid">
+			{
+				problems.map((p) => (
+					<div class="card">
+						<div class="card-icon">
+							<Icon name={p.icon} />
+						</div>
+						<h3>{p.name}</h3>
+						<p>{p.desc}</p>
+					</div>
+				))
+			}
+		</div>
+		<a class="mid-cta" href="/contact/">Find Out What's Actually Happening in Your Account &rarr;</a>
+	</section>
+
 	<section class="services">
 		<h2>What We Do</h2>
 		<div class="grid">
 			{
 				services.map((service) => (
-					<div class="card">
-						<h3>{service.name}</h3>
+					<a class="card" href={service.href}>
+						<div class="card-icon">
+							<Icon name={service.icon} />
+						</div>
+						<h3>{service.name} &rarr;</h3>
 						<p>{service.desc}</p>
-					</div>
+					</a>
 				))
 			}
 		</div>
@@ -84,6 +216,9 @@ const process = [
 			{
 				process.map((p) => (
 					<div class="step">
+						<div class="card-icon">
+							<Icon name={p.icon} />
+						</div>
 						<span class="step-num">{p.step}</span>
 						<h3>{p.name}</h3>
 						<p>{p.desc}</p>
@@ -93,12 +228,37 @@ const process = [
 		</div>
 	</section>
 
+	<section class="fit">
+		<div class="fit-grid">
+			<div>
+				<h2>This Is a Fit If</h2>
+				<ul class="fit-list yes">
+					{fitFor.map((item) => <li>{item}</li>)}
+				</ul>
+			</div>
+			<div>
+				<h2>This Isn't a Fit If</h2>
+				<ul class="fit-list no">
+					{notFitFor.map((item) => <li>{item}</li>)}
+				</ul>
+			</div>
+		</div>
+	</section>
+
+	<Testimonials />
+
+	<Guarantee />
+
 	<section class="cta-band">
 		<div class="cta-band-inner">
 			<h2>Ready to See What Your Ad Account Is Actually Doing?</h2>
 			<a class="btn primary large" href="/contact/">Get a Free Audit</a>
 		</div>
 	</section>
+
+	<CaseStudies />
+
+	<FAQSection items={faqs} />
 
 	<section class="posts">
 		<h2>Latest From the Blog</h2>
@@ -202,16 +362,52 @@ const process = [
 		color: #fff;
 	}
 
+	.stats {
+		padding: 3rem 0;
+		border-bottom: 1px solid var(--color-border);
+	}
+	.stats-grid {
+		display: grid;
+		grid-template-columns: repeat(4, 1fr);
+		gap: 1.5rem;
+	}
+	.stat {
+		display: flex;
+		flex-direction: column;
+		gap: 0.35rem;
+	}
+	.stat-value {
+		font-size: 1.3rem;
+		font-weight: 800;
+		color: var(--color-accent);
+	}
+	.stat-label {
+		font-size: 0.85rem;
+		color: var(--color-text-muted);
+	}
+
+	.problems,
 	.services,
-	.process {
+	.process,
+	.fit {
 		padding: 4.5rem 0;
 		border-top: 1px solid var(--color-border);
 	}
+	.problems h2,
 	.services h2,
 	.process h2,
 	.posts h2 {
 		font-size: 1.75rem;
+		margin: 0 0 0.75rem;
+	}
+	.section-lede {
+		color: var(--color-text-muted);
+		max-width: 60ch;
 		margin: 0 0 2.5rem;
+	}
+	.services h2,
+	.process h2 {
+		margin-bottom: 2.5rem;
 	}
 	.grid {
 		display: grid;
@@ -223,18 +419,50 @@ const process = [
 		border: 1px solid var(--color-border);
 		border-radius: 12px;
 		background: var(--color-bg-subtle);
+		text-decoration: none;
+		display: block;
+		transition: border-color 0.15s ease;
+	}
+	a.card:hover {
+		border-color: var(--color-accent);
+	}
+	.card-icon {
+		width: 40px;
+		height: 40px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		border-radius: 8px;
+		background: #e8ecfb;
+		color: var(--color-accent);
+		margin-bottom: 1rem;
 	}
 	.card h3 {
 		margin: 0 0 0.6rem;
 		font-size: 1.1rem;
+		color: var(--color-text);
+	}
+	a.card h3 {
+		color: var(--color-accent);
 	}
 	.card p {
 		margin: 0;
 		font-size: 0.95rem;
 	}
+	.mid-cta {
+		display: inline-block;
+		margin-top: 2rem;
+		font-weight: 600;
+		text-decoration: none;
+	}
 
 	.process .grid {
 		grid-template-columns: repeat(3, 1fr);
+	}
+	.step {
+		padding: 1.75rem;
+		border: 1px solid var(--color-border);
+		border-radius: 12px;
 	}
 	.step-num {
 		display: block;
@@ -253,6 +481,42 @@ const process = [
 		font-size: 0.95rem;
 	}
 
+	.fit-grid {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		gap: 2.5rem;
+	}
+	.fit h2 {
+		font-size: 1.3rem;
+		margin: 0 0 1.25rem;
+	}
+	.fit-list {
+		list-style: none;
+		padding: 0;
+		display: flex;
+		flex-direction: column;
+		gap: 0.85rem;
+	}
+	.fit-list li {
+		padding-left: 1.75rem;
+		position: relative;
+		color: var(--color-text-muted);
+	}
+	.fit-list.yes li::before {
+		content: '✓';
+		position: absolute;
+		left: 0;
+		color: #0a8a4a;
+		font-weight: 800;
+	}
+	.fit-list.no li::before {
+		content: '✕';
+		position: absolute;
+		left: 0;
+		color: #b00020;
+		font-weight: 800;
+	}
+
 	.cta-band {
 		padding: 4.5rem 1.5rem;
 		text-align: center;
@@ -266,6 +530,7 @@ const process = [
 
 	.posts {
 		padding-top: 4.5rem;
+		border-top: 1px solid var(--color-border);
 	}
 	.posts ul {
 		list-style: none;
@@ -299,8 +564,12 @@ const process = [
 			font-size: 2.1rem;
 		}
 		.grid,
-		.process .grid {
+		.process .grid,
+		.fit-grid {
 			grid-template-columns: 1fr;
+		}
+		.stats-grid {
+			grid-template-columns: repeat(2, 1fr);
 		}
 	}
 </style>

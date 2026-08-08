@@ -1,11 +1,23 @@
 ---
-const navLinks = [
-	{ href: '/', label: 'Home' },
+const navLinks = [{ href: '/', label: 'Home' }];
+
+const servicesLink = { href: '/ppc-management/', label: 'Services' };
+const serviceLinks = [
+	{ href: '/ppc-management/', label: 'PPC Management' },
+	{ href: '/google-ads-management/', label: 'Google Ads Management' },
+	{ href: '/meta-ads-management/', label: 'Meta Ads Management' },
+	{ href: '/revenue-attribution/', label: 'Revenue Attribution' },
+	{ href: '/account-audits/', label: 'Account Audits' },
+];
+
+const restLinks = [
 	{ href: '/about/', label: 'About' },
 	{ href: '/blog/', label: 'Blog' },
 	{ href: '/contact/', label: 'Contact' },
 ];
+
 const currentPath = Astro.url.pathname;
+const inServices = serviceLinks.some((link) => link.href === currentPath);
 ---
 
 <header class="site-header">
@@ -15,6 +27,23 @@ const currentPath = Astro.url.pathname;
 		</a>
 		<nav>
 			{navLinks.map((link) => (
+				<a href={link.href} aria-current={currentPath === link.href ? 'page' : undefined}>
+					{link.label}
+				</a>
+			))}
+			<div class="nav-dropdown">
+				<a href={servicesLink.href} aria-current={inServices ? 'page' : undefined}>
+					{servicesLink.label}
+				</a>
+				<div class="dropdown-panel">
+					{serviceLinks.map((link) => (
+						<a href={link.href} aria-current={currentPath === link.href ? 'page' : undefined}>
+							{link.label}
+						</a>
+					))}
+				</div>
+			</div>
+			{restLinks.map((link) => (
 				<a href={link.href} aria-current={currentPath === link.href ? 'page' : undefined}>
 					{link.label}
 				</a>
@@ -49,19 +78,74 @@ const currentPath = Astro.url.pathname;
 	}
 	nav {
 		display: flex;
+		align-items: center;
 		gap: 1.75rem;
 	}
-	nav a {
+	nav > a {
 		color: var(--color-text-muted);
 		text-decoration: none;
 		font-size: 0.95rem;
 		font-weight: 500;
 	}
-	nav a:hover {
+	nav > a:hover {
 		color: var(--color-text);
 	}
 	nav a[aria-current='page'] {
 		font-weight: 600;
+		color: var(--color-accent);
+	}
+
+	.nav-dropdown {
+		position: relative;
+	}
+	.nav-dropdown > a {
+		color: var(--color-text-muted);
+		text-decoration: none;
+		font-size: 0.95rem;
+		font-weight: 500;
+	}
+	.nav-dropdown > a:hover {
+		color: var(--color-text);
+	}
+	.dropdown-panel {
+		position: absolute;
+		top: 100%;
+		left: 50%;
+		transform: translateX(-50%) translateY(4px);
+		background: var(--color-bg);
+		border: 1px solid var(--color-border);
+		border-radius: var(--radius);
+		box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+		padding: 0.5rem;
+		min-width: 220px;
+		display: flex;
+		flex-direction: column;
+		opacity: 0;
+		visibility: hidden;
+		transition:
+			opacity 0.12s ease,
+			visibility 0.12s ease;
+		z-index: 10;
+	}
+	.nav-dropdown:hover .dropdown-panel,
+	.nav-dropdown:focus-within .dropdown-panel {
+		opacity: 1;
+		visibility: visible;
+	}
+	.dropdown-panel a {
+		padding: 0.55rem 0.75rem;
+		border-radius: 6px;
+		color: var(--color-text);
+		text-decoration: none;
+		font-size: 0.9rem;
+		font-weight: 500;
+		white-space: nowrap;
+	}
+	.dropdown-panel a:hover {
+		background: var(--color-bg-subtle);
+		color: var(--color-accent);
+	}
+	.dropdown-panel a[aria-current='page'] {
 		color: var(--color-accent);
 	}
 </style>

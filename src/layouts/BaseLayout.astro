@@ -11,6 +11,25 @@ const { title, description } = Astro.props;
 const gtmId = import.meta.env.PUBLIC_GTM_ID;
 const gscVerification = import.meta.env.PUBLIC_GSC_VERIFICATION;
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+const fullTitle = `${title} | Revenue Driven Marketing`;
+
+const organizationSchema = {
+	'@context': 'https://schema.org',
+	'@type': 'ProfessionalService',
+	name: 'Revenue Driven Marketing',
+	url: 'https://revenuedrivenmarketing.com',
+	description:
+		'Performance marketing agency running Google Ads and Meta Ads on attribution first, not vanity metrics.',
+	areaServed: 'US',
+	priceRange: '$$',
+	knowsAbout: [
+		'Google Ads Management',
+		'Meta Ads Management',
+		'PPC Management',
+		'Revenue Attribution',
+		'Conversion Tracking',
+	],
+};
 ---
 
 <!doctype html>
@@ -21,9 +40,20 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<link rel="canonical" href={canonicalURL} />
 		<meta name="generator" content={Astro.generator} />
-		<title>{title} | Revenue Driven Marketing</title>
+		<title>{fullTitle}</title>
 		<meta name="description" content={description} />
 		{gscVerification && <meta name="google-site-verification" content={gscVerification} />}
+
+		<meta property="og:type" content="website" />
+		<meta property="og:site_name" content="Revenue Driven Marketing" />
+		<meta property="og:title" content={fullTitle} />
+		<meta property="og:description" content={description} />
+		<meta property="og:url" content={canonicalURL} />
+		<meta name="twitter:card" content="summary_large_image" />
+		<meta name="twitter:title" content={fullTitle} />
+		<meta name="twitter:description" content={description} />
+
+		<script type="application/ld+json" set:html={JSON.stringify(organizationSchema)} />
 
 		{gtmId && (
 			<script is:inline define:vars={{ gtmId }}>

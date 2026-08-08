@@ -12,11 +12,7 @@ const FORM_ENDPOINT = 'https://formspree.io/f/REPLACE_ME';
 	description="Get a free Google Ads or Meta Ads account audit, or start a conversation about revenue-focused PPC management."
 >
 	<h1>Let's Talk About Your Ad Account</h1>
-	<p>
-		Send a few details and we'll get back to you &mdash; or if you'd rather skip the form, email
-		us directly at{' '}
-		<a href="mailto:marketingbykareem@gmail.com">marketingbykareem@gmail.com</a>.
-	</p>
+	<p>Send a few details and we'll get back to you shortly.</p>
 
 	<form id="contact-form" action={FORM_ENDPOINT} method="POST">
 		<label>
@@ -37,7 +33,7 @@ const FORM_ENDPOINT = 'https://formspree.io/f/REPLACE_ME';
 		</label>
 		<button type="submit">Send</button>
 		<p id="form-error" role="alert" hidden>
-			Something went wrong &mdash; email us directly at marketingbykareem@gmail.com instead.
+			Something went wrong. Please try again in a moment.
 		</p>
 	</form>
 
