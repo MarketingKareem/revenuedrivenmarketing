@@ -3,7 +3,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import { getCollection, render } from 'astro:content';
 
 export async function getStaticPaths() {
-	const posts = await getCollection('blog', ({ data }) => !data.draft);
+	const posts = await getCollection('blog');
 	return posts.map((post) => ({
 		params: { slug: post.id },
 		props: { post },
@@ -12,10 +12,36 @@ export async function getStaticPaths() {
 
 const { post } = Astro.props;
 const { Content } = await render(post);
+const heroImage = `/og/${post.data.pillar}.png`;
+const canonicalURL = new URL(`/blog/${post.id}/`, Astro.site);
+const imageURL = new URL(heroImage, Astro.site);
+
+const blogPostingSchema = {
+	'@context': 'https://schema.org',
+	'@type': 'BlogPosting',
+	headline: post.data.title,
+	description: post.data.description,
+	datePublished: post.data.pubDate.toISOString(),
+	dateModified: post.data.pubDate.toISOString(),
+	image: imageURL.toString(),
+	url: canonicalURL.toString(),
+	author: {
+		'@type': 'Organization',
+		name: 'Revenue Driven Marketing',
+		url: 'https://revenuedrivenmarketing.com',
+	},
+	publisher: {
+		'@type': 'Organization',
+		name: 'Revenue Driven Marketing',
+		url: 'https://revenuedrivenmarketing.com',
+	},
+};
 ---
 
-<BaseLayout title={post.data.title} description={post.data.description}>
+<BaseLayout title={post.data.title} description={post.data.description} image={heroImage}>
+	<script type="application/ld+json" set:html={JSON.stringify(blogPostingSchema)} />
 	<article>
+		<img class="hero" src={heroImage} alt="" width="1200" height="630" />
 		<p class="meta">
 			<time datetime={post.data.pubDate.toISOString()}>
 				{post.data.pubDate.toLocaleDateString('en-US', {
@@ -34,6 +60,13 @@ const { Content } = await render(post);
 	<style>
 		article {
 			max-width: 68ch;
+		}
+		.hero {
+			width: 100%;
+			height: auto;
+			border-radius: var(--radius);
+			margin-bottom: 1.5rem;
+			display: block;
 		}
 		article h1 {
 			font-size: 2rem;
