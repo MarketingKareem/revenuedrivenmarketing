@@ -22,11 +22,204 @@ This is the mechanism most explanations skip, and it's the one that does the mos
 
 Say a shopper sees your Meta ad on Monday, doesn't click. On Wednesday, they search your brand name and click a Google Ads result. On Friday, they buy, and the order is worth $500.
 
-- Meta counts this as a view-through conversion worth $500, since the purchase happened within its 1-day-view-adjacent attribution logic tied back to that Monday impression, extended by its click/engagement window.
-- Google Ads counts it as a click conversion worth $500, since the purchase happened within its attribution window of the Wednesday click.
-- Your CRM shows exactly one $500 sale.
+<div class="mismatch-diagram">
+	<div class="diagram-timeline">
+		<div class="diagram-point">
+			<span class="diagram-day">Mon</span>
+			<span class="diagram-event">Sees Meta ad<br />(no click)</span>
+		</div>
+		<div class="diagram-point">
+			<span class="diagram-day">Wed</span>
+			<span class="diagram-event">Clicks Google ad<br />(brand search)</span>
+		</div>
+		<div class="diagram-point diagram-point-final">
+			<span class="diagram-day">Fri</span>
+			<span class="diagram-event">Buys<br /><strong>$500</strong></span>
+		</div>
+	</div>
+	<div class="diagram-claims">
+		<div class="diagram-claim">
+			<span class="diagram-claim-label">Meta Ads reports</span>
+			<span class="diagram-claim-value">$500</span>
+			<span class="diagram-claim-note">view-through conversion</span>
+		</div>
+		<div class="diagram-claim">
+			<span class="diagram-claim-label">Google Ads reports</span>
+			<span class="diagram-claim-value">$500</span>
+			<span class="diagram-claim-note">click conversion</span>
+		</div>
+	</div>
+	<div class="diagram-bars">
+		<div class="diagram-bar-row">
+			<span class="diagram-bar-label">Reported (Meta + Google)</span>
+			<div class="diagram-bar-track">
+				<div class="diagram-bar-fill diagram-bar-muted" style="width: 100%;"></div>
+			</div>
+			<span class="diagram-bar-value">$1,000</span>
+		</div>
+		<div class="diagram-bar-row">
+			<span class="diagram-bar-label">Actual (CRM)</span>
+			<div class="diagram-bar-track">
+				<div class="diagram-bar-fill diagram-bar-accent" style="width: 50%;"></div>
+			</div>
+			<span class="diagram-bar-value">$500</span>
+		</div>
+	</div>
+</div>
 
-Add Meta's reported conversion value to Google's reported conversion value and you get $1,000 in "reported" revenue against the $500 that actually landed in your bank account. Neither platform did anything wrong by its own rules. Neither platform can see the other one also claiming the sale, because neither has visibility into what happened on the competing platform. If you're summing platform-reported revenue across channels to gut-check blended ROAS, this is very often where the gap comes from, and it gets worse, not better, the more channels you run.
+<style>
+	.mismatch-diagram {
+		margin: 2rem 0;
+		padding: 1.75rem;
+		background: var(--color-bg-subtle);
+		border-radius: var(--radius);
+	}
+	.diagram-timeline {
+		display: flex;
+		justify-content: space-between;
+		position: relative;
+		padding-top: 0.5rem;
+		margin-bottom: 2rem;
+	}
+	.diagram-timeline::before {
+		content: '';
+		position: absolute;
+		top: 14px;
+		left: 6px;
+		right: 6px;
+		height: 1px;
+		background: var(--color-border);
+	}
+	.diagram-point {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		text-align: center;
+		width: 30%;
+		position: relative;
+	}
+	.diagram-point::before {
+		content: '';
+		width: 10px;
+		height: 10px;
+		border-radius: 50%;
+		background: var(--color-text-muted);
+		border: 2px solid var(--color-bg-subtle);
+		margin-bottom: 0.6rem;
+		z-index: 1;
+	}
+	.diagram-point-final::before {
+		background: var(--color-accent);
+	}
+	.diagram-day {
+		font-size: 0.75rem;
+		font-weight: 700;
+		text-transform: uppercase;
+		letter-spacing: 0.04em;
+		color: var(--color-text-muted);
+		margin-bottom: 0.3rem;
+	}
+	.diagram-event {
+		font-size: 0.85rem;
+		color: var(--color-text);
+		line-height: 1.35;
+	}
+	.diagram-event strong {
+		color: var(--color-accent);
+	}
+	.diagram-claims {
+		display: flex;
+		gap: 1rem;
+		margin-bottom: 2rem;
+	}
+	.diagram-claim {
+		flex: 1;
+		background: var(--color-bg);
+		border: 1px solid var(--color-border);
+		border-radius: var(--radius);
+		padding: 1rem 1.1rem;
+	}
+	.diagram-claim-label {
+		display: block;
+		font-size: 0.8rem;
+		color: var(--color-text-muted);
+		margin-bottom: 0.3rem;
+	}
+	.diagram-claim-value {
+		display: block;
+		font-size: 1.6rem;
+		font-weight: 800;
+		color: var(--color-text);
+		letter-spacing: -0.02em;
+	}
+	.diagram-claim-note {
+		display: block;
+		font-size: 0.78rem;
+		color: var(--color-text-muted);
+		margin-top: 0.15rem;
+	}
+	.diagram-bars {
+		display: flex;
+		flex-direction: column;
+		gap: 0.9rem;
+	}
+	.diagram-bar-row {
+		display: flex;
+		align-items: center;
+		gap: 0.85rem;
+	}
+	.diagram-bar-label {
+		flex: 0 0 168px;
+		font-size: 0.85rem;
+		color: var(--color-text);
+	}
+	.diagram-bar-track {
+		flex: 1;
+		height: 22px;
+		background: var(--color-border);
+		border-radius: 4px;
+		overflow: hidden;
+	}
+	.diagram-bar-fill {
+		height: 100%;
+		border-radius: 0 4px 4px 0;
+	}
+	.diagram-bar-muted {
+		background: var(--color-text-muted);
+	}
+	.diagram-bar-accent {
+		background: var(--color-accent);
+	}
+	.diagram-bar-value {
+		flex: 0 0 64px;
+		text-align: right;
+		font-weight: 700;
+		font-size: 0.95rem;
+		color: var(--color-text);
+		font-variant-numeric: tabular-nums;
+	}
+	@media (max-width: 560px) {
+		.diagram-timeline {
+			flex-direction: column;
+			gap: 1.2rem;
+		}
+		.diagram-timeline::before {
+			display: none;
+		}
+		.diagram-claims {
+			flex-direction: column;
+		}
+		.diagram-bar-row {
+			flex-wrap: wrap;
+		}
+		.diagram-bar-label {
+			flex-basis: 100%;
+			margin-bottom: 0.3rem;
+		}
+	}
+</style>
+
+Neither platform did anything wrong by its own rules. Neither platform can see the other one also claiming the sale, because neither has visibility into what happened on the competing platform. If you're summing platform-reported revenue across channels to gut-check blended ROAS, this is very often where the gap comes from, and it gets worse, not better, the more channels you run.
 
 ## View-Through Conversions Inflate the Count Further
 
