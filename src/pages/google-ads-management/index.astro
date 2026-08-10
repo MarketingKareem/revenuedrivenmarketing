@@ -1,0 +1,239 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ServiceHero from '../../components/ServiceHero.astro';
+import ProcessSteps from '../../components/ProcessSteps.astro';
+import FAQSection from '../../components/FAQSection.astro';
+import CTABand from '../../components/CTABand.astro';
+import Testimonials from '../../components/Testimonials.astro';
+import CaseStudies from '../../components/CaseStudies.astro';
+import Guarantee from '../../components/Guarantee.astro';
+
+const included = [
+	'Campaign structure across Search, Shopping, and Performance Max, built around your actual customers, not a generic template.',
+	'Conversion tracking and GA4 setup audited and fixed first, before any optimization starts.',
+	"Keyword and negative keyword management, so Performance Max and broad match aren't quietly eating your brand search budget.",
+	'Bid strategy management matched to real business goals, not platform-recommended defaults.',
+	'Ad copy, asset, and landing page testing on an ongoing basis.',
+	'Reporting tied to revenue and cost per acquisition, not clicks and impression share.',
+];
+
+const campaignTypes = [
+	{
+		name: 'Search Campaigns',
+		desc: 'The core of most Google Ads accounts. Built around match types and keyword themes that reflect real search intent, not just volume. Negative keyword lists get maintained on an ongoing basis, not set once and forgotten.',
+	},
+	{
+		name: 'Shopping Campaigns',
+		desc: 'Product feed structure, campaign priority, and bid strategy set up so your budget goes toward the products that actually sell, not just the ones with the most impressions.',
+	},
+	{
+		name: 'Performance Max',
+		desc: "PMax can be a genuine growth channel or a quiet way to cannibalize branded search traffic you were already getting for free. We structure it, exclude what needs excluding, and watch the search term insights it doesn't make easy to see.",
+	},
+	{
+		name: 'Display and YouTube',
+		desc: 'Used for remarketing and top-of-funnel reach when the account has a reason to run them, not added by default to pad channel count.',
+	},
+];
+
+const glossary = [
+	{
+		term: 'Quality Score',
+		def: "Google's 1-10 rating of how relevant an ad is, based on expected click-through rate, ad relevance, and landing page experience. A higher Quality Score generally lowers your cost per click for the same ad position, which is why fixing relevance problems often matters more than raising bids.",
+	},
+	{
+		term: 'Impression Share',
+		def: "The percentage of eligible impressions your ads actually received. Lost impression share splits into two causes: budget (you ran out of money) and rank (you didn't win the auction). They require completely different fixes, which is why the split matters more than the headline number.",
+	},
+	{
+		term: 'Smart Bidding',
+		def: "Google's automated bid strategies, including Target CPA, Target ROAS, and Maximize Conversions, that set bids using machine learning signals at auction time. Smart Bidding is only as good as the conversion data feeding it, which is why tracking accuracy matters more than which strategy you pick.",
+	},
+	{
+		term: 'Search Term Report',
+		def: 'The actual queries that triggered your ads, as opposed to the keywords you bid on. This is where wasted spend is usually found, since broad match and Performance Max can match to search terms that have nothing to do with your business.',
+	},
+	{
+		term: 'Conversion Value / Target ROAS',
+		def: "Assigning a dollar value to each conversion so Smart Bidding can optimize toward revenue instead of just conversion count. Target ROAS bidding is only reliable when those values are accurate, which ties directly back to conversion tracking setup.",
+	},
+	{
+		term: 'Auction Insights',
+		def: 'A report comparing your account to competitors bidding on the same auctions, including overlap rate and outranking share. Useful for understanding competitive pressure, not for diagnosing your own account\'s problems on its own.',
+	},
+];
+
+const faqs = [
+	{
+		q: 'What Does a Google Ads Management Company Actually Do Day to Day?',
+		a: "Monitoring account health, testing ad copy and audiences, managing bids and budgets, watching for wasted spend in search terms, and fixing tracking issues before they distort your data. It's ongoing account management, not a one-time setup.",
+	},
+	{
+		q: 'Do You Work With Businesses Outside a Specific Area?',
+		a: "Yes, Google Ads management is done entirely remotely, so location isn't a constraint. We work with businesses wherever their customers are.",
+	},
+	{
+		q: "What's the Difference Between a Google Ads Consultant and a Managed Service?",
+		a: 'A consultant typically advises or audits and hands recommendations back to your team to implement. Managed service means we run the account directly: builds, bid changes, testing, and reporting are on us.',
+	},
+	{
+		q: 'Is This the Same as "AdWords Management"?',
+		a: 'Yes, Google renamed AdWords to Google Ads in 2018. Same platform, same service, older name still shows up in search.',
+	},
+	{
+		q: 'How Much Does Google Ads Management Cost?',
+		a: "Management fees typically scale with ad spend and account complexity. We'll give you a real number after seeing your account, not a generic tier.",
+	},
+	{
+		q: 'How Long Does It Take to See Results From Google Ads?',
+		a: "Tracking and structural fixes are visible immediately. Meaningful performance data usually takes 2 to 4 weeks, since Google's algorithms need volume to optimize against, and a full quarter before you can judge a strategy fairly.",
+	},
+	{
+		q: 'What Makes Google Ads Different From SEO?',
+		a: "Google Ads is paid placement at the top of search results, live as soon as a campaign launches. SEO earns organic rankings over months. Most businesses that run Google Ads well eventually invest in both, since paid captures demand today while organic captures it long-term.",
+	},
+	{
+		q: 'Do You Manage Google Ads for Small Budgets?',
+		a: "Yes, though very small budgets limit how much testing an account can realistically run. We'll tell you honestly during the audit if your budget is enough to work with, rather than take on an account that can't succeed.",
+	},
+	{
+		q: 'Will You Take Over an Existing Google Ads Account?',
+		a: "Yes. Most new accounts we take on already exist. We start with a full audit of what's currently running, tracking accuracy, and past spend before making any changes.",
+	},
+	{
+		q: 'What Is Google Ads Broad Match, and Should I Use It?',
+		a: 'Broad match shows your ad for any search Google judges related to your keyword, including loosely related ones. It can work well when paired with Smart Bidding and strong negative keyword lists, and can waste significant budget without them. Whether to use it depends on how tightly the rest of the account is managed.',
+	},
+	{
+		q: 'Why Did My Google Ads Costs Go Up Without More Conversions?',
+		a: 'Usually one of three things: rising competition in the auction, a Quality Score drop from an ad relevance or landing page issue, or a tracking problem making real conversions look like they stopped happening. An audit identifies which one it actually is instead of guessing.',
+	},
+	{
+		q: 'Can I Keep My Current Account History If I Switch Agencies?',
+		a: 'Yes. Google Ads account history stays with the Google Ads account itself, not with whoever manages it. Switching who manages your account does not reset your history, Quality Scores, or past conversion data.',
+	},
+];
+---
+
+<BaseLayout
+	title="Google Ads Management"
+	description="Google Ads management across Search, Shopping, and Performance Max, built around revenue and accurate conversion tracking, not impression share."
+>
+	<ServiceHero eyebrow="Google Ads Management" title="Google Ads Management Focused on Revenue, Not Impression Share">
+		Impression share and Quality Score are diagnostic numbers, not goals. We manage Google Ads
+		accounts toward the number that actually matters: revenue per dollar spent.
+	</ServiceHero>
+
+	<section class="included">
+		<h2>What's Included</h2>
+		<ul>
+			{included.map((item) => <li>{item}</li>)}
+		</ul>
+	</section>
+
+	<Testimonials />
+
+	<Guarantee
+		eyebrow="Before Any Changes"
+		heading="A Free Audit of Your Google Ads Account First"
+		body="You'll see exactly what's working, what's wasted, and what your tracking is actually telling you before you commit to anything. If the account doesn't need our help, we'll say so."
+	/>
+
+	<section class="campaigns">
+		<h2>Google Ads Campaign Types We Manage</h2>
+		<div class="stack">
+			{
+				campaignTypes.map((c) => (
+					<div class="row">
+						<h3>{c.name}</h3>
+						<p>{c.desc}</p>
+					</div>
+				))
+			}
+		</div>
+	</section>
+
+	<section class="glossary">
+		<h2>Key Google Ads Terms Explained</h2>
+		<div class="stack">
+			{
+				glossary.map((g) => (
+					<div class="row">
+						<h3>{g.term}</h3>
+						<p>{g.def}</p>
+					</div>
+				))
+			}
+		</div>
+	</section>
+
+	<section class="why">
+		<h2>Why Google Ads Accounts Underperform</h2>
+		<p>
+			Most underperforming Google Ads accounts don't have a bidding problem. They have a
+			tracking problem, a structure problem, or both. Conversion actions get duplicated or
+			miscounted, Smart Bidding optimizes toward the wrong signal, and Performance Max quietly
+			absorbs branded search traffic that was already converting for free. None of that shows up
+			by staring at impression share. It shows up in an audit.
+		</p>
+	</section>
+
+	<CaseStudies />
+
+	<ProcessSteps />
+
+	<CTABand heading="Ready to See What Your Google Ads Account Is Actually Doing?" />
+
+	<FAQSection items={faqs} />
+
+	<p class="cross-link">
+		Also running paid social? See <a href="/meta-ads-management/">Meta Ads Management</a> or the
+		full <a href="/ppc-management/">PPC Management</a> overview.
+	</p>
+</BaseLayout>
+
+<style>
+	.included,
+	.campaigns,
+	.glossary,
+	.why {
+		padding: 4.5rem 0;
+		border-top: 1px solid var(--color-border);
+	}
+	.included h2,
+	.campaigns h2,
+	.glossary h2,
+	.why h2 {
+		font-size: 1.75rem;
+		margin: 0 0 2rem;
+	}
+	.included ul {
+		padding-left: 1.25rem;
+		max-width: 68ch;
+	}
+	.included li {
+		margin-bottom: 0.75rem;
+		color: var(--color-text-muted);
+	}
+	.stack {
+		display: flex;
+		flex-direction: column;
+		gap: 1.75rem;
+		max-width: 68ch;
+	}
+	.row h3 {
+		margin: 0 0 0.5rem;
+		font-size: 1.1rem;
+	}
+	.row p {
+		margin: 0;
+	}
+	.why p {
+		max-width: 68ch;
+	}
+	.cross-link {
+		border-top: 1px solid var(--color-border);
+		padding-top: 2rem;
+		color: var(--color-text-muted);
+	}
+</style>
