@@ -25,14 +25,23 @@ Say a shopper sees your Meta ad on Monday, doesn't click. On Wednesday, they sea
 <div class="mismatch-diagram">
 	<div class="diagram-timeline">
 		<div class="diagram-point">
+			<span class="diagram-icon" aria-hidden="true">
+				<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7Z"/><circle cx="12" cy="12" r="3"/></svg>
+			</span>
 			<span class="diagram-day">Mon</span>
 			<span class="diagram-event">Sees Meta ad<br />(no click)</span>
 		</div>
 		<div class="diagram-point">
+			<span class="diagram-icon" aria-hidden="true">
+				<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 3l7.5 17 2.1-6.4L20 11.5 4 3Z"/></svg>
+			</span>
 			<span class="diagram-day">Wed</span>
 			<span class="diagram-event">Clicks Google ad<br />(brand search)</span>
 		</div>
 		<div class="diagram-point diagram-point-final">
+			<span class="diagram-icon" aria-hidden="true">
+				<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8h12l-1 12H7L6 8Z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg>
+			</span>
 			<span class="diagram-day">Fri</span>
 			<span class="diagram-event">Buys<br /><strong>$500</strong></span>
 		</div>
@@ -43,6 +52,7 @@ Say a shopper sees your Meta ad on Monday, doesn't click. On Wednesday, they sea
 			<span class="diagram-claim-value">$500</span>
 			<span class="diagram-claim-note">view-through conversion</span>
 		</div>
+		<div class="diagram-claim-plus" aria-hidden="true">+</div>
 		<div class="diagram-claim">
 			<span class="diagram-claim-label">Google Ads reports</span>
 			<span class="diagram-claim-value">$500</span>
@@ -51,42 +61,48 @@ Say a shopper sees your Meta ad on Monday, doesn't click. On Wednesday, they sea
 	</div>
 	<div class="diagram-bars">
 		<div class="diagram-bar-row">
-			<span class="diagram-bar-label">Reported (Meta + Google)</span>
+			<span class="diagram-bar-label">Reported<br /><span>Meta + Google</span></span>
 			<div class="diagram-bar-track">
-				<div class="diagram-bar-fill diagram-bar-muted" style="width: 100%;"></div>
+				<div class="diagram-bar-fill diagram-bar-muted" style="width: 100%;">
+					<span class="diagram-bar-inline-value">$1,000</span>
+				</div>
 			</div>
-			<span class="diagram-bar-value">$1,000</span>
 		</div>
 		<div class="diagram-bar-row">
-			<span class="diagram-bar-label">Actual (CRM)</span>
+			<span class="diagram-bar-label">Actual<br /><span>CRM</span></span>
 			<div class="diagram-bar-track">
-				<div class="diagram-bar-fill diagram-bar-accent" style="width: 50%;"></div>
+				<div class="diagram-bar-fill diagram-bar-accent" style="width: 50%;">
+					<span class="diagram-bar-inline-value">$500</span>
+				</div>
 			</div>
-			<span class="diagram-bar-value">$500</span>
 		</div>
 	</div>
+	<p class="diagram-gap"><span class="diagram-gap-value">$500</span> reported that never happened — double-claimed by two platforms, zero extra revenue.</p>
 </div>
 
 <style>
 	.mismatch-diagram {
-		margin: 2rem 0;
-		padding: 1.75rem;
-		background: var(--color-bg-subtle);
-		border-radius: var(--radius);
+		margin: 2.5rem 0;
+		padding: 2rem 2.25rem 2.25rem;
+		background: var(--color-bg);
+		border: 1px solid var(--color-border);
+		border-radius: 14px;
+		box-shadow:
+			0 1px 2px rgba(18, 19, 26, 0.04),
+			0 12px 32px rgba(18, 19, 26, 0.06);
 	}
 	.diagram-timeline {
 		display: flex;
 		justify-content: space-between;
 		position: relative;
-		padding-top: 0.5rem;
-		margin-bottom: 2rem;
+		margin-bottom: 2.25rem;
 	}
 	.diagram-timeline::before {
 		content: '';
 		position: absolute;
-		top: 14px;
-		left: 6px;
-		right: 6px;
+		top: 22px;
+		left: 22px;
+		right: 22px;
 		height: 1px;
 		background: var(--color-border);
 	}
@@ -98,24 +114,35 @@ Say a shopper sees your Meta ad on Monday, doesn't click. On Wednesday, they sea
 		width: 30%;
 		position: relative;
 	}
-	.diagram-point::before {
-		content: '';
-		width: 10px;
-		height: 10px;
+	.diagram-icon {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		width: 44px;
+		height: 44px;
 		border-radius: 50%;
-		background: var(--color-text-muted);
-		border: 2px solid var(--color-bg-subtle);
-		margin-bottom: 0.6rem;
+		background: var(--color-bg);
+		border: 1.5px solid var(--color-border);
+		color: var(--color-text-muted);
+		margin-bottom: 0.75rem;
 		z-index: 1;
+		box-shadow: 0 1px 3px rgba(18, 19, 26, 0.06);
 	}
-	.diagram-point-final::before {
+	.diagram-icon svg {
+		width: 20px;
+		height: 20px;
+	}
+	.diagram-point-final .diagram-icon {
 		background: var(--color-accent);
+		border-color: var(--color-accent);
+		color: #fff;
+		box-shadow: 0 4px 12px rgba(29, 78, 216, 0.3);
 	}
 	.diagram-day {
-		font-size: 0.75rem;
+		font-size: 0.72rem;
 		font-weight: 700;
 		text-transform: uppercase;
-		letter-spacing: 0.04em;
+		letter-spacing: 0.06em;
 		color: var(--color-text-muted);
 		margin-bottom: 0.3rem;
 	}
@@ -129,60 +156,80 @@ Say a shopper sees your Meta ad on Monday, doesn't click. On Wednesday, they sea
 	}
 	.diagram-claims {
 		display: flex;
+		align-items: center;
 		gap: 1rem;
-		margin-bottom: 2rem;
+		margin-bottom: 2.25rem;
 	}
 	.diagram-claim {
 		flex: 1;
-		background: var(--color-bg);
-		border: 1px solid var(--color-border);
-		border-radius: var(--radius);
-		padding: 1rem 1.1rem;
+		background: var(--color-bg-subtle);
+		border-radius: 12px;
+		padding: 1.15rem 1.25rem;
+	}
+	.diagram-claim-plus {
+		flex: 0 0 auto;
+		font-size: 1.3rem;
+		font-weight: 700;
+		color: var(--color-text-muted);
 	}
 	.diagram-claim-label {
 		display: block;
 		font-size: 0.8rem;
 		color: var(--color-text-muted);
-		margin-bottom: 0.3rem;
+		margin-bottom: 0.35rem;
 	}
 	.diagram-claim-value {
 		display: block;
-		font-size: 1.6rem;
+		font-size: 2rem;
 		font-weight: 800;
 		color: var(--color-text);
-		letter-spacing: -0.02em;
+		letter-spacing: -0.03em;
+		line-height: 1.1;
 	}
 	.diagram-claim-note {
 		display: block;
 		font-size: 0.78rem;
 		color: var(--color-text-muted);
-		margin-top: 0.15rem;
+		margin-top: 0.25rem;
 	}
 	.diagram-bars {
 		display: flex;
 		flex-direction: column;
-		gap: 0.9rem;
+		gap: 0.85rem;
 	}
 	.diagram-bar-row {
 		display: flex;
 		align-items: center;
-		gap: 0.85rem;
+		gap: 1.1rem;
 	}
 	.diagram-bar-label {
-		flex: 0 0 168px;
+		flex: 0 0 110px;
 		font-size: 0.85rem;
+		font-weight: 700;
 		color: var(--color-text);
+		line-height: 1.3;
+	}
+	.diagram-bar-label span {
+		display: block;
+		font-size: 0.72rem;
+		font-weight: 500;
+		color: var(--color-text-muted);
 	}
 	.diagram-bar-track {
 		flex: 1;
-		height: 22px;
-		background: var(--color-border);
-		border-radius: 4px;
+		height: 40px;
+		background: var(--color-bg-subtle);
+		border-radius: 8px;
 		overflow: hidden;
 	}
 	.diagram-bar-fill {
 		height: 100%;
-		border-radius: 0 4px 4px 0;
+		border-radius: 0 8px 8px 0;
+		display: flex;
+		align-items: center;
+		justify-content: flex-end;
+		padding-right: 0.85rem;
+		box-sizing: border-box;
 	}
 	.diagram-bar-muted {
 		background: var(--color-text-muted);
@@ -190,31 +237,61 @@ Say a shopper sees your Meta ad on Monday, doesn't click. On Wednesday, they sea
 	.diagram-bar-accent {
 		background: var(--color-accent);
 	}
-	.diagram-bar-value {
-		flex: 0 0 64px;
-		text-align: right;
-		font-weight: 700;
-		font-size: 0.95rem;
-		color: var(--color-text);
+	.diagram-bar-inline-value {
+		font-weight: 800;
+		font-size: 1.05rem;
+		color: #fff;
+		letter-spacing: -0.02em;
 		font-variant-numeric: tabular-nums;
 	}
+	.diagram-gap {
+		margin: 1.75rem 0 0;
+		padding-top: 1.5rem;
+		border-top: 1px dashed var(--color-border);
+		font-size: 0.95rem;
+		color: var(--color-text);
+		line-height: 1.5;
+	}
+	.diagram-gap-value {
+		font-size: 1.4rem;
+		font-weight: 800;
+		color: var(--color-accent);
+		letter-spacing: -0.02em;
+	}
 	@media (max-width: 560px) {
+		.mismatch-diagram {
+			padding: 1.5rem 1.25rem 1.75rem;
+		}
 		.diagram-timeline {
 			flex-direction: column;
-			gap: 1.2rem;
+			align-items: flex-start;
+			gap: 1.4rem;
 		}
 		.diagram-timeline::before {
 			display: none;
 		}
+		.diagram-point {
+			flex-direction: row;
+			width: 100%;
+			text-align: left;
+			gap: 0.85rem;
+		}
+		.diagram-icon {
+			margin-bottom: 0;
+			flex-shrink: 0;
+		}
 		.diagram-claims {
 			flex-direction: column;
 		}
-		.diagram-bar-row {
-			flex-wrap: wrap;
+		.diagram-claim-plus {
+			align-self: center;
 		}
 		.diagram-bar-label {
-			flex-basis: 100%;
-			margin-bottom: 0.3rem;
+			flex-basis: 82px;
+			font-size: 0.78rem;
+		}
+		.diagram-bar-inline-value {
+			font-size: 0.9rem;
 		}
 	}
 </style>
