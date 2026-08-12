@@ -42,17 +42,25 @@ That means a purchase someone was always going to make can still get counted as 
 	.rdm-diagram {
 		margin: 2rem 0;
 		padding: 1.75rem 2rem 2rem;
-		background: var(--color-bg);
-		border: 1px solid var(--color-border);
+		background-color: var(--ledger-paper);
+		background-image: repeating-linear-gradient(
+			to bottom,
+			transparent,
+			transparent 43px,
+			var(--ledger-rule) 43px,
+			var(--ledger-rule) 44px
+		);
+		border: 1px solid var(--ledger-rule);
 		border-radius: 14px;
 		box-shadow:
-			0 1px 2px rgba(18, 19, 26, 0.04),
-			0 12px 32px rgba(18, 19, 26, 0.06);
+			0 1px 2px rgba(22, 21, 15, 0.05),
+			0 12px 32px rgba(22, 21, 15, 0.07);
 	}
 	.rdm-caption {
 		margin: 1.25rem 0 0;
+		font-family: var(--ledger-body);
 		font-size: 0.85rem;
-		color: var(--color-text-muted);
+		color: var(--ledger-muted);
 		line-height: 1.5;
 	}
 	.rdm-bars {
@@ -67,27 +75,30 @@ That means a purchase someone was always going to make can still get counted as 
 	}
 	.rdm-bar-label {
 		flex: 0 0 130px;
-		font-size: 0.85rem;
+		font-family: var(--ledger-display);
+		font-size: 1rem;
 		font-weight: 700;
-		color: var(--color-text);
-		line-height: 1.3;
+		color: var(--ledger-ink);
+		line-height: 1.25;
 	}
 	.rdm-bar-label span {
 		display: block;
+		font-family: var(--ledger-body);
 		font-size: 0.72rem;
 		font-weight: 500;
-		color: var(--color-text-muted);
+		color: var(--ledger-muted);
 	}
 	.rdm-bar-track {
 		flex: 1;
 		height: 40px;
-		background: var(--color-bg-subtle);
+		background: var(--ledger-paper-white);
+		border: 1px solid var(--ledger-rule);
 		border-radius: 8px;
 		overflow: hidden;
 	}
 	.rdm-bar-fill {
 		height: 100%;
-		border-radius: 0 8px 8px 0;
+		border-radius: 0 7px 7px 0;
 		display: flex;
 		align-items: center;
 		justify-content: flex-end;
@@ -96,16 +107,16 @@ That means a purchase someone was always going to make can still get counted as 
 		min-width: fit-content;
 	}
 	.rdm-bar-muted {
-		background: var(--color-text-muted);
+		background: var(--ledger-muted);
 	}
 	.rdm-bar-accent {
-		background: var(--color-accent);
+		background: var(--ledger-signal);
 	}
 	.rdm-bar-inline-value {
-		font-weight: 800;
-		font-size: 0.95rem;
-		color: #fff;
-		letter-spacing: -0.01em;
+		font-family: var(--ledger-data);
+		font-weight: 700;
+		font-size: 0.9rem;
+		color: var(--ledger-paper-white);
 		white-space: nowrap;
 	}
 	.rdm-cards {
@@ -114,7 +125,8 @@ That means a purchase someone was always going to make can still get counted as 
 	}
 	.rdm-card {
 		flex: 1;
-		background: var(--color-bg-subtle);
+		background: var(--ledger-paper-white);
+		border: 1px solid var(--ledger-rule);
 		border-radius: 12px;
 		padding: 1.4rem;
 		display: flex;
@@ -132,9 +144,9 @@ That means a purchase someone was always going to make can still get counted as 
 		width: 40px;
 		height: 40px;
 		border-radius: 50%;
-		background: var(--color-bg);
-		border: 1.5px solid var(--color-border);
-		color: var(--color-text-muted);
+		background: var(--ledger-paper);
+		border: 1.5px solid var(--ledger-rule);
+		color: var(--ledger-navy);
 		margin-bottom: 0.9rem;
 	}
 	.rdm-card-icon svg {
@@ -143,27 +155,31 @@ That means a purchase someone was always going to make can still get counted as 
 	}
 	.rdm-card-title {
 		display: block;
+		font-family: var(--ledger-display);
 		font-weight: 700;
-		font-size: 1rem;
-		color: var(--color-text);
+		font-size: 1.15rem;
+		color: var(--ledger-navy);
 		margin-bottom: 0.4rem;
 	}
 	.rdm-card-sub {
 		display: block;
+		font-family: var(--ledger-body);
 		font-size: 0.75rem;
 		font-weight: 500;
-		color: var(--color-text-muted);
+		color: var(--ledger-muted);
 		margin-top: 0.15rem;
 	}
 	.rdm-card-desc {
 		display: block;
+		font-family: var(--ledger-body);
 		font-size: 0.85rem;
-		color: var(--color-text-muted);
+		color: var(--ledger-muted);
 		line-height: 1.45;
 		margin-bottom: 0.9rem;
 	}
 	.rdm-card-tag {
 		display: inline-block;
+		font-family: var(--ledger-body);
 		font-size: 0.72rem;
 		font-weight: 700;
 		text-transform: uppercase;
@@ -172,30 +188,30 @@ That means a purchase someone was always going to make can still get counted as 
 		border-radius: 100px;
 	}
 	.rdm-card-tag-strong {
-		background: rgba(29, 78, 216, 0.1);
-		color: var(--color-accent);
+		background: rgba(51, 85, 255, 0.12);
+		color: var(--ledger-signal);
 	}
 	.rdm-card-tag-weak {
-		background: var(--color-border);
-		color: var(--color-text-muted);
+		background: var(--ledger-rule);
+		color: var(--ledger-muted);
 	}
 	.rdm-card-big {
 		display: block;
-		font-size: 1.7rem;
-		font-weight: 800;
-		color: var(--color-text);
-		letter-spacing: -0.02em;
+		font-family: var(--ledger-data);
+		font-size: 1.6rem;
+		font-weight: 700;
+		color: var(--ledger-navy);
 		line-height: 1.25;
 		margin-top: 0.4rem;
 	}
 	.rdm-card-big-accent {
-		color: var(--color-accent);
+		color: var(--ledger-signal);
 	}
 	.rdm-card-time {
 		display: block;
-		font-size: 0.85rem;
-		font-weight: 500;
-		color: var(--color-text-muted);
+		font-family: var(--ledger-data);
+		font-size: 0.8rem;
+		color: var(--ledger-muted);
 	}
 	.rdm-steps {
 		display: flex;
@@ -206,7 +222,7 @@ That means a purchase someone was always going to make can still get counted as 
 		gap: 1.1rem;
 		padding-bottom: 1.5rem;
 		margin-bottom: 1.5rem;
-		border-bottom: 1px solid var(--color-border);
+		border-bottom: 1px solid var(--ledger-rule);
 	}
 	.rdm-step-last {
 		padding-bottom: 0;
@@ -218,25 +234,28 @@ That means a purchase someone was always going to make can still get counted as 
 		width: 32px;
 		height: 32px;
 		border-radius: 50%;
-		background: var(--color-accent);
-		color: #fff;
+		background: var(--ledger-navy);
+		color: var(--ledger-paper-white);
+		font-family: var(--ledger-display);
 		font-weight: 800;
-		font-size: 0.9rem;
+		font-size: 1rem;
 		display: flex;
 		align-items: center;
 		justify-content: center;
 	}
 	.rdm-step-title {
 		display: block;
+		font-family: var(--ledger-display);
 		font-weight: 700;
-		font-size: 0.95rem;
-		color: var(--color-text);
+		font-size: 1.05rem;
+		color: var(--ledger-ink);
 		margin-bottom: 0.3rem;
 	}
 	.rdm-step-desc {
 		display: block;
+		font-family: var(--ledger-body);
 		font-size: 0.85rem;
-		color: var(--color-text-muted);
+		color: var(--ledger-muted);
 		line-height: 1.5;
 	}
 	@media (max-width: 560px) {
@@ -248,10 +267,10 @@ That means a purchase someone was always going to make can still get counted as 
 		}
 		.rdm-bar-label {
 			flex-basis: 96px;
-			font-size: 0.78rem;
+			font-size: 0.85rem;
 		}
 		.rdm-bar-inline-value {
-			font-size: 0.82rem;
+			font-size: 0.78rem;
 		}
 	}
 </style>
@@ -324,12 +343,19 @@ Say a shopper sees your Meta ad on Monday, doesn't click. On Wednesday, they sea
 	.mismatch-diagram {
 		margin: 2.5rem 0;
 		padding: 2rem 2.25rem 2.25rem;
-		background: var(--color-bg);
-		border: 1px solid var(--color-border);
+		background-color: var(--ledger-paper);
+		background-image: repeating-linear-gradient(
+			to bottom,
+			transparent,
+			transparent 43px,
+			var(--ledger-rule) 43px,
+			var(--ledger-rule) 44px
+		);
+		border: 1px solid var(--ledger-rule);
 		border-radius: 14px;
 		box-shadow:
-			0 1px 2px rgba(18, 19, 26, 0.04),
-			0 12px 32px rgba(18, 19, 26, 0.06);
+			0 1px 2px rgba(22, 21, 15, 0.05),
+			0 12px 32px rgba(22, 21, 15, 0.07);
 	}
 	.diagram-timeline {
 		display: flex;
@@ -344,7 +370,7 @@ Say a shopper sees your Meta ad on Monday, doesn't click. On Wednesday, they sea
 		left: 22px;
 		right: 22px;
 		height: 1px;
-		background: var(--color-border);
+		background: var(--ledger-rule);
 	}
 	.diagram-point {
 		display: flex;
@@ -361,38 +387,41 @@ Say a shopper sees your Meta ad on Monday, doesn't click. On Wednesday, they sea
 		width: 44px;
 		height: 44px;
 		border-radius: 50%;
-		background: var(--color-bg);
-		border: 1.5px solid var(--color-border);
-		color: var(--color-text-muted);
+		background: var(--ledger-paper-white);
+		border: 1.5px solid var(--ledger-rule);
+		color: var(--ledger-navy);
 		margin-bottom: 0.75rem;
 		z-index: 1;
-		box-shadow: 0 1px 3px rgba(18, 19, 26, 0.06);
+		box-shadow: 0 1px 3px rgba(22, 21, 15, 0.07);
 	}
 	.diagram-icon svg {
 		width: 20px;
 		height: 20px;
 	}
 	.diagram-point-final .diagram-icon {
-		background: var(--color-accent);
-		border-color: var(--color-accent);
-		color: #fff;
-		box-shadow: 0 4px 12px rgba(29, 78, 216, 0.3);
+		background: var(--ledger-signal);
+		border-color: var(--ledger-signal);
+		color: var(--ledger-paper-white);
+		box-shadow: 0 4px 12px rgba(51, 85, 255, 0.35);
 	}
 	.diagram-day {
+		font-family: var(--ledger-body);
 		font-size: 0.72rem;
 		font-weight: 700;
 		text-transform: uppercase;
 		letter-spacing: 0.06em;
-		color: var(--color-text-muted);
+		color: var(--ledger-muted);
 		margin-bottom: 0.3rem;
 	}
 	.diagram-event {
+		font-family: var(--ledger-body);
 		font-size: 0.85rem;
-		color: var(--color-text);
+		color: var(--ledger-ink);
 		line-height: 1.35;
 	}
 	.diagram-event strong {
-		color: var(--color-accent);
+		font-family: var(--ledger-data);
+		color: var(--ledger-signal);
 	}
 	.diagram-claims {
 		display: flex;
@@ -402,34 +431,38 @@ Say a shopper sees your Meta ad on Monday, doesn't click. On Wednesday, they sea
 	}
 	.diagram-claim {
 		flex: 1;
-		background: var(--color-bg-subtle);
+		background: var(--ledger-paper-white);
+		border: 1px solid var(--ledger-rule);
 		border-radius: 12px;
 		padding: 1.15rem 1.25rem;
 	}
 	.diagram-claim-plus {
 		flex: 0 0 auto;
+		font-family: var(--ledger-display);
 		font-size: 1.3rem;
 		font-weight: 700;
-		color: var(--color-text-muted);
+		color: var(--ledger-muted);
 	}
 	.diagram-claim-label {
 		display: block;
+		font-family: var(--ledger-body);
 		font-size: 0.8rem;
-		color: var(--color-text-muted);
+		color: var(--ledger-muted);
 		margin-bottom: 0.35rem;
 	}
 	.diagram-claim-value {
 		display: block;
-		font-size: 2rem;
-		font-weight: 800;
-		color: var(--color-text);
-		letter-spacing: -0.03em;
+		font-family: var(--ledger-data);
+		font-size: 1.8rem;
+		font-weight: 700;
+		color: var(--ledger-navy);
 		line-height: 1.1;
 	}
 	.diagram-claim-note {
 		display: block;
+		font-family: var(--ledger-body);
 		font-size: 0.78rem;
-		color: var(--color-text-muted);
+		color: var(--ledger-muted);
 		margin-top: 0.25rem;
 	}
 	.diagram-bars {
@@ -444,27 +477,30 @@ Say a shopper sees your Meta ad on Monday, doesn't click. On Wednesday, they sea
 	}
 	.diagram-bar-label {
 		flex: 0 0 110px;
-		font-size: 0.85rem;
+		font-family: var(--ledger-display);
+		font-size: 1rem;
 		font-weight: 700;
-		color: var(--color-text);
-		line-height: 1.3;
+		color: var(--ledger-ink);
+		line-height: 1.25;
 	}
 	.diagram-bar-label span {
 		display: block;
+		font-family: var(--ledger-body);
 		font-size: 0.72rem;
 		font-weight: 500;
-		color: var(--color-text-muted);
+		color: var(--ledger-muted);
 	}
 	.diagram-bar-track {
 		flex: 1;
 		height: 40px;
-		background: var(--color-bg-subtle);
+		background: var(--ledger-paper-white);
+		border: 1px solid var(--ledger-rule);
 		border-radius: 8px;
 		overflow: hidden;
 	}
 	.diagram-bar-fill {
 		height: 100%;
-		border-radius: 0 8px 8px 0;
+		border-radius: 0 7px 7px 0;
 		display: flex;
 		align-items: center;
 		justify-content: flex-end;
@@ -472,31 +508,32 @@ Say a shopper sees your Meta ad on Monday, doesn't click. On Wednesday, they sea
 		box-sizing: border-box;
 	}
 	.diagram-bar-muted {
-		background: var(--color-text-muted);
+		background: var(--ledger-muted);
 	}
 	.diagram-bar-accent {
-		background: var(--color-accent);
+		background: var(--ledger-signal);
 	}
 	.diagram-bar-inline-value {
-		font-weight: 800;
-		font-size: 1.05rem;
-		color: #fff;
-		letter-spacing: -0.02em;
+		font-family: var(--ledger-data);
+		font-weight: 700;
+		font-size: 1rem;
+		color: var(--ledger-paper-white);
 		font-variant-numeric: tabular-nums;
 	}
 	.diagram-gap {
 		margin: 1.75rem 0 0;
 		padding-top: 1.5rem;
-		border-top: 1px dashed var(--color-border);
+		border-top: 1px dashed var(--ledger-rule);
+		font-family: var(--ledger-body);
 		font-size: 0.95rem;
-		color: var(--color-text);
+		color: var(--ledger-ink);
 		line-height: 1.5;
 	}
 	.diagram-gap-value {
+		font-family: var(--ledger-data);
 		font-size: 1.4rem;
-		font-weight: 800;
-		color: var(--color-accent);
-		letter-spacing: -0.02em;
+		font-weight: 700;
+		color: var(--ledger-signal);
 	}
 	@media (max-width: 560px) {
 		.mismatch-diagram {
@@ -528,10 +565,10 @@ Say a shopper sees your Meta ad on Monday, doesn't click. On Wednesday, they sea
 		}
 		.diagram-bar-label {
 			flex-basis: 82px;
-			font-size: 0.78rem;
+			font-size: 0.85rem;
 		}
 		.diagram-bar-inline-value {
-			font-size: 0.9rem;
+			font-size: 0.85rem;
 		}
 	}
 </style>
