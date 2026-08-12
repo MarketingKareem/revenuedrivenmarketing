@@ -10,6 +10,8 @@ The goal of this content pipeline is organic ranking traffic, not just a post ex
 
 Structured data (`BlogPosting` JSON-LD) is generated automatically from post frontmatter in `src/pages/blog/[...slug].astro` — nothing to do per-post there.
 
+6. **Generate the post's hero/OG image before requesting review.** Run `node scripts/generate-og-images.mjs` after the post's frontmatter (title, pillar, pubDate) is finalized — it reads every file in `src/content/blog/` and writes one `public/og/<slug>.png` per post (date stamp, pillar, wrapped title, the branded receipt-stub element). Re-run it if the title changes. This is a manual local step, not part of `npm run build` — see the script's own header comment for why.
+
 ## Development
 
 When starting the dev server, use background mode:
