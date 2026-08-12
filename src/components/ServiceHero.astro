@@ -25,8 +25,8 @@ const { eyebrow, title } = Astro.props;
 		width: auto;
 		margin-inline: calc(50% - 50vw);
 		margin-top: -3rem;
-		background: #0b0d12;
-		color: #f5f6fa;
+		background: var(--ledger-navy);
+		color: var(--ledger-ink-on-navy);
 		padding: 5.5rem 1.5rem 5rem;
 	}
 	.hero-inner {
@@ -38,19 +38,19 @@ const { eyebrow, title } = Astro.props;
 		font-size: 0.8rem;
 		font-weight: 700;
 		letter-spacing: 0.12em;
-		color: #7ba0ff;
+		color: var(--ledger-signal-pale);
 		margin: 0 0 1.25rem;
 	}
 	h1 {
 		font-size: 2.75rem;
 		max-width: 20ch;
 		margin: 0 0 1.5rem;
-		color: #fff;
+		color: var(--ledger-paper-white);
 	}
 	.lede {
 		font-size: 1.2rem;
 		max-width: 58ch;
-		color: #c2c5d6;
+		color: var(--ledger-ink-on-navy);
 	}
 	.cta-row {
 		display: flex;
@@ -84,13 +84,13 @@ const { eyebrow, title } = Astro.props;
 		color: #fff;
 	}
 	.btn.ghost {
-		border-color: #454a5e;
-		color: #f5f6fa;
+		border-color: var(--ledger-navy-light);
+		color: var(--ledger-ink-on-navy);
 	}
 	.btn.ghost:hover {
-		background: #171922;
-		border-color: #7ba0ff;
-		color: #fff;
+		background: var(--ledger-navy-light);
+		border-color: var(--ledger-signal-pale);
+		color: var(--ledger-paper-white);
 	}
 
 	@media (max-width: 640px) {
