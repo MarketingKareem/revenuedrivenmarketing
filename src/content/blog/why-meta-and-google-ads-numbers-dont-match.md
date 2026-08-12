@@ -132,18 +132,35 @@ That means a purchase someone was always going to make can still get counted as 
 		gap: 1.1rem;
 	}
 	.rdm-card {
+		position: relative;
 		flex: 1;
 		background: var(--ledger-paper-white);
 		border: 1px solid var(--ledger-rule);
-		border-radius: 12px;
-		padding: 1.4rem;
+		border-radius: 3px;
+		padding: 1.5rem 1.4rem 1.4rem;
 		display: flex;
 		flex-direction: column;
 		align-items: flex-start;
+		box-shadow: 0 3px 8px rgba(22, 21, 15, 0.08);
+	}
+	.rdm-cards .rdm-card:nth-child(1) {
+		transform: rotate(-1.25deg);
+	}
+	.rdm-cards .rdm-card:nth-child(2) {
+		transform: rotate(1.25deg);
 	}
 	.rdm-card-center {
 		align-items: center;
 		text-align: center;
+	}
+	.rdm-pin {
+		position: absolute;
+		top: -13px;
+		left: 50%;
+		transform: translateX(-50%);
+		width: 18px;
+		height: 22px;
+		filter: drop-shadow(0 2px 2px rgba(22, 21, 15, 0.2));
 	}
 	.rdm-card-icon {
 		display: flex;
@@ -192,16 +209,16 @@ That means a purchase someone was always going to make can still get counted as 
 		font-weight: 700;
 		text-transform: uppercase;
 		letter-spacing: 0.03em;
-		padding: 0.3rem 0.6rem;
-		border-radius: 100px;
+		padding-bottom: 3px;
+		border-bottom: 2px solid;
 	}
 	.rdm-card-tag-strong {
-		background: rgba(51, 85, 255, 0.12);
 		color: var(--ledger-signal);
+		border-color: var(--ledger-signal);
 	}
 	.rdm-card-tag-weak {
-		background: var(--ledger-rule);
 		color: var(--ledger-muted);
+		border-color: var(--ledger-rule);
 	}
 	.rdm-card-big {
 		display: block;
@@ -305,21 +322,21 @@ Say a shopper sees your Meta ad on Monday, doesn't click. On Wednesday, they sea
 	<div class="diagram-timeline">
 		<div class="diagram-point">
 			<span class="diagram-icon" aria-hidden="true">
-				<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7Z"/><circle cx="12" cy="12" r="3"/></svg>
+				<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7Z"/><circle cx="12" cy="12" r="3"/></svg>
 			</span>
 			<span class="diagram-day">Mon</span>
 			<span class="diagram-event">Sees Meta ad<br />(no click)</span>
 		</div>
 		<div class="diagram-point">
 			<span class="diagram-icon" aria-hidden="true">
-				<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 3l7.5 17 2.1-6.4L20 11.5 4 3Z"/></svg>
+				<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 3l7.5 17 2.1-6.4L20 11.5 4 3Z"/></svg>
 			</span>
 			<span class="diagram-day">Wed</span>
 			<span class="diagram-event">Clicks Google ad<br />(brand search)</span>
 		</div>
 		<div class="diagram-point diagram-point-final">
 			<span class="diagram-icon" aria-hidden="true">
-				<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8h12l-1 12H7L6 8Z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg>
+				<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8h12l-1 12H7L6 8Z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg>
 			</span>
 			<span class="diagram-day">Fri</span>
 			<span class="diagram-event">Buys<br /><strong>$500</strong></span>
@@ -327,12 +344,22 @@ Say a shopper sees your Meta ad on Monday, doesn't click. On Wednesday, they sea
 	</div>
 	<div class="diagram-claims">
 		<div class="diagram-claim">
+			<svg class="rdm-pin" viewBox="0 0 20 24" aria-hidden="true">
+				<path d="M10 24 L10 16" style="stroke: var(--ledger-muted); stroke-width: 1.5; stroke-linecap: round;" />
+				<circle cx="10" cy="9" r="7" style="fill: var(--ledger-muted);" />
+				<circle cx="7.5" cy="6.5" r="1.8" style="fill: rgba(255, 255, 255, 0.4);" />
+			</svg>
 			<span class="diagram-claim-label">Meta Ads reports</span>
 			<span class="diagram-claim-value">$500</span>
 			<span class="diagram-claim-note">view-through conversion</span>
 		</div>
 		<div class="diagram-claim-plus" aria-hidden="true">+</div>
 		<div class="diagram-claim">
+			<svg class="rdm-pin" viewBox="0 0 20 24" aria-hidden="true">
+				<path d="M10 24 L10 16" style="stroke: var(--ledger-muted); stroke-width: 1.5; stroke-linecap: round;" />
+				<circle cx="10" cy="9" r="7" style="fill: var(--ledger-muted);" />
+				<circle cx="7.5" cy="6.5" r="1.8" style="fill: rgba(255, 255, 255, 0.4);" />
+			</svg>
 			<span class="diagram-claim-label">Google Ads reports</span>
 			<span class="diagram-claim-value">$500</span>
 			<span class="diagram-claim-note">click conversion</span>
@@ -441,11 +468,19 @@ Say a shopper sees your Meta ad on Monday, doesn't click. On Wednesday, they sea
 		margin-bottom: 2.25rem;
 	}
 	.diagram-claim {
+		position: relative;
 		flex: 1;
 		background: var(--ledger-paper-white);
 		border: 1px solid var(--ledger-rule);
-		border-radius: 12px;
-		padding: 1.15rem 1.25rem;
+		border-radius: 3px;
+		padding: 1.35rem 1.25rem 1.15rem;
+		box-shadow: 0 3px 8px rgba(22, 21, 15, 0.08);
+	}
+	.diagram-claims .diagram-claim:nth-of-type(1) {
+		transform: rotate(-1.25deg);
+	}
+	.diagram-claims .diagram-claim:nth-of-type(2) {
+		transform: rotate(1.25deg);
 	}
 	.diagram-claim-plus {
 		flex: 0 0 auto;
@@ -607,16 +642,26 @@ Google's display and YouTube inventory does the same thing: view-through convers
 <div class="rdm-diagram">
 	<div class="rdm-cards">
 		<div class="rdm-card">
+			<svg class="rdm-pin" viewBox="0 0 20 24" aria-hidden="true">
+				<path d="M10 24 L10 16" style="stroke: var(--ledger-muted); stroke-width: 1.5; stroke-linecap: round;" />
+				<circle cx="10" cy="9" r="7" style="fill: var(--ledger-signal);" />
+				<circle cx="7.5" cy="6.5" r="1.8" style="fill: rgba(255, 255, 255, 0.4);" />
+			</svg>
 			<span class="rdm-card-icon" aria-hidden="true">
-				<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 3l7.5 17 2.1-6.4L20 11.5 4 3Z"/></svg>
+				<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 3l7.5 17 2.1-6.4L20 11.5 4 3Z"/></svg>
 			</span>
 			<span class="rdm-card-title">Click Conversion</span>
 			<span class="rdm-card-desc">Someone clicked the ad, then converted.</span>
 			<span class="rdm-card-tag rdm-card-tag-strong">Strong intent signal</span>
 		</div>
 		<div class="rdm-card">
+			<svg class="rdm-pin" viewBox="0 0 20 24" aria-hidden="true">
+				<path d="M10 24 L10 16" style="stroke: var(--ledger-muted); stroke-width: 1.5; stroke-linecap: round;" />
+				<circle cx="10" cy="9" r="7" style="fill: var(--ledger-muted);" />
+				<circle cx="7.5" cy="6.5" r="1.8" style="fill: rgba(255, 255, 255, 0.4);" />
+			</svg>
 			<span class="rdm-card-icon" aria-hidden="true">
-				<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7Z"/><circle cx="12" cy="12" r="3"/></svg>
+				<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7Z"/><circle cx="12" cy="12" r="3"/></svg>
 			</span>
 			<span class="rdm-card-title">View-Through Conversion</span>
 			<span class="rdm-card-desc">Someone saw the ad, never clicked, converted anyway.</span>
@@ -645,16 +690,26 @@ Meta reports based on your ad account's time zone. GA4 uses whatever time zone y
 <div class="rdm-diagram">
 	<div class="rdm-cards">
 		<div class="rdm-card rdm-card-center">
+			<svg class="rdm-pin" viewBox="0 0 20 24" aria-hidden="true">
+				<path d="M10 24 L10 16" style="stroke: var(--ledger-muted); stroke-width: 1.5; stroke-linecap: round;" />
+				<circle cx="10" cy="9" r="7" style="fill: var(--ledger-muted);" />
+				<circle cx="7.5" cy="6.5" r="1.8" style="fill: rgba(255, 255, 255, 0.4);" />
+			</svg>
 			<span class="rdm-card-icon" aria-hidden="true">
-				<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/></svg>
+				<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/></svg>
 			</span>
 			<span class="rdm-card-title">Meta<br /><span class="rdm-card-sub">Ad account timezone</span></span>
 			<span class="rdm-card-big">Aug 5</span>
 			<span class="rdm-card-time">11:30 PM</span>
 		</div>
 		<div class="rdm-card rdm-card-center">
+			<svg class="rdm-pin" viewBox="0 0 20 24" aria-hidden="true">
+				<path d="M10 24 L10 16" style="stroke: var(--ledger-muted); stroke-width: 1.5; stroke-linecap: round;" />
+				<circle cx="10" cy="9" r="7" style="fill: var(--ledger-signal);" />
+				<circle cx="7.5" cy="6.5" r="1.8" style="fill: rgba(255, 255, 255, 0.4);" />
+			</svg>
 			<span class="rdm-card-icon" aria-hidden="true">
-				<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/></svg>
+				<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/></svg>
 			</span>
 			<span class="rdm-card-title">GA4<br /><span class="rdm-card-sub">Property timezone</span></span>
 			<span class="rdm-card-big rdm-card-big-accent">Aug 6</span>
