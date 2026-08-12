@@ -43,13 +43,6 @@ That means a purchase someone was always going to make can still get counted as 
 		margin: 2rem 0;
 		padding: 1.75rem 2rem 2rem;
 		background-color: var(--ledger-paper);
-		background-image: repeating-linear-gradient(
-			to bottom,
-			transparent,
-			transparent 27px,
-			var(--ledger-rule) 27px,
-			var(--ledger-rule) 28px
-		);
 		border: 1px solid var(--ledger-rule);
 		border-radius: 14px;
 		box-shadow:
@@ -62,6 +55,13 @@ That means a purchase someone was always going to make can still get counted as 
 		font-size: 0.85rem;
 		color: var(--ledger-muted);
 		line-height: 28px;
+		background-image: repeating-linear-gradient(
+			to bottom,
+			transparent,
+			transparent 27px,
+			var(--ledger-rule) 27px,
+			var(--ledger-rule) 28px
+		);
 	}
 	.rdm-bars {
 		display: flex;
@@ -72,6 +72,13 @@ That means a purchase someone was always going to make can still get counted as 
 		display: flex;
 		align-items: flex-end;
 		gap: 1.1rem;
+		background-image: repeating-linear-gradient(
+			to bottom,
+			transparent,
+			transparent 27px,
+			var(--ledger-rule) 27px,
+			var(--ledger-rule) 28px
+		);
 	}
 	.rdm-bar-label {
 		flex: 0 0 130px;
@@ -249,6 +256,13 @@ That means a purchase someone was always going to make can still get counted as 
 		font-size: 1.05rem;
 		color: var(--ledger-ink);
 		line-height: 28px;
+		background-image: repeating-linear-gradient(
+			to bottom,
+			transparent,
+			transparent 27px,
+			var(--ledger-rule) 27px,
+			var(--ledger-rule) 28px
+		);
 	}
 	.rdm-step-desc {
 		display: block;
@@ -256,6 +270,13 @@ That means a purchase someone was always going to make can still get counted as 
 		font-size: 0.85rem;
 		color: var(--ledger-muted);
 		line-height: 28px;
+		background-image: repeating-linear-gradient(
+			to bottom,
+			transparent,
+			transparent 27px,
+			var(--ledger-rule) 27px,
+			var(--ledger-rule) 28px
+		);
 	}
 	@media (max-width: 560px) {
 		.rdm-diagram {
@@ -343,13 +364,6 @@ Say a shopper sees your Meta ad on Monday, doesn't click. On Wednesday, they sea
 		margin: 2.5rem 0;
 		padding: 1.75rem 2.25rem 2.25rem;
 		background-color: var(--ledger-paper);
-		background-image: repeating-linear-gradient(
-			to bottom,
-			transparent,
-			transparent 27px,
-			var(--ledger-rule) 27px,
-			var(--ledger-rule) 28px
-		);
 		border: 1px solid var(--ledger-rule);
 		border-radius: 14px;
 		box-shadow:
@@ -369,6 +383,13 @@ Say a shopper sees your Meta ad on Monday, doesn't click. On Wednesday, they sea
 		text-align: center;
 		width: 30%;
 		position: relative;
+		background-image: repeating-linear-gradient(
+			to bottom,
+			transparent,
+			transparent 27px,
+			var(--ledger-rule) 27px,
+			var(--ledger-rule) 28px
+		);
 	}
 	.diagram-icon {
 		display: flex;
@@ -428,11 +449,19 @@ Say a shopper sees your Meta ad on Monday, doesn't click. On Wednesday, they sea
 	}
 	.diagram-claim-plus {
 		flex: 0 0 auto;
+		align-self: flex-start;
 		font-family: var(--ledger-display);
 		font-size: 1.3rem;
 		font-weight: 700;
 		line-height: 28px;
 		color: var(--ledger-muted);
+		background-image: repeating-linear-gradient(
+			to bottom,
+			transparent,
+			transparent 27px,
+			var(--ledger-rule) 27px,
+			var(--ledger-rule) 28px
+		);
 	}
 	.diagram-claim-label {
 		display: block;
@@ -518,6 +547,13 @@ Say a shopper sees your Meta ad on Monday, doesn't click. On Wednesday, they sea
 		font-size: 0.95rem;
 		color: var(--ledger-ink);
 		line-height: 28px;
+		background-image: repeating-linear-gradient(
+			to bottom,
+			transparent,
+			transparent 27px,
+			var(--ledger-rule) 27px,
+			var(--ledger-rule) 28px
+		);
 	}
 	.diagram-gap-value {
 		font-family: var(--ledger-data);
