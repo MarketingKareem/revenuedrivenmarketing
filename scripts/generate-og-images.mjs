@@ -5,6 +5,11 @@
 // the resulting PNGs avoids depending on font availability in Cloudflare's
 // build container.
 //
+// Design system: "Ledger" — grounded in what this brand actually does
+// (reconciling what ad platforms report against what actually happened
+// financially). Warm paper + ruled lines + a torn statement stub, instead
+// of the generic blue/white SaaS-card look.
+//
 // Usage: node scripts/generate-og-images.mjs
 
 import sharp from 'sharp';
@@ -16,15 +21,18 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const outDir = path.join(__dirname, '../public/og');
 
 const COLORS = {
-	bg: '#ffffff',
-	bgSubtle: '#f6f7fb',
-	text: '#12131a',
-	textMuted: '#565a6e',
-	accent: '#1d4ed8',
-	border: '#e3e5ee',
+	ink: '#16150F',
+	paper: '#F6F1E7',
+	paperWhite: '#FFFDF9',
+	rule: '#DDD3BE',
+	navy: '#16204A',
+	signal: '#3355FF',
+	muted: '#8C8368',
 };
 
-const FONT_STACK = '-apple-system, "Segoe UI", Helvetica, Arial, sans-serif';
+const DISPLAY = 'Avenir Next Condensed';
+const BODY = 'Helvetica Neue';
+const DATA = 'Menlo';
 
 const pillars = [
 	{ slug: 'google-ads', label: 'Google Ads' },
@@ -32,37 +40,6 @@ const pillars = [
 	{ slug: 'attribution', label: 'Attribution' },
 	{ slug: 'case-study', label: 'Case Study' },
 	{ slug: 'general', label: 'General' },
-];
-
-// Three short attribution-path "chains" of connected touchpoint nodes,
-// each ending in a solid, larger endpoint -- a visual echo of the
-// touchpoint-timeline diagrams used inside posts, and a literal picture
-// of what "revenue attribution" means: touchpoints connecting to an outcome.
-const chains = [
-	[
-		{ x: 760, y: 130 },
-		{ x: 855, y: 95 },
-		{ x: 955, y: 150, endpoint: true },
-	],
-	[
-		{ x: 735, y: 330 },
-		{ x: 815, y: 395 },
-		{ x: 935, y: 350, endpoint: true },
-	],
-	[
-		{ x: 775, y: 525 },
-		{ x: 890, y: 565 },
-		{ x: 1015, y: 505, endpoint: true },
-	],
-];
-
-const dust = [
-	{ x: 700, y: 240, r: 3 },
-	{ x: 1060, y: 220, r: 4 },
-	{ x: 1090, y: 380, r: 3 },
-	{ x: 680, y: 460, r: 3 },
-	{ x: 1000, y: 90, r: 3 },
-	{ x: 1120, y: 480, r: 4 },
 ];
 
 function escapeXml(value) {
@@ -74,58 +51,71 @@ function escapeXml(value) {
 		.replace(/'/g, '&apos;');
 }
 
-function chainSvg(chain) {
-	const lines = chain
-		.slice(1)
-		.map(
-			(node, i) =>
-				`<line x1="${chain[i].x}" y1="${chain[i].y}" x2="${node.x}" y2="${node.y}" stroke="${COLORS.accent}" stroke-opacity="0.28" stroke-width="1.5" />`
-		)
-		.join('\n\t');
-	const nodes = chain
-		.map((node) =>
-			node.endpoint
-				? `<circle cx="${node.x}" cy="${node.y}" r="9" fill="${COLORS.accent}" stroke="${COLORS.bg}" stroke-width="3" />`
-				: `<circle cx="${node.x}" cy="${node.y}" r="5" fill="${COLORS.accent}" fill-opacity="0.35" />`
-		)
-		.join('\n\t');
-	return `${lines}\n\t${nodes}`;
+// Ruled "ledger paper" lines across the full card, subtle.
+function ruledLines(width, height, step) {
+	const lines = [];
+	for (let y = 96; y < height; y += step) {
+		lines.push(
+			`<line x1="0" y1="${y}" x2="${width}" y2="${y}" stroke="${COLORS.rule}" stroke-opacity="0.55" stroke-width="1" />`
+		);
+	}
+	return lines.join('\n\t');
+}
+
+// The signature element: a torn statement stub, rotated, showing the
+// brand's actual thesis (reported vs. actual) in miniature -- the same
+// idea on every card, since that reconciliation is the constant across
+// every pillar this site writes about.
+function statementStub() {
+	const w = 348;
+	const h = 234;
+	const teeth = 14;
+	const toothWidth = w / teeth;
+	let top = `M0,10`;
+	for (let i = 0; i < teeth; i++) {
+		const x = (i + 1) * toothWidth;
+		const peak = i % 2 === 0 ? 0 : 10;
+		top += ` L${x - toothWidth / 2},${peak} L${x},10`;
+	}
+	const torn = `${top} L${w},${h} L0,${h} Z`;
+
+	return `
+	<g transform="translate(792,318) rotate(-4)">
+		<path d="${torn}" transform="translate(10,12)" fill="${COLORS.ink}" opacity="0.14" />
+		<path d="${torn}" fill="${COLORS.paperWhite}" stroke="${COLORS.rule}" stroke-width="1.5" />
+
+		<text x="24" y="46" font-family="${BODY}" font-weight="700" font-size="14" letter-spacing="2" fill="${COLORS.muted}">RECONCILED CHECK</text>
+		<line x1="24" y1="58" x2="${w - 24}" y2="58" stroke="${COLORS.rule}" stroke-width="1" />
+
+		<text x="24" y="94" font-family="${BODY}" font-weight="500" font-size="14" fill="${COLORS.muted}">REPORTED</text>
+		<text x="${w - 24}" y="100" text-anchor="end" font-family="${DATA}" font-size="28" fill="${COLORS.muted}">$1,240</text>
+		<line x1="${w - 130}" y1="94" x2="${w - 24}" y2="94" stroke="${COLORS.muted}" stroke-width="1.5" />
+
+		<text x="24" y="150" font-family="${BODY}" font-weight="700" font-size="14" fill="${COLORS.navy}">ACTUAL</text>
+		<text x="${w - 24}" y="158" text-anchor="end" font-family="${DATA}" font-weight="bold" font-size="38" fill="${COLORS.signal}">$860</text>
+		<line x1="${w - 150}" y1="168" x2="${w - 24}" y2="168" stroke="${COLORS.signal}" stroke-width="2" />
+
+		<text x="24" y="204" font-family="${BODY}" font-weight="500" font-size="13" fill="${COLORS.muted}">The gap is the story.</text>
+	</g>`;
 }
 
 function cardSvg(label) {
 	const width = 1200;
 	const height = 630;
 
-	const chainsMarkup = chains.map(chainSvg).join('\n\t');
-	const dustMarkup = dust
-		.map((d) => `<circle cx="${d.x}" cy="${d.y}" r="${d.r}" fill="${COLORS.accent}" fill-opacity="0.18" />`)
-		.join('\n\t');
-
 	return `
 <svg width="${width}" height="${height}" viewBox="0 0 ${width} ${height}" xmlns="http://www.w3.org/2000/svg">
-	<defs>
-		<linearGradient id="bg" x1="0" y1="0" x2="${width}" y2="${height}" gradientUnits="userSpaceOnUse">
-			<stop offset="0" stop-color="${COLORS.bg}" />
-			<stop offset="1" stop-color="${COLORS.bgSubtle}" />
-		</linearGradient>
-		<radialGradient id="glow" cx="0.5" cy="0.5" r="0.5">
-			<stop offset="0" stop-color="${COLORS.accent}" stop-opacity="0.10" />
-			<stop offset="1" stop-color="${COLORS.accent}" stop-opacity="0" />
-		</radialGradient>
-	</defs>
+	<rect width="${width}" height="${height}" fill="${COLORS.paper}" />
+	${ruledLines(width, height, 44)}
 
-	<rect width="${width}" height="${height}" fill="url(#bg)" />
-	<circle cx="920" cy="320" r="380" fill="url(#glow)" />
+	<text x="72" y="98" font-family="${BODY}" font-weight="700" font-size="20" letter-spacing="3" fill="${COLORS.muted}">REVENUE DRIVEN MARKETING</text>
+	<rect x="72" y="122" width="52" height="5" rx="2.5" fill="${COLORS.signal}" />
 
-	${dustMarkup}
-	${chainsMarkup}
+	<text x="66" y="332" font-family="${DISPLAY}" font-weight="800" font-size="150" letter-spacing="-2" fill="${COLORS.navy}">${escapeXml(label)}</text>
 
-	<text x="80" y="112" font-family='${FONT_STACK}' font-size="21" font-weight="700" letter-spacing="3" fill="${COLORS.textMuted}">REVENUE DRIVEN MARKETING</text>
-	<rect x="80" y="150" width="56" height="5" rx="2.5" fill="${COLORS.accent}" />
+	${statementStub()}
 
-	<text x="76" y="290" font-family='${FONT_STACK}' font-size="98" font-weight="800" letter-spacing="-3" fill="${COLORS.text}">${escapeXml(label)}</text>
-
-	<text x="80" y="546" font-family='${FONT_STACK}' font-size="28" font-weight="800" letter-spacing="-0.5" fill="${COLORS.text}">Revenue<tspan fill="${COLORS.accent}">Driven</tspan>Marketing</text>
+	<text x="72" y="556" font-family="${DISPLAY}" font-weight="700" font-size="30" letter-spacing="-0.3" fill="${COLORS.ink}">Revenue<tspan fill="${COLORS.signal}">Driven</tspan>Marketing</text>
 </svg>`.trim();
 }
 
