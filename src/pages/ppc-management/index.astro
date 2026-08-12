@@ -1,0 +1,237 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ServiceHero from '../../components/ServiceHero.astro';
+import ProcessSteps from '../../components/ProcessSteps.astro';
+import FAQSection from '../../components/FAQSection.astro';
+import CTABand from '../../components/CTABand.astro';
+import Testimonials from '../../components/Testimonials.astro';
+import CaseStudies from '../../components/CaseStudies.astro';
+import Guarantee from '../../components/Guarantee.astro';
+
+const included = [
+	'Account structure and campaign build-out, matched to how your customers actually search and buy.',
+	'Conversion tracking audit and setup, so the numbers you optimize against are real.',
+	'Bid, budget, and audience management across the platforms that actually drive revenue for your business.',
+	'Ongoing testing: ad copy, creative, targeting, and landing pages.',
+	'Reporting you can actually read: revenue and cost per acquisition, not just clicks and impressions.',
+];
+
+const signs = [
+	'You can see what you spent last month, but not what it actually produced in revenue.',
+	'Nobody has looked at conversion tracking accuracy since the account was first set up.',
+	'Performance Max or broad match is running with little visibility into where the budget actually goes.',
+	'The same campaigns have been running unchanged for months because nobody has time to test.',
+	'You are getting platform-reported numbers that do not match what your CRM or bank account shows.',
+];
+
+const glossary = [
+	{
+		term: 'CPC (Cost Per Click)',
+		def: 'What you pay each time someone clicks your ad. Set by auction dynamics between competing advertisers, not a fixed price you choose.',
+	},
+	{
+		term: 'CPA (Cost Per Acquisition)',
+		def: 'The average amount spent to generate one conversion, calculated as total spend divided by conversions. The number that actually determines whether a campaign is profitable, not CPC or CTR on their own.',
+	},
+	{
+		term: 'ROAS (Return on Ad Spend)',
+		def: 'Revenue generated for every dollar spent on ads, expressed as a ratio like 4:1 or a percentage like 400%. Only as accurate as the conversion values feeding it.',
+	},
+	{
+		term: 'CTR (Click-Through Rate)',
+		def: 'The percentage of people who saw your ad and clicked it. A useful relevance signal, and a poor standalone measure of success, since high CTR with low conversion rate usually means the wrong traffic is clicking.',
+	},
+	{
+		term: 'Attribution Window',
+		def: 'The time period after a click or view during which a conversion gets credited to that ad. Google Ads and Meta Ads use different default windows, which is a major reason their reported numbers never match exactly.',
+	},
+	{
+		term: 'Conversion Rate',
+		def: 'The percentage of clicks that result in a conversion. Used to judge landing page and offer effectiveness separately from the ad itself, since a great ad sending traffic to a weak page will still underperform.',
+	},
+];
+
+const faqs = [
+	{
+		q: 'How Much Does PPC Management Cost?',
+		a: "It depends on ad spend and the number of platforms and campaigns involved. There's no flat rate that makes sense across every business. We'll give you a real number after a free account audit, not a generic package price.",
+	},
+	{
+		q: 'What Does PPC Management Actually Include?',
+		a: 'Account structure, conversion tracking, bid and budget management, creative testing, and reporting, all of it, not just "campaign optimization." Most of the damage we find in audits is in tracking and structure, not bids.',
+	},
+	{
+		q: 'Do I Need a PPC Agency, or Can I Manage This In-House?',
+		a: "If you have someone whose full-time job is watching these accounts daily, in-house can work. Most businesses don't. PPC platforms change constantly, and part-time attention is how budget gets wasted. An outside PPC management service is worth it when the alternative is nobody really owning it.",
+	},
+	{
+		q: 'Which Platforms Do You Manage?',
+		a: 'Primarily Google Ads and Meta Ads (Facebook and Instagram). See our dedicated Google Ads Management and Meta Ads Management pages for platform-specific detail.',
+	},
+	{
+		q: 'How Long Until PPC Management Shows Results?',
+		a: "Tracking and structural fixes show up immediately. You'll finally see accurate numbers. Real performance gains from testing and optimization typically take 4 to 8 weeks, since platforms need data to optimize against.",
+	},
+	{
+		q: 'What Is the Difference Between PPC and SEO?',
+		a: 'PPC (pay-per-click) is paid placement you control directly and can turn on immediately. SEO is organic ranking earned over months. They work well together: PPC captures demand today while SEO builds a channel that keeps producing without ongoing ad spend.',
+	},
+	{
+		q: 'Do You Require a Long-Term Contract?',
+		a: "We'll walk through terms during your audit call. Our view is that a management relationship should continue because it's working, not because a contract requires it.",
+	},
+	{
+		q: 'What Size Businesses Do You Work With?',
+		a: "Businesses with enough ad spend to make ongoing management and testing worthwhile. If your budget is too small for that to make sense, we'll tell you honestly during the audit rather than take on an account that can't succeed.",
+	},
+	{
+		q: 'What Is a Good ROAS or CPA?',
+		a: "There isn't a universal number. It depends entirely on your margins, average order value, and customer lifetime value. A 3:1 ROAS can be excellent for one business and unprofitable for another. Part of an audit is establishing what a genuinely good number looks like for your business specifically.",
+	},
+	{
+		q: 'Can You Manage Platforms Beyond Google and Meta, Like Amazon or TikTok?',
+		a: "Our core focus is Google Ads and Meta Ads, where most of our experience is deepest. We'll tell you directly if a request falls outside that, rather than take it on and learn on your budget.",
+	},
+];
+---
+
+<BaseLayout
+	title="PPC Management Services"
+	description="PPC management built around revenue, not spend. Account audits, conversion tracking, and hands-on management across Google Ads and Meta Ads."
+>
+	<ServiceHero eyebrow="PPC Management Services" title="PPC Management That's Built Around Revenue, Not Spend">
+		Most PPC management services report on clicks and impressions because those numbers always go
+		up. We manage toward revenue and cost per acquisition, the numbers that actually decide
+		whether your ad spend is working.
+	</ServiceHero>
+
+	<section class="included">
+		<h2>What's Included</h2>
+		<ul>
+			{included.map((item) => <li>{item}</li>)}
+		</ul>
+	</section>
+
+	<Testimonials />
+
+	<Guarantee />
+
+	<section class="platforms">
+		<h2>PPC Management by Platform</h2>
+		<div class="grid">
+			<a class="card" href="/google-ads-management/">
+				<h3>Google Ads Management &rarr;</h3>
+				<p>Search, Shopping, and Performance Max, structured around what actually converts.</p>
+			</a>
+			<a class="card" href="/meta-ads-management/">
+				<h3>Meta Ads Management &rarr;</h3>
+				<p>Facebook and Instagram campaigns built for revenue, not just reach.</p>
+			</a>
+			<a class="card" href="/revenue-attribution/">
+				<h3>Revenue Attribution &rarr;</h3>
+				<p>GA4, conversion tracking, and multi-touch attribution set up correctly.</p>
+			</a>
+			<a class="card" href="/account-audits/">
+				<h3>Account Audits &rarr;</h3>
+				<p>A full diagnostic before you spend another dollar.</p>
+			</a>
+		</div>
+	</section>
+
+	<section class="glossary">
+		<h2>Key PPC Terms Explained</h2>
+		<div class="stack">
+			{
+				glossary.map((g) => (
+					<div class="row">
+						<h3>{g.term}</h3>
+						<p>{g.def}</p>
+					</div>
+				))
+			}
+		</div>
+	</section>
+
+	<section class="signs">
+		<h2>Signs Your PPC Accounts Need a Second Look</h2>
+		<ul>
+			{signs.map((item) => <li>{item}</li>)}
+		</ul>
+	</section>
+
+	<CaseStudies />
+
+	<ProcessSteps />
+
+	<CTABand heading="Ready to See What Your PPC Account Is Actually Doing?" />
+
+	<FAQSection items={faqs} />
+</BaseLayout>
+
+<style>
+	.included,
+	.platforms,
+	.glossary,
+	.signs {
+		padding: 4.5rem 0;
+		border-top: 1px solid var(--color-border);
+	}
+	.included h2,
+	.platforms h2,
+	.glossary h2,
+	.signs h2 {
+		font-size: 1.75rem;
+		margin: 0 0 2rem;
+	}
+	.included ul,
+	.signs ul {
+		padding-left: 1.25rem;
+		max-width: 68ch;
+	}
+	.included li,
+	.signs li {
+		margin-bottom: 0.75rem;
+		color: var(--color-text-muted);
+	}
+	.platforms .grid {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		gap: 1.75rem;
+	}
+	.card {
+		padding: 1.75rem;
+		border: 1px solid var(--color-border);
+		border-radius: 12px;
+		background: var(--color-bg-subtle);
+		text-decoration: none;
+		display: block;
+	}
+	.card h3 {
+		margin: 0 0 0.6rem;
+		font-size: 1.1rem;
+		color: var(--color-accent);
+	}
+	.card p {
+		margin: 0;
+		font-size: 0.95rem;
+	}
+	.stack {
+		display: flex;
+		flex-direction: column;
+		gap: 1.75rem;
+		max-width: 68ch;
+	}
+	.row h3 {
+		margin: 0 0 0.5rem;
+		font-size: 1.1rem;
+	}
+	.row p {
+		margin: 0;
+	}
+
+	@media (max-width: 640px) {
+		.platforms .grid {
+			grid-template-columns: 1fr;
+		}
+	}
+</style>

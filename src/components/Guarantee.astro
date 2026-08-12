@@ -1,0 +1,53 @@
+---
+interface Props {
+	eyebrow?: string;
+	heading?: string;
+	body?: string;
+}
+const {
+	eyebrow = 'No Long-Term Lock-In',
+	heading = 'A Free Audit, Straight Answers, and No Obligation',
+	body = 'You get a real diagnostic of your account before anything changes and before you commit to anything. If the honest answer is "spend less here," that\'s what you\'ll hear. If we\'re not the right fit, we\'ll tell you that too, instead of taking on an account we can\'t actually help.',
+} = Astro.props;
+---
+
+<section class="honesty">
+	<div class="honesty-inner">
+		<p class="eyebrow">{eyebrow}</p>
+		<h2>{heading}</h2>
+		<p>{body}</p>
+	</div>
+</section>
+
+<style>
+	.honesty {
+		width: auto;
+		margin-inline: calc(50% - 50vw);
+		background: #0b0d12;
+		color: #f5f6fa;
+		padding: 4.5rem 1.5rem;
+	}
+	.honesty-inner {
+		max-width: 960px;
+		margin: 0 auto;
+	}
+	.eyebrow {
+		text-transform: uppercase;
+		font-size: 0.8rem;
+		font-weight: 700;
+		letter-spacing: 0.12em;
+		color: #7ba0ff;
+		margin: 0 0 1.25rem;
+	}
+	.honesty h2 {
+		color: #fff;
+		font-size: 2rem;
+		max-width: 22ch;
+		margin: 0 0 1.25rem;
+	}
+	.honesty p:last-child {
+		max-width: 60ch;
+		color: #c2c5d6;
+		font-size: 1.05rem;
+	}
+</style>

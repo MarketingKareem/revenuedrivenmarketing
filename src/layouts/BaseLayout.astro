@@ -14,6 +14,24 @@ const gscVerification = import.meta.env.PUBLIC_GSC_VERIFICATION;
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 const ogImageURL = image ? new URL(image, Astro.site) : undefined;
 const fullTitle = `${title} | Revenue Driven Marketing`;
+
+const organizationSchema = {
+	'@context': 'https://schema.org',
+	'@type': 'ProfessionalService',
+	name: 'Revenue Driven Marketing',
+	url: 'https://revenuedrivenmarketing.com',
+	description:
+		'Performance marketing agency running Google Ads and Meta Ads on attribution first, not vanity metrics.',
+	areaServed: 'US',
+	priceRange: '$$',
+	knowsAbout: [
+		'Google Ads Management',
+		'Meta Ads Management',
+		'PPC Management',
+		'Revenue Attribution',
+		'Conversion Tracking',
+	],
+};
 ---
 
 <!doctype html>
@@ -44,6 +62,8 @@ const fullTitle = `${title} | Revenue Driven Marketing`;
 		) : (
 			<meta name="twitter:card" content="summary" />
 		)}
+
+		<script type="application/ld+json" set:html={JSON.stringify(organizationSchema)} />
 
 		{gtmId && (
 			<script is:inline define:vars={{ gtmId }}>
