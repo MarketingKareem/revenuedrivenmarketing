@@ -134,28 +134,39 @@ const organizationSchema = {
 
 	:root {
 		color-scheme: light;
-		--color-bg: #ffffff;
-		--color-bg-subtle: #f6f7fb;
-		--color-text: #12131a;
-		--color-text-muted: #565a6e;
-		--color-border: #e3e5ee;
-		--color-accent: #1d4ed8;
-		--color-accent-hover: #1739a8;
-		--radius: 8px;
 
 		/* "Ledger" system — the brand's own reconciliation concept
-		   (reported vs. actual) applied as a visual language, used for
-		   the hero/OG images and in-article diagrams. */
+		   (reported vs. actual) applied as a visual language across the
+		   whole site, not just the blog. Warm paper + ruled lines + ink
+		   navy, instead of generic SaaS blue-on-white. */
 		--ledger-paper: #f6f1e7;
 		--ledger-paper-white: #fffdf9;
 		--ledger-ink: #16150f;
 		--ledger-navy: #16204a;
+		--ledger-navy-light: #2b3a72;
 		--ledger-signal: #3355ff;
+		--ledger-signal-hover: #2440cc;
+		--ledger-signal-pale: #90a8ff;
+		--ledger-signal-wash: rgba(51, 85, 255, 0.08);
 		--ledger-muted: #8c8368;
 		--ledger-rule: #ddd3be;
+		--ledger-ink-on-navy: #c9cee3;
+		--ledger-good: #2f7a4f;
+		--ledger-bad: #a33327;
 		--ledger-display: 'Barlow Condensed', 'Avenir Next Condensed', sans-serif;
 		--ledger-body: 'Barlow', 'Helvetica Neue', sans-serif;
 		--ledger-data: 'Menlo', 'SF Mono', Consolas, 'Roboto Mono', monospace;
+
+		/* Legacy token names, aliased to the Ledger palette so every
+		   existing component picks it up without a rewrite. */
+		--color-bg: var(--ledger-paper);
+		--color-bg-subtle: var(--ledger-paper-white);
+		--color-text: var(--ledger-ink);
+		--color-text-muted: var(--ledger-muted);
+		--color-border: var(--ledger-rule);
+		--color-accent: var(--ledger-signal);
+		--color-accent-hover: var(--ledger-signal-hover);
+		--radius: 4px;
 	}
 	* {
 		box-sizing: border-box;
@@ -165,14 +176,7 @@ const organizationSchema = {
 	}
 	body {
 		margin: 0;
-		font-family:
-			-apple-system,
-			BlinkMacSystemFont,
-			'Segoe UI',
-			Roboto,
-			Helvetica,
-			Arial,
-			sans-serif;
+		font-family: var(--ledger-body);
 		background: var(--color-bg);
 		color: var(--color-text);
 		line-height: 1.6;
@@ -185,8 +189,11 @@ const organizationSchema = {
 	h1,
 	h2,
 	h3 {
-		line-height: 1.2;
+		font-family: var(--ledger-display);
+		font-weight: 700;
+		line-height: 1.15;
 		letter-spacing: -0.01em;
+		color: var(--ledger-ink);
 	}
 	p {
 		color: var(--color-text-muted);
