@@ -22,7 +22,7 @@ const posts = (await getCollection('blog', ({ data }) => !data.draft)).sort(
 				{posts.map((post) => (
 					<li>
 						<a class="thumb" href={`/blog/${post.id}/`} tabindex="-1" aria-hidden="true">
-							<img src={`/og/${post.data.pillar}.png`} alt="" width="1200" height="630" loading="lazy" />
+							<img src={`/og/${post.id}.png`} alt="" width="1200" height="630" loading="lazy" />
 						</a>
 						<div>
 							<span class="pillar">{pillarLabels[post.data.pillar]}</span>
