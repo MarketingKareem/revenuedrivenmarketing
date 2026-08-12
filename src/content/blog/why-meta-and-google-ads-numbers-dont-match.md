@@ -16,6 +16,246 @@ Every ad platform assigns a conversion credit window: a period of time after som
 
 That means a purchase someone was always going to make can still get counted as a conversion, as long as it falls inside the window. The platform isn't lying. It's applying a rule you may not have agreed to, or even known about, and the two platforms aren't using the same rule.
 
+<div class="rdm-diagram">
+	<div class="rdm-bars">
+		<div class="rdm-bar-row">
+			<span class="rdm-bar-label">Meta<br /><span>click + view</span></span>
+			<div class="rdm-bar-track">
+				<div class="rdm-bar-fill rdm-bar-muted" style="width: 23%;">
+					<span class="rdm-bar-inline-value">7-8 days</span>
+				</div>
+			</div>
+		</div>
+		<div class="rdm-bar-row">
+			<span class="rdm-bar-label">Google Ads<br /><span>data-driven</span></span>
+			<div class="rdm-bar-track">
+				<div class="rdm-bar-fill rdm-bar-accent" style="width: 100%;">
+					<span class="rdm-bar-inline-value">30 days</span>
+				</div>
+			</div>
+		</div>
+	</div>
+	<p class="rdm-caption">Same purchase, two different lookback windows — Google can still credit an ad more than three weeks after Meta already stopped counting the same click.</p>
+</div>
+
+<style>
+	.rdm-diagram {
+		margin: 2rem 0;
+		padding: 1.75rem 2rem 2rem;
+		background: var(--color-bg);
+		border: 1px solid var(--color-border);
+		border-radius: 14px;
+		box-shadow:
+			0 1px 2px rgba(18, 19, 26, 0.04),
+			0 12px 32px rgba(18, 19, 26, 0.06);
+	}
+	.rdm-caption {
+		margin: 1.25rem 0 0;
+		font-size: 0.85rem;
+		color: var(--color-text-muted);
+		line-height: 1.5;
+	}
+	.rdm-bars {
+		display: flex;
+		flex-direction: column;
+		gap: 0.85rem;
+	}
+	.rdm-bar-row {
+		display: flex;
+		align-items: center;
+		gap: 1.1rem;
+	}
+	.rdm-bar-label {
+		flex: 0 0 130px;
+		font-size: 0.85rem;
+		font-weight: 700;
+		color: var(--color-text);
+		line-height: 1.3;
+	}
+	.rdm-bar-label span {
+		display: block;
+		font-size: 0.72rem;
+		font-weight: 500;
+		color: var(--color-text-muted);
+	}
+	.rdm-bar-track {
+		flex: 1;
+		height: 40px;
+		background: var(--color-bg-subtle);
+		border-radius: 8px;
+		overflow: hidden;
+	}
+	.rdm-bar-fill {
+		height: 100%;
+		border-radius: 0 8px 8px 0;
+		display: flex;
+		align-items: center;
+		justify-content: flex-end;
+		padding-right: 0.85rem;
+		box-sizing: border-box;
+		min-width: fit-content;
+	}
+	.rdm-bar-muted {
+		background: var(--color-text-muted);
+	}
+	.rdm-bar-accent {
+		background: var(--color-accent);
+	}
+	.rdm-bar-inline-value {
+		font-weight: 800;
+		font-size: 0.95rem;
+		color: #fff;
+		letter-spacing: -0.01em;
+		white-space: nowrap;
+	}
+	.rdm-cards {
+		display: flex;
+		gap: 1.1rem;
+	}
+	.rdm-card {
+		flex: 1;
+		background: var(--color-bg-subtle);
+		border-radius: 12px;
+		padding: 1.4rem;
+		display: flex;
+		flex-direction: column;
+		align-items: flex-start;
+	}
+	.rdm-card-center {
+		align-items: center;
+		text-align: center;
+	}
+	.rdm-card-icon {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		width: 40px;
+		height: 40px;
+		border-radius: 50%;
+		background: var(--color-bg);
+		border: 1.5px solid var(--color-border);
+		color: var(--color-text-muted);
+		margin-bottom: 0.9rem;
+	}
+	.rdm-card-icon svg {
+		width: 18px;
+		height: 18px;
+	}
+	.rdm-card-title {
+		display: block;
+		font-weight: 700;
+		font-size: 1rem;
+		color: var(--color-text);
+		margin-bottom: 0.4rem;
+	}
+	.rdm-card-sub {
+		display: block;
+		font-size: 0.75rem;
+		font-weight: 500;
+		color: var(--color-text-muted);
+		margin-top: 0.15rem;
+	}
+	.rdm-card-desc {
+		display: block;
+		font-size: 0.85rem;
+		color: var(--color-text-muted);
+		line-height: 1.45;
+		margin-bottom: 0.9rem;
+	}
+	.rdm-card-tag {
+		display: inline-block;
+		font-size: 0.72rem;
+		font-weight: 700;
+		text-transform: uppercase;
+		letter-spacing: 0.03em;
+		padding: 0.3rem 0.6rem;
+		border-radius: 100px;
+	}
+	.rdm-card-tag-strong {
+		background: rgba(29, 78, 216, 0.1);
+		color: var(--color-accent);
+	}
+	.rdm-card-tag-weak {
+		background: var(--color-border);
+		color: var(--color-text-muted);
+	}
+	.rdm-card-big {
+		display: block;
+		font-size: 1.7rem;
+		font-weight: 800;
+		color: var(--color-text);
+		letter-spacing: -0.02em;
+		line-height: 1.25;
+		margin-top: 0.4rem;
+	}
+	.rdm-card-big-accent {
+		color: var(--color-accent);
+	}
+	.rdm-card-time {
+		display: block;
+		font-size: 0.85rem;
+		font-weight: 500;
+		color: var(--color-text-muted);
+	}
+	.rdm-steps {
+		display: flex;
+		flex-direction: column;
+	}
+	.rdm-step {
+		display: flex;
+		gap: 1.1rem;
+		padding-bottom: 1.5rem;
+		margin-bottom: 1.5rem;
+		border-bottom: 1px solid var(--color-border);
+	}
+	.rdm-step-last {
+		padding-bottom: 0;
+		margin-bottom: 0;
+		border-bottom: none;
+	}
+	.rdm-step-num {
+		flex: 0 0 32px;
+		width: 32px;
+		height: 32px;
+		border-radius: 50%;
+		background: var(--color-accent);
+		color: #fff;
+		font-weight: 800;
+		font-size: 0.9rem;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+	.rdm-step-title {
+		display: block;
+		font-weight: 700;
+		font-size: 0.95rem;
+		color: var(--color-text);
+		margin-bottom: 0.3rem;
+	}
+	.rdm-step-desc {
+		display: block;
+		font-size: 0.85rem;
+		color: var(--color-text-muted);
+		line-height: 1.5;
+	}
+	@media (max-width: 560px) {
+		.rdm-diagram {
+			padding: 1.35rem 1.25rem 1.5rem;
+		}
+		.rdm-cards {
+			flex-direction: column;
+		}
+		.rdm-bar-label {
+			flex-basis: 96px;
+			font-size: 0.78rem;
+		}
+		.rdm-bar-inline-value {
+			font-size: 0.82rem;
+		}
+	}
+</style>
+
 ## Google and Meta Can Both Claim the Same Sale
 
 This is the mechanism most explanations skip, and it's the one that does the most damage to a blended revenue number: attribution windows don't just inflate each platform's count in isolation, they let two platforms claim credit for one sale at the same time.
@@ -304,6 +544,28 @@ Separate from the cross-platform overlap above, Meta counts a conversion if some
 
 Google's display and YouTube inventory does the same thing: view-through conversions count toward the total, even though nothing was clicked and GA4 has no way to detect an ad impression that never resulted in a session. If your dashboard is blending view-through and click conversions into one total without labeling which is which, the headline number is doing more work than it should.
 
+<div class="rdm-diagram">
+	<div class="rdm-cards">
+		<div class="rdm-card">
+			<span class="rdm-card-icon" aria-hidden="true">
+				<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 3l7.5 17 2.1-6.4L20 11.5 4 3Z"/></svg>
+			</span>
+			<span class="rdm-card-title">Click Conversion</span>
+			<span class="rdm-card-desc">Someone clicked the ad, then converted.</span>
+			<span class="rdm-card-tag rdm-card-tag-strong">Strong intent signal</span>
+		</div>
+		<div class="rdm-card">
+			<span class="rdm-card-icon" aria-hidden="true">
+				<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7Z"/><circle cx="12" cy="12" r="3"/></svg>
+			</span>
+			<span class="rdm-card-title">View-Through Conversion</span>
+			<span class="rdm-card-desc">Someone saw the ad, never clicked, converted anyway.</span>
+			<span class="rdm-card-tag rdm-card-tag-weak">Weak intent signal</span>
+		</div>
+	</div>
+	<p class="rdm-caption">Both land in the same "conversions" column, with no visual distinction between them in the standard dashboard view.</p>
+</div>
+
 ## Cross-Device Journeys Break the Chain Entirely
 
 None of the mechanisms above require a device change to cause a mismatch, but device switching makes all of them worse. Someone clicks your Google ad on their phone during lunch, then finishes the purchase on their laptop that night. Google can often stitch that together if the person is logged into a Google account on both devices. Your CRM sees one transaction. But if that same person clicked a Meta ad on mobile first, Meta's ability to connect the mobile click to a desktop purchase depends entirely on its own probabilistic modeling, not a shared login, and it will confidently report a conversion either way.
@@ -320,14 +582,64 @@ The result is a platform-reported number that reflects a model of what probably 
 
 Meta reports based on your ad account's time zone. GA4 uses whatever time zone your property is configured with. A conversion at 11:30 PM can land on different calendar days depending on which system is counting it, which shows up as a 10 to 15 percent swing in daily numbers even when the weekly totals roughly agree. It's a small thing on its own, but stacked on top of attribution windows, cross-platform overlap, and modeled conversions, it's one more reason a single day's dashboard number is a bad thing to make decisions off of.
 
+<div class="rdm-diagram">
+	<div class="rdm-cards">
+		<div class="rdm-card rdm-card-center">
+			<span class="rdm-card-icon" aria-hidden="true">
+				<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/></svg>
+			</span>
+			<span class="rdm-card-title">Meta<br /><span class="rdm-card-sub">Ad account timezone</span></span>
+			<span class="rdm-card-big">Aug 5</span>
+			<span class="rdm-card-time">11:30 PM</span>
+		</div>
+		<div class="rdm-card rdm-card-center">
+			<span class="rdm-card-icon" aria-hidden="true">
+				<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/></svg>
+			</span>
+			<span class="rdm-card-title">GA4<br /><span class="rdm-card-sub">Property timezone</span></span>
+			<span class="rdm-card-big rdm-card-big-accent">Aug 6</span>
+			<span class="rdm-card-time">12:14 AM</span>
+		</div>
+	</div>
+	<p class="rdm-caption">The exact same purchase, logged on two different calendar days — depending only on which system's clock is doing the counting.</p>
+</div>
+
 ## How to Actually Reconcile the Numbers
 
 Not by trusting the raw platform number on its own, and not by trying to get Google and Meta to agree with each other, since structurally they can't. Here's what actually holds up:
 
-- **Use your CRM or backend revenue data as ground truth.** Ad platforms report what they think happened. Your CRM reports what actually got paid for. Every other number gets checked against this one, not the other way around.
-- **Run the reconciliation once, with real numbers.** Pull last month's reported conversion value from Google Ads and from Meta Ads, add them together, and compare that total to your actual CRM revenue for the same period. The dollar gap between the two is your real double-counted and modeled amount, not a guess, and it's usually a bigger number than people expect the first time they run it.
-- **Compare trends, not absolute counts.** If platform-reported conversions are up 20 percent week over week and your CRM shows a similar lift, the platform is directionally useful for pacing even if the raw number is inflated.
-- **Feed real conversion data back into the platforms**, using Google's enhanced conversions and Meta's Conversions API to pass CRM-confirmed outcomes (not just pixel-fired events) back into each platform. This doesn't fix the reporting gap, but it does make the algorithms optimize toward outcomes that actually happened instead of their own modeled version of one.
+<div class="rdm-diagram">
+	<div class="rdm-steps">
+		<div class="rdm-step">
+			<span class="rdm-step-num">1</span>
+			<div>
+				<span class="rdm-step-title">Use your CRM or backend revenue data as ground truth</span>
+				<span class="rdm-step-desc">Ad platforms report what they think happened. Your CRM reports what actually got paid for. Every other number gets checked against this one, not the other way around.</span>
+			</div>
+		</div>
+		<div class="rdm-step">
+			<span class="rdm-step-num">2</span>
+			<div>
+				<span class="rdm-step-title">Run the reconciliation once, with real numbers</span>
+				<span class="rdm-step-desc">Pull last month's reported conversion value from Google Ads and Meta Ads, add them together, and compare that total to your actual CRM revenue for the same period. The dollar gap is real, not a guess, and it's usually bigger than people expect the first time they run it.</span>
+			</div>
+		</div>
+		<div class="rdm-step">
+			<span class="rdm-step-num">3</span>
+			<div>
+				<span class="rdm-step-title">Compare trends, not absolute counts</span>
+				<span class="rdm-step-desc">If platform-reported conversions are up 20 percent week over week and your CRM shows a similar lift, the platform is directionally useful for pacing even if the raw number is inflated.</span>
+			</div>
+		</div>
+		<div class="rdm-step rdm-step-last">
+			<span class="rdm-step-num">4</span>
+			<div>
+				<span class="rdm-step-title">Feed real conversion data back into the platforms</span>
+				<span class="rdm-step-desc">Use Google's enhanced conversions and Meta's Conversions API to pass CRM-confirmed outcomes, not just pixel-fired events, back into each platform. It won't fix the reporting gap, but it makes the algorithms optimize toward what actually happened instead of their own modeled version of one.</span>
+			</div>
+		</div>
+	</div>
+</div>
 
 ## For a More Rigorous Answer, Test Incrementality
 
