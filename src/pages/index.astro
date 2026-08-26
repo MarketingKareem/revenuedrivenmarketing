@@ -175,13 +175,11 @@ const faqs = [
 			Not bad luck. The same handful of problems, over and over, in accounts nobody has actually
 			looked at closely.
 		</p>
-		<div class="grid">
+		<div class="ledger-grid">
 			{
 				problems.map((p) => (
-					<div class="card">
-						<div class="card-icon">
-							<Icon name={p.icon} />
-						</div>
+					<div class="ledger-cell">
+						<Icon name={p.icon} size={22} />
 						<h3>{p.name}</h3>
 						<p>{p.desc}</p>
 					</div>
@@ -193,15 +191,16 @@ const faqs = [
 
 	<section class="services">
 		<h2>What We Do</h2>
-		<div class="grid">
+		<div class="ledger-list">
 			{
 				services.map((service) => (
-					<a class="card" href={service.href}>
-						<div class="card-icon">
-							<Icon name={service.icon} />
-						</div>
-						<h3>{service.name} &rarr;</h3>
-						<p>{service.desc}</p>
+					<a class="service-row" href={service.href}>
+						<span class="service-name">
+							<Icon name={service.icon} size={20} />
+							{service.name}
+						</span>
+						<span class="service-desc">{service.desc}</span>
+						<span class="service-arrow" aria-hidden="true">&rarr;</span>
 					</a>
 				))
 			}
@@ -210,14 +209,12 @@ const faqs = [
 
 	<section class="process" id="process">
 		<h2>How We Work</h2>
-		<div class="grid">
+		<div class="process-grid">
 			{
 				process.map((p) => (
 					<div class="step">
-						<div class="card-icon">
-							<Icon name={p.icon} />
-						</div>
 						<span class="step-num">{p.step}</span>
+						<Icon name={p.icon} size={20} />
 						<h3>{p.name}</h3>
 						<p>{p.desc}</p>
 					</div>
@@ -369,12 +366,17 @@ const faqs = [
 	.stats-grid {
 		display: grid;
 		grid-template-columns: repeat(4, 1fr);
-		gap: 1.5rem;
 	}
 	.stat {
 		display: flex;
 		flex-direction: column;
 		gap: 0.35rem;
+		padding: 0 1.5rem;
+		border-left: 1px solid var(--color-border);
+	}
+	.stat:first-child {
+		padding-left: 0;
+		border-left: none;
 	}
 	.stat-value {
 		font-size: 1.3rem;
@@ -409,45 +411,30 @@ const faqs = [
 	.process h2 {
 		margin-bottom: 2.5rem;
 	}
-	.grid {
+
+	/* Problems: a shared hairline grid, like ruled ledger cells, instead
+	   of four separate boxed cards. */
+	.ledger-grid {
 		display: grid;
 		grid-template-columns: repeat(2, 1fr);
-		gap: 1.75rem;
+		border-top: 1px solid var(--color-border);
+		border-left: 1px solid var(--color-border);
 	}
-	.card {
-		padding: 1.75rem;
-		border: 1px solid var(--color-border);
-		border-radius: 4px;
-		background: var(--color-bg-subtle);
-		text-decoration: none;
-		display: block;
-		transition: border-color 0.15s ease;
-	}
-	a.card:hover {
-		border-color: var(--color-accent);
-	}
-	.card-icon {
-		width: 40px;
-		height: 40px;
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		border-radius: 4px;
-		background: var(--ledger-signal-wash);
+	.ledger-cell {
+		padding: 2rem;
+		border-right: 1px solid var(--color-border);
+		border-bottom: 1px solid var(--color-border);
 		color: var(--color-accent);
-		margin-bottom: 1rem;
 	}
-	.card h3 {
-		margin: 0 0 0.6rem;
+	.ledger-cell h3 {
+		margin: 0.85rem 0 0.5rem;
 		font-size: 1.1rem;
 		color: var(--color-text);
 	}
-	a.card h3 {
-		color: var(--color-accent);
-	}
-	.card p {
+	.ledger-cell p {
 		margin: 0;
 		font-size: 0.95rem;
+		color: var(--color-text-muted);
 	}
 	.mid-cta {
 		display: inline-block;
@@ -456,21 +443,78 @@ const faqs = [
 		text-decoration: none;
 	}
 
-	.process .grid {
+	/* Services: a menu of line items, not a grid of cards — reads as five
+	   rows regardless of count, so nothing sits orphaned on its own row. */
+	.ledger-list {
+		border-top: 1px solid var(--color-border);
+	}
+	.service-row {
+		display: grid;
+		grid-template-columns: 240px 1fr 1.5rem;
+		align-items: baseline;
+		gap: 1.5rem;
+		padding: 1.6rem 0;
+		border-bottom: 1px solid var(--color-border);
+		text-decoration: none;
+		color: inherit;
+	}
+	.service-name {
+		display: flex;
+		align-items: center;
+		gap: 0.65rem;
+		font-family: var(--ledger-display);
+		font-weight: 700;
+		font-size: 1.2rem;
+		color: var(--color-text);
+	}
+	.service-name :global(svg) {
+		flex-shrink: 0;
+		color: var(--color-accent);
+	}
+	.service-desc {
+		font-size: 0.95rem;
+		color: var(--color-text-muted);
+	}
+	.service-arrow {
+		color: var(--color-accent);
+		font-weight: 700;
+		justify-self: end;
+		transition: transform 0.15s ease;
+	}
+	.service-row:hover .service-name {
+		color: var(--color-accent-hover);
+	}
+	.service-row:hover .service-arrow {
+		transform: translateX(4px);
+	}
+
+	/* Process: one connected strip with vertical dividers, not three
+	   repeated boxes — the big numerals carry the sequence instead. */
+	.process-grid {
+		display: grid;
 		grid-template-columns: repeat(3, 1fr);
+		border-top: 1px solid var(--color-border);
+		border-bottom: 1px solid var(--color-border);
 	}
 	.step {
-		padding: 1.75rem;
-		border: 1px solid var(--color-border);
-		border-radius: 4px;
+		padding: 2rem;
+		border-right: 1px solid var(--color-border);
+	}
+	.step:last-child {
+		border-right: none;
 	}
 	.step-num {
 		display: block;
-		font-size: 0.85rem;
+		font-family: var(--ledger-display);
 		font-weight: 800;
+		font-size: 3rem;
+		line-height: 1;
+		color: var(--ledger-rule);
+		margin-bottom: 0.5rem;
+	}
+	.step :global(svg) {
 		color: var(--color-accent);
-		letter-spacing: 0.05em;
-		margin-bottom: 0.75rem;
+		margin-bottom: 0.85rem;
 	}
 	.step h3 {
 		margin: 0 0 0.6rem;
@@ -479,6 +523,7 @@ const faqs = [
 	.step p {
 		margin: 0;
 		font-size: 0.95rem;
+		color: var(--color-text-muted);
 	}
 
 	.fit-grid {
@@ -563,13 +608,49 @@ const faqs = [
 		.hero h1 {
 			font-size: 2.1rem;
 		}
-		.grid,
-		.process .grid,
 		.fit-grid {
 			grid-template-columns: 1fr;
 		}
 		.stats-grid {
 			grid-template-columns: repeat(2, 1fr);
+			row-gap: 1.5rem;
+		}
+		.stat {
+			border-left: none;
+			padding-left: 0;
+		}
+		.stat:nth-child(2n) {
+			padding-left: 1.5rem;
+			border-left: 1px solid var(--color-border);
+		}
+		.ledger-grid {
+			grid-template-columns: 1fr;
+			border-left: none;
+		}
+		.ledger-cell {
+			border-right: none;
+		}
+		.service-row {
+			grid-template-columns: 1fr auto;
+			row-gap: 0.4rem;
+		}
+		.service-desc {
+			grid-column: 1 / -1;
+		}
+		.process-grid {
+			grid-template-columns: 1fr;
+		}
+		.step {
+			border-right: none;
+			border-bottom: 1px solid var(--color-border);
+			padding: 1.75rem 0;
+		}
+		.step:first-child {
+			padding-top: 0;
+		}
+		.step:last-child {
+			border-bottom: none;
+			padding-bottom: 0;
 		}
 	}
 </style>

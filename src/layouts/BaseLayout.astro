@@ -158,9 +158,12 @@ const organizationSchema = {
 		--ledger-data: 'Menlo', 'SF Mono', Consolas, 'Roboto Mono', monospace;
 
 		/* Legacy token names, aliased to the Ledger palette so every
-		   existing component picks it up without a rewrite. */
-		--color-bg: var(--ledger-paper);
-		--color-bg-subtle: var(--ledger-paper-white);
+		   existing component picks it up without a rewrite. White is the
+		   default canvas; the cream paper tone is reserved for banded
+		   surfaces (footer, raised sections) so it reads as a deliberate
+		   accent instead of tinting the whole page. */
+		--color-bg: var(--ledger-paper-white);
+		--color-bg-subtle: var(--ledger-paper);
 		--color-text: var(--ledger-ink);
 		--color-text-muted: var(--ledger-muted);
 		--color-border: var(--ledger-rule);
