@@ -1,9 +1,9 @@
 ---
 title: 'Why Your Google Ads and Meta Ads Conversions Don''t Match Your Actual Revenue'
 description: 'Google Ads and Meta Ads conversions don''t match your revenue. Here is why, with a worked example, and how to reconcile the gap.'
-pubDate: 2026-08-06
+pubDate: 2026-09-05
 pillar: attribution
-draft: true
+draft: false
 ---
 
 You check your Google Ads or Meta Ads dashboard and the conversion count looks solid. Then you check your CRM, your order platform, or your bank account, and the numbers don't line up. Not a rounding difference. Sometimes 20 to 30 percent apart, sometimes more.
