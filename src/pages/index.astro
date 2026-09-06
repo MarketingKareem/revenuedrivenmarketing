@@ -108,6 +108,33 @@ const notFitFor = [
 	'You are not running any real ad budget yet and are only exploring options.',
 ];
 
+const industries = [
+	{
+		name: 'Healthcare & Medical',
+		desc: 'Compliant Google and Meta campaigns that fill the calendar without wasting spend on browsers who were never going to book.',
+	},
+	{
+		name: 'Legal & Professional Services',
+		desc: 'Disciplined bid management in some of the most expensive cost-per-click markets in the country, where a wasted click is a wasted case.',
+	},
+	{
+		name: 'Home Services',
+		desc: 'Local search and call tracking built around jobs booked, not just clicks, for HVAC, electrical, plumbing, and roofing accounts.',
+	},
+	{
+		name: 'Real Estate & Property Management',
+		desc: 'Campaigns structured around where a buyer or renter actually is in their search, not one generic ad for every stage.',
+	},
+	{
+		name: 'E-Commerce & Retail',
+		desc: 'Google Shopping, Performance Max, and Meta prospecting-to-retargeting budgets tuned to margin, not just return on ad spend.',
+	},
+	{
+		name: 'Every Other Business Spending Real Money on Ads',
+		desc: 'Running a meaningful Google Ads or Meta Ads budget and unable to fully trust the numbers is the actual qualifier, not your industry.',
+	},
+];
+
 const faqs = [
 	{
 		q: 'What Is a Performance Marketing Agency?',
@@ -132,6 +159,30 @@ const faqs = [
 	{
 		q: 'What Happens After I Request a Free Audit?',
 		a: "We review your account, tracking setup, and reporting, then walk you through exactly what we found. No pressure to sign anything, and no changes are made to your account during the audit itself.",
+	},
+	{
+		q: 'How Much Should I Budget for Google Ads or Meta Ads?',
+		a: "It depends on your market and sales cycle, but as a rough floor, your monthly spend needs to be high enough that a single conversion is not a rounding error in the budget. We will give you a straight answer on whether your current or planned budget is realistic during the free audit, instead of a generic number that does not apply to your account.",
+	},
+	{
+		q: "What's the Difference Between PPC and SEO?",
+		a: 'PPC (Google Ads, Meta Ads) buys placement immediately and stops the moment you stop paying for it. SEO earns organic rankings over months and keeps working after you scale back investment, but takes much longer to show results. Most businesses benefit from both, but if you need revenue this quarter, PPC is the lever that moves fastest.',
+	},
+	{
+		q: 'Do You Build and Optimize Landing Pages Too?',
+		a: "Yes, when the landing page is the reason ad spend is not converting. We'll tell you plainly during the audit if that's your bottleneck, rather than just recommending more ad spend to compensate for a page that isn't converting.",
+	},
+	{
+		q: 'How Quickly Will I See Results?',
+		a: "Tracking and account-structure fixes usually surface within the first couple of weeks. Meaningful performance movement, more clicks actually turning into revenue, typically takes a full optimization cycle, generally 60 to 90 days, since the platforms need real conversion data to optimize against.",
+	},
+	{
+		q: 'Do I Keep Ownership of My Ad Accounts and Data?',
+		a: 'Yes, always. Your Google Ads and Meta Ads accounts, and all the historical data and conversion tracking inside them, belong to you, not to us. If we ever part ways, you keep everything exactly as it is.',
+	},
+	{
+		q: 'Do You Require Long-Term Contracts?',
+		a: "No. We work month to month and earn the relationship on results, not on a signed term. If we're not the right fit, you're free to leave with your accounts intact.",
 	},
 ];
 ---
@@ -217,6 +268,24 @@ const faqs = [
 						<Icon name={p.icon} size={20} />
 						<h3>{p.name}</h3>
 						<p>{p.desc}</p>
+					</div>
+				))
+			}
+		</div>
+	</section>
+
+	<section class="industries">
+		<h2>Industries We Serve</h2>
+		<p class="section-lede">
+			Search intent and cost per click look different in every market. Here's where we've run
+			profitable Google and Meta accounts, and adapted the playbook to fit.
+		</p>
+		<div class="ledger-grid industries-grid">
+			{
+				industries.map((ind) => (
+					<div class="ledger-cell">
+						<h3>{ind.name}</h3>
+						<p>{ind.desc}</p>
 					</div>
 				))
 			}
@@ -391,6 +460,7 @@ const faqs = [
 	.problems,
 	.services,
 	.process,
+	.industries,
 	.fit {
 		padding: 4.5rem 0;
 		border-top: 1px solid var(--color-border);
@@ -398,6 +468,7 @@ const faqs = [
 	.problems h2,
 	.services h2,
 	.process h2,
+	.industries h2,
 	.posts h2 {
 		font-size: 1.75rem;
 		margin: 0 0 0.75rem;
@@ -410,6 +481,9 @@ const faqs = [
 	.services h2,
 	.process h2 {
 		margin-bottom: 2.5rem;
+	}
+	.ledger-grid.industries-grid {
+		grid-template-columns: repeat(3, 1fr);
 	}
 
 	/* Problems: a shared hairline grid, like ruled ledger cells, instead
@@ -626,6 +700,9 @@ const faqs = [
 		.ledger-grid {
 			grid-template-columns: 1fr;
 			border-left: none;
+		}
+		.ledger-grid.industries-grid {
+			grid-template-columns: 1fr;
 		}
 		.ledger-cell {
 			border-right: none;
