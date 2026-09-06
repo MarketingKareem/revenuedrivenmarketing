@@ -101,6 +101,37 @@ const organizationSchema = {
 </html>
 
 <style is:global>
+	@font-face {
+		font-family: 'Barlow Condensed';
+		src: url('/fonts/barlow-condensed-700.woff2') format('woff2');
+		font-weight: 700;
+		font-display: swap;
+	}
+	@font-face {
+		font-family: 'Barlow Condensed';
+		src: url('/fonts/barlow-condensed-800.woff2') format('woff2');
+		font-weight: 800;
+		font-display: swap;
+	}
+	@font-face {
+		font-family: 'Barlow';
+		src: url('/fonts/barlow-400.woff2') format('woff2');
+		font-weight: 400;
+		font-display: swap;
+	}
+	@font-face {
+		font-family: 'Barlow';
+		src: url('/fonts/barlow-500.woff2') format('woff2');
+		font-weight: 500;
+		font-display: swap;
+	}
+	@font-face {
+		font-family: 'Barlow';
+		src: url('/fonts/barlow-600.woff2') format('woff2');
+		font-weight: 600;
+		font-display: swap;
+	}
+
 	:root {
 		color-scheme: light;
 		--color-bg: #ffffff;
@@ -111,6 +142,20 @@ const organizationSchema = {
 		--color-accent: #1d4ed8;
 		--color-accent-hover: #1739a8;
 		--radius: 8px;
+
+		/* "Ledger" system — the brand's own reconciliation concept
+		   (reported vs. actual) applied as a visual language, used for
+		   the hero/OG images and in-article diagrams. */
+		--ledger-paper: #f6f1e7;
+		--ledger-paper-white: #fffdf9;
+		--ledger-ink: #16150f;
+		--ledger-navy: #16204a;
+		--ledger-signal: #3355ff;
+		--ledger-muted: #8c8368;
+		--ledger-rule: #ddd3be;
+		--ledger-display: 'Barlow Condensed', 'Avenir Next Condensed', sans-serif;
+		--ledger-body: 'Barlow', 'Helvetica Neue', sans-serif;
+		--ledger-data: 'Menlo', 'SF Mono', Consolas, 'Roboto Mono', monospace;
 	}
 	* {
 		box-sizing: border-box;
