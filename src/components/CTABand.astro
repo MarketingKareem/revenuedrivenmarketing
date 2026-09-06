@@ -17,8 +17,8 @@ const { heading, buttonText = 'Get a Free Audit' } = Astro.props;
 	.cta-band {
 		width: auto;
 		margin-inline: calc(50% - 50vw);
-		background: #0b0d12;
-		color: #f5f6fa;
+		background: var(--ledger-navy);
+		color: var(--ledger-ink-on-navy);
 		padding: 4.5rem 1.5rem;
 		text-align: center;
 	}
@@ -27,7 +27,7 @@ const { heading, buttonText = 'Get a Free Audit' } = Astro.props;
 		margin: 0 auto;
 	}
 	h2 {
-		color: #fff;
+		color: var(--ledger-paper-white);
 		font-size: 2rem;
 		max-width: 24ch;
 		margin: 0 auto 2rem;
