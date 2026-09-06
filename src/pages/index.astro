@@ -18,6 +18,13 @@ const stats = [
 	{ value: 'Multiple Industries', label: 'Healthcare, Legal, Home Services, and More' },
 ];
 
+const reconciliation = [
+	{ label: 'Google Ads Reports', value: 340, display: '340 Conversions' },
+	{ label: 'Meta Ads Reports', value: 290, display: '290 Conversions' },
+	{ label: 'Combined (What Most Reports Show)', value: 630, display: '630 Conversions', flag: true },
+	{ label: 'Actual New Customers in the CRM', value: 410, display: '410 Customers', real: true },
+];
+
 const problems = [
 	{
 		icon: 'alert-triangle' as const,
@@ -45,31 +52,31 @@ const services = [
 	{
 		icon: 'target' as const,
 		name: 'PPC Management',
-		desc: 'The full picture across every platform, structured around revenue, not spend.',
+		desc: 'Keyword and audience research, negative-keyword pruning, ad copy and creative testing, landing page CRO, and daily bid and budget management, run as one system across every platform instead of disconnected line items.',
 		href: '/ppc-management/',
 	},
 	{
 		icon: 'search' as const,
 		name: 'Google Ads Management',
-		desc: 'Search, Shopping, and Performance Max, structured around what actually converts, not platform-recommended defaults.',
+		desc: 'Search, Shopping, and Performance Max structured around match-type strategy and Quality Score, so bidding logic follows what actually converts instead of platform-recommended defaults.',
 		href: '/google-ads-management/',
 	},
 	{
 		icon: 'share' as const,
 		name: 'Meta Ads Management',
-		desc: "Facebook and Instagram campaigns built for revenue, with creative and audience testing that doesn't stall out after week two.",
+		desc: "Facebook and Instagram campaigns built on lookalike and interest audiences, with a real creative-testing cadence so cost per result doesn't climb the moment an ad set fatigues.",
 		href: '/meta-ads-management/',
 	},
 	{
 		icon: 'bar-chart' as const,
 		name: 'Revenue Attribution & Analytics',
-		desc: 'GA4, conversion tracking, and multi-touch attribution set up correctly, so the numbers you optimize against are actually true.',
+		desc: 'GA4, deduplicated conversion tracking, and multi-touch attribution set up correctly across platforms, so the number you optimize against is your actual revenue, not an inflated one.',
 		href: '/revenue-attribution/',
 	},
 	{
 		icon: 'clipboard-check' as const,
 		name: 'Account Audits & Teardowns',
-		desc: "A full diagnostic of what's broken, what's wasted, and what's working before you spend another dollar.",
+		desc: "A full diagnostic of tracking accuracy, structural waste, and targeting errors before you spend another dollar. Free, with no obligation to work with us afterward.",
 		href: '/account-audits/',
 	},
 ];
@@ -79,19 +86,19 @@ const process = [
 		icon: 'search-check' as const,
 		step: '01',
 		name: 'Audit',
-		desc: "We tear the account down to see what's actually happening: tracking accuracy, wasted spend, structural issues the platform dashboard won't show you.",
+		desc: "We tear the account down before touching a single bid: whether conversion tracking is accurate, where structural waste is hiding (broad match with no negatives, ad sets competing with each other, Performance Max cannibalizing branded search), and whether the account is even structured to let good decisions get made. Free, no obligation.",
 	},
 	{
 		icon: 'wrench' as const,
 		step: '02',
 		name: 'Rebuild',
-		desc: "Fix what's broken first: tracking, structure, targeting, before touching a single bid.",
+		desc: "Fix tracking first, since every optimization decision downstream depends on it being accurate, then fix account structure and targeting. Bid adjustments on top of broken tracking just optimize toward the wrong number faster.",
 	},
 	{
 		icon: 'trending-up' as const,
 		step: '03',
 		name: 'Scale',
-		desc: "Once the foundation is honest, we scale what's proven to convert and cut what isn't.",
+		desc: "Once the foundation is honest, we scale what's proven to convert with a real testing cadence, and cut what isn't, even if it looks fine on platform-reported metrics but isn't producing revenue against the real number.",
 	},
 ];
 
@@ -111,27 +118,48 @@ const notFitFor = [
 const industries = [
 	{
 		name: 'Healthcare & Medical',
-		desc: 'Compliant Google and Meta campaigns that fill the calendar without wasting spend on browsers who were never going to book.',
+		desc: 'Compliance constraints shape what claims can appear in ad copy, and intent splits sharply between symptom research (low intent, expensive to chase) and provider comparison (high intent, worth bidding aggressively on). We build around that split instead of paying for every symptom search.',
 	},
 	{
 		name: 'Legal & Professional Services',
-		desc: 'Disciplined bid management in some of the most expensive cost-per-click markets in the country, where a wasted click is a wasted case.',
+		desc: 'Personal injury and family law sit in some of the most expensive cost-per-click markets in the country, sometimes $100 or more per click. At that price, negative-keyword discipline and landing page conversion rate matter more than bid strategy itself.',
 	},
 	{
 		name: 'Home Services',
-		desc: 'Local search and call tracking built around jobs booked, not just clicks, for HVAC, electrical, plumbing, and roofing accounts.',
+		desc: "HVAC, electrical, plumbing, and roofing live or die on local intent and speed. Someone searching \"emergency AC repair\" at 2pm is a different customer than someone researching maintenance tips, and one generic campaign wastes budget on the wrong one.",
 	},
 	{
 		name: 'Real Estate & Property Management',
-		desc: 'Campaigns structured around where a buyer or renter actually is in their search, not one generic ad for every stage.',
+		desc: 'Search intent varies enormously by stage: an early browser researching neighborhoods looks nothing like someone ready to schedule a showing this week. Running one ad for both wastes budget on the wrong stage.',
 	},
 	{
 		name: 'E-Commerce & Retail',
-		desc: 'Google Shopping, Performance Max, and Meta prospecting-to-retargeting budgets tuned to margin, not just return on ad spend.',
+		desc: 'Accounts live or die on the split between prospecting (new customers, longer payback) and retargeting (near-buyers, immediate ROAS). Getting that split wrong is the most common reason an account looks profitable in aggregate while losing money on new customers.',
 	},
 	{
 		name: 'Every Other Business Spending Real Money on Ads',
-		desc: 'Running a meaningful Google Ads or Meta Ads budget and unable to fully trust the numbers is the actual qualifier, not your industry.',
+		desc: 'The actual qualifier for whether we can help is not your industry. It is whether you are running a meaningful Google Ads or Meta Ads budget and cannot fully trust the numbers you are seeing.',
+	},
+];
+
+const pricingModels = [
+	{
+		tag: '%',
+		name: 'Percentage of Ad Spend',
+		range: '10–20%',
+		desc: 'Scales naturally as your budget grows. Watch for agencies whose only incentive under this model is growing your spend, since their fee rises either way, whether results do or not.',
+	},
+	{
+		tag: '$',
+		name: 'Flat Monthly Retainer',
+		range: '$1,000–$10,000+',
+		desc: "Predictable to budget against, and doesn't create pressure to inflate spend. Needs to be scoped honestly against the actual complexity of your account and platforms.",
+	},
+	{
+		tag: 'ROI',
+		name: 'Performance-Based',
+		range: 'Tied to Results',
+		desc: 'Fees tied to leads, conversions, or revenue milestones. Sounds the most aligned on paper, but only works once conversion tracking is already clean enough to trust.',
 	},
 ];
 
@@ -207,7 +235,97 @@ const faqs = [
 		</div>
 	</section>
 
-	<section class="stats">
+	<section class="reconcile reveal">
+		<p class="eyebrow dark">// Why Your Ads and Your Revenue Disagree</p>
+		<h2>Why Your Google Ads and Meta Ads Numbers Don't Match Your Actual Revenue</h2>
+		<div class="reconcile-body">
+			<div class="reconcile-text">
+				<p>
+					If you've pulled your Google Ads and Meta Ads dashboards side by side and added up
+					their reported conversions, then compared that number to what your CRM, order
+					platform, or bank account actually shows, you've probably seen a gap. Not a rounding
+					error. Often 20 to 40 percent, sometimes more. This is the single most common question
+					we get asked during a free account audit, and it's not a sign that something is broken.
+					It's how attribution is built to work by default.
+				</p>
+				<p>
+					<strong>Attribution windows</strong> are the first mechanism. Every platform assigns a
+					conversion credit window, a period of time after an ad interaction during which any
+					resulting purchase gets counted as caused by that ad. Meta's default is a 7-day click
+					and 1-day view window. Google Ads, on data-driven attribution, can credit conversions
+					from clicks up to 30 days back. Run both at once and they will each claim credit for
+					some of the same customers, because both windows are wide enough to overlap.
+				</p>
+				<p class="pull-stat">
+					<span class="pull-num">20&ndash;40%</span>
+					<span class="pull-label">Typical gap between summed platform-reported conversions and actual unique customers</span>
+				</p>
+				<p>
+					<strong>Cross-device journeys</strong> compound this. A customer clicks a Meta ad on
+					their phone, doesn't buy. Later, on a laptop, they search your brand name on Google and
+					convert. Google Ads records a conversion. If Meta's pixel also picked up a view-through
+					signal, Meta may record one too. Neither platform sees the other's data.
+				</p>
+				<p>
+					The fix isn't picking one platform's number to trust. It's building a ground-truth
+					measurement layer, usually GA4 configured correctly plus your actual CRM or order data,
+					that both platforms feed into, so you have one number you actually believe.
+				</p>
+			</div>
+			<div class="reconcile-visual" aria-label="Worked example: platform-reported conversions vs. actual customers">
+				<p class="reconcile-visual-label">A Real Example, One Month</p>
+				<div class="recon-bars">
+					{
+						reconciliation.map((r) => (
+							<div class={`recon-row ${r.flag ? 'is-flag' : ''} ${r.real ? 'is-real' : ''}`}>
+								<span class="recon-label">{r.label}</span>
+								<div class="recon-track">
+									<div class="recon-fill" style={`width: ${(r.value / 630) * 100}%`} />
+								</div>
+								<span class="recon-value">{r.display}</span>
+							</div>
+						))
+					}
+				</div>
+				<p class="recon-caption">
+					The 220-customer gap isn't fraud, it's double-counting plus modeled conversions
+					platforms can't directly observe.
+				</p>
+			</div>
+		</div>
+	</section>
+
+	<section class="platform-compare reveal">
+		<p class="eyebrow dark">// How the Two Platforms Work Together</p>
+		<h2>Google Ads vs. Meta Ads: How They Actually Work Together</h2>
+		<div class="compare-grid">
+			<div class="compare-cell">
+				<h3>Google Ads Captures Demand That Already Exists</h3>
+				<p>
+					Someone typing a search because they have a need right now. Measured primarily on
+					search intent and Quality Score, it's the fastest lever for revenue when someone is
+					already looking for what you sell.
+				</p>
+			</div>
+			<div class="compare-cell">
+				<h3>Meta Ads Creates Demand From Attention</h3>
+				<p>
+					Someone scrolling with no active intent, shown an offer based on modeled interest or
+					lookalike audiences built from your existing customers. Slower to pay back per dollar
+					than high-intent search, but it reaches people search can't, since they haven't started
+					looking yet.
+				</p>
+			</div>
+		</div>
+		<p class="compare-note">
+			Run well together, Meta builds awareness and retargeting pools that make branded search
+			cheaper over time, while Google Ads captures the high-intent demand Meta helped create. Run
+			badly, they compete for credit on the same customers, which is exactly the attribution
+			problem above.
+		</p>
+	</section>
+
+	<section class="stats reveal">
 		<div class="stats-grid">
 			{
 				stats.map((s) => (
@@ -220,7 +338,43 @@ const faqs = [
 		</div>
 	</section>
 
-	<section class="problems">
+	<section class="agency-def reveal">
+		<p class="eyebrow dark">// What This Actually Means</p>
+		<h2>What Is a Performance Marketing Agency?</h2>
+		<div class="agency-def-body">
+			<p>
+				<strong>Performance marketing</strong> is advertising where every dollar is measured
+				against a business outcome, revenue, cost per acquisition, return on ad spend, instead of
+				against clicks or impressions. A performance marketing agency runs Google Ads and Meta Ads
+				with that outcome as the starting assumption, not an afterthought bolted on with a
+				reporting dashboard at the end of the month.
+			</p>
+			<p>
+				That sounds like a small distinction until you look at how most accounts get managed. A
+				traditional agency, or an in-house hire without dedicated bandwidth, tends to optimize for
+				the metrics the platforms surface first: click-through rate, cost per click, impression
+				share. Those numbers are real, but they describe activity, not outcome. An account can hit
+				every platform-reported benchmark while actual revenue stays flat, because the conversions
+				being counted don't match the customers actually paying you.
+			</p>
+			<p>
+				<strong>PPC management</strong> is the operational discipline underneath performance
+				marketing: keyword and audience research, negative-keyword pruning, ad copywriting and
+				creative testing, landing page optimization, bid and budget management, and continuous A/B
+				testing. Google Ads and Meta Ads each require their own expertise, since one is
+				intent-based and the other interruption-based, and a good agency runs both as one
+				coordinated budget rather than two disconnected line items competing for credit.
+			</p>
+			<p>
+				The actual job is making sure the numbers you're optimizing against are true: clean
+				conversion tracking, a defensible model for revenue attribution across platforms, and a
+				monthly answer to a simple question, what did the ad spend actually produce, in dollars,
+				not clicks.
+			</p>
+		</div>
+	</section>
+
+	<section class="problems reveal">
 		<h2>What's Actually Going Wrong in Most Ad Accounts</h2>
 		<p class="section-lede">
 			Not bad luck. The same handful of problems, over and over, in accounts nobody has actually
@@ -237,10 +391,18 @@ const faqs = [
 				))
 			}
 		</div>
+		<p class="section-close">
+			Running Google Ads and Meta Ads profitably at the same time is a full-time discipline split
+			across two platforms that don't share a rulebook. The realistic alternative to an agency
+			usually isn't "no management," it's a part-time in-house hire or a freelancer managing several
+			unrelated accounts, both with a ramp-up cost while budget keeps getting spent regardless. The
+			honest case for hiring one isn't that doing it yourself is impossible. It's a bet on speed: what
+			a wasted quarter of underoptimized spend actually costs, compared to a management fee.
+		</p>
 		<a class="mid-cta" href="/contact/">Find Out What's Actually Happening in Your Account &rarr;</a>
 	</section>
 
-	<section class="services">
+	<section class="services reveal">
 		<h2>What We Do</h2>
 		<div class="ledger-list">
 			{
@@ -258,7 +420,7 @@ const faqs = [
 		</div>
 	</section>
 
-	<section class="process" id="process">
+	<section class="process reveal" id="process">
 		<h2>How We Work</h2>
 		<div class="process-grid">
 			{
@@ -274,7 +436,7 @@ const faqs = [
 		</div>
 	</section>
 
-	<section class="industries">
+	<section class="industries reveal">
 		<h2>Industries We Serve</h2>
 		<p class="section-lede">
 			Search intent and cost per click look different in every market. Here's where we've run
@@ -292,7 +454,34 @@ const faqs = [
 		</div>
 	</section>
 
-	<section class="fit">
+	<section class="pricing reveal">
+		<p class="eyebrow dark">// How the Fee Actually Works</p>
+		<h2>PPC Management Pricing: How It Actually Works</h2>
+		<p class="section-lede">
+			Most agencies don't publish pricing. Here's how the fee models actually work, since the
+			model matters more than the headline number.
+		</p>
+		<div class="pricing-grid">
+			{
+				pricingModels.map((p) => (
+					<div class="pricing-cell">
+						<span class="pricing-tag">{p.tag}</span>
+						<span class="pricing-range">{p.range}</span>
+						<h3>{p.name}</h3>
+						<p>{p.desc}</p>
+					</div>
+				))
+			}
+		</div>
+		<p class="section-close">
+			For most small and mid-sized businesses, all-in PPC investment (ad spend plus management fee
+			combined) tends to run $2,000 to $10,000+ a month, though the right number depends entirely on
+			your market's cost per click. We'll tell you honestly during the audit whether your planned
+			budget is realistic, rather than quoting a number that doesn't apply to your account.
+		</p>
+	</section>
+
+	<section class="fit reveal">
 		<div class="fit-grid">
 			<div>
 				<h2>This Is a Fit If</h2>
@@ -343,6 +532,26 @@ const faqs = [
 		<a class="see-all" href="/blog/">See All Posts &rarr;</a>
 	</section>
 </BaseLayout>
+
+<script>
+	const revealEls = document.querySelectorAll('.reveal');
+	if ('IntersectionObserver' in window && revealEls.length) {
+		const io = new IntersectionObserver(
+			(entries) => {
+				for (const entry of entries) {
+					if (entry.isIntersecting) {
+						entry.target.classList.add('is-visible');
+						io.unobserve(entry.target);
+					}
+				}
+			},
+			{ threshold: 0.12 },
+		);
+		revealEls.forEach((el) => io.observe(el));
+	} else {
+		revealEls.forEach((el) => el.classList.add('is-visible'));
+	}
+</script>
 
 <style>
 	/* Full-bleed section technique: break out of main's centered max-width */
@@ -457,26 +666,41 @@ const faqs = [
 		color: var(--color-text-muted);
 	}
 
+	.reconcile,
+	.platform-compare,
+	.agency-def,
 	.problems,
 	.services,
 	.process,
 	.industries,
+	.pricing,
 	.fit {
 		padding: 4.5rem 0;
 		border-top: 1px solid var(--color-border);
 	}
+	.reconcile h2,
+	.platform-compare h2,
+	.agency-def h2,
 	.problems h2,
 	.services h2,
 	.process h2,
 	.industries h2,
+	.pricing h2,
 	.posts h2 {
 		font-size: 1.75rem;
-		margin: 0 0 0.75rem;
+		margin: 0 0 1.5rem;
+		max-width: 26ch;
 	}
 	.section-lede {
 		color: var(--color-text-muted);
 		max-width: 60ch;
 		margin: 0 0 2.5rem;
+	}
+	.section-close {
+		color: var(--color-text-muted);
+		max-width: 68ch;
+		margin: 2rem 0 0;
+		font-size: 0.98rem;
 	}
 	.services h2,
 	.process h2 {
@@ -484,6 +708,212 @@ const faqs = [
 	}
 	.ledger-grid.industries-grid {
 		grid-template-columns: repeat(3, 1fr);
+	}
+
+	/* Small mono eyebrow label for use on the white canvas, ledger-style
+	   "// annotation" rather than a generic section kicker. */
+	.eyebrow.dark {
+		color: var(--color-accent);
+		font-family: var(--ledger-data);
+	}
+
+	/* Scroll reveal: sections fade and lift in once, on first view. */
+	.reveal {
+		opacity: 0;
+		transform: translateY(16px);
+		transition:
+			opacity 0.6s ease,
+			transform 0.6s ease;
+	}
+	.reveal.is-visible {
+		opacity: 1;
+		transform: translateY(0);
+	}
+	@media (prefers-reduced-motion: reduce) {
+		.reveal {
+			opacity: 1;
+			transform: none;
+			transition: none;
+		}
+	}
+
+	/* Reconciliation thesis: prose beside a sticky worked-example card. */
+	.reconcile-body {
+		display: grid;
+		grid-template-columns: 1.15fr 0.85fr;
+		gap: 3rem;
+		align-items: start;
+	}
+	.reconcile-text p {
+		margin: 0 0 1.25rem;
+		max-width: 62ch;
+	}
+	.pull-stat {
+		display: flex;
+		flex-direction: column;
+		gap: 0.15rem;
+		border-left: 3px solid var(--color-accent);
+		padding: 0.25rem 0 0.25rem 1.25rem;
+		margin: 1.75rem 0 !important;
+	}
+	.pull-num {
+		font-family: var(--ledger-display);
+		font-weight: 800;
+		font-size: 2.25rem;
+		line-height: 1;
+		color: var(--ledger-navy);
+	}
+	.pull-label {
+		font-size: 0.85rem;
+		color: var(--color-text-muted);
+		max-width: 32ch;
+	}
+	.reconcile-visual {
+		background: var(--ledger-paper);
+		border: 1px solid var(--color-border);
+		padding: 2rem;
+		position: sticky;
+		top: 2rem;
+	}
+	.reconcile-visual-label {
+		font-family: var(--ledger-data);
+		font-size: 0.72rem;
+		text-transform: uppercase;
+		letter-spacing: 0.06em;
+		color: var(--color-text-muted);
+		margin: 0 0 1.5rem;
+	}
+	.recon-row {
+		margin-bottom: 1.35rem;
+	}
+	.recon-label {
+		display: block;
+		font-size: 0.82rem;
+		color: var(--color-text-muted);
+		margin-bottom: 0.4rem;
+	}
+	.recon-track {
+		height: 1.75rem;
+		background: var(--ledger-paper-white);
+		border: 1px solid var(--color-border);
+	}
+	.recon-fill {
+		height: 100%;
+		background: var(--ledger-navy-light);
+	}
+	.recon-row.is-flag .recon-fill {
+		background-image: repeating-linear-gradient(
+			45deg,
+			var(--ledger-rule) 0,
+			var(--ledger-rule) 5px,
+			transparent 5px,
+			transparent 10px
+		);
+	}
+	.recon-row.is-flag .recon-label {
+		color: var(--ledger-bad);
+	}
+	.recon-row.is-real .recon-fill {
+		background: var(--color-accent);
+	}
+	.recon-row.is-real .recon-label {
+		color: var(--ledger-ink);
+		font-weight: 700;
+	}
+	.recon-value {
+		display: block;
+		margin-top: 0.4rem;
+		font-family: var(--ledger-data);
+		font-weight: 700;
+		font-size: 0.92rem;
+		text-align: right;
+	}
+	.recon-caption {
+		font-size: 0.85rem;
+		color: var(--color-text-muted);
+		margin: 1.75rem 0 0;
+		border-top: 1px solid var(--color-border);
+		padding-top: 1.25rem;
+	}
+
+	/* Platform comparison: two quiet hairline cells, no color-coding gimmick. */
+	.compare-grid {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		gap: 0;
+		border-top: 1px solid var(--color-border);
+		border-left: 1px solid var(--color-border);
+	}
+	.compare-cell {
+		padding: 2rem;
+		border-right: 1px solid var(--color-border);
+		border-bottom: 1px solid var(--color-border);
+	}
+	.compare-cell h3 {
+		margin: 0 0 0.75rem;
+		font-size: 1.1rem;
+	}
+	.compare-cell p {
+		margin: 0;
+		font-size: 0.95rem;
+		color: var(--color-text-muted);
+	}
+	.compare-note {
+		color: var(--color-text-muted);
+		max-width: 68ch;
+		margin: 2rem 0 0;
+		font-size: 0.98rem;
+	}
+
+	/* Agency definition: single readable column, no layout tricks needed. */
+	.agency-def-body {
+		max-width: 68ch;
+	}
+	.agency-def-body p {
+		margin: 0 0 1.25rem;
+	}
+	.agency-def-body p:first-child {
+		font-size: 1.1rem;
+		color: var(--ledger-ink);
+	}
+
+	/* Pricing: real cards, since comparing three discrete options is one
+	   place a bordered card genuinely earns its keep. */
+	.pricing-grid {
+		display: grid;
+		grid-template-columns: repeat(3, 1fr);
+		gap: 1.5rem;
+		margin: 0 0 2rem;
+	}
+	.pricing-cell {
+		border: 1px solid var(--color-border);
+		border-top: 3px solid var(--color-accent);
+		padding: 2rem 1.75rem;
+	}
+	.pricing-tag {
+		display: block;
+		font-family: var(--ledger-data);
+		font-size: 0.75rem;
+		text-transform: uppercase;
+		letter-spacing: 0.08em;
+		color: var(--color-text-muted);
+	}
+	.pricing-range {
+		display: block;
+		font-family: var(--ledger-display);
+		font-weight: 800;
+		font-size: 2rem;
+		color: var(--ledger-ink);
+		margin: 0.35rem 0 0.85rem;
+	}
+	.pricing-cell h3 {
+		margin: 0 0 0.6rem;
+		font-size: 1.05rem;
+	}
+	.pricing-cell p {
+		margin: 0;
+		font-size: 0.92rem;
+		color: var(--color-text-muted);
 	}
 
 	/* Problems: a shared hairline grid, like ruled ledger cells, instead
@@ -706,6 +1136,23 @@ const faqs = [
 		}
 		.ledger-cell {
 			border-right: none;
+		}
+		.reconcile-body {
+			grid-template-columns: 1fr;
+			gap: 2rem;
+		}
+		.reconcile-visual {
+			position: static;
+		}
+		.compare-grid {
+			grid-template-columns: 1fr;
+			border-left: none;
+		}
+		.compare-cell {
+			border-right: none;
+		}
+		.pricing-grid {
+			grid-template-columns: 1fr;
 		}
 		.service-row {
 			grid-template-columns: 1fr auto;
