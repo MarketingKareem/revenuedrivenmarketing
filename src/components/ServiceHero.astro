@@ -76,15 +76,17 @@ const { eyebrow, title } = Astro.props;
 		color: var(--color-accent-hover);
 	}
 	.btn.primary {
-		background: var(--color-accent);
-		color: #fff;
+		background: var(--ledger-paper-white);
+		border-color: var(--ledger-paper-white);
+		color: var(--ledger-navy);
 	}
 	.btn.primary:hover {
-		background: var(--color-accent-hover);
-		color: #fff;
+		background: var(--color-accent);
+		border-color: var(--color-accent);
+		color: var(--ledger-paper-white);
 	}
 	.btn.ghost {
-		border-color: var(--ledger-navy-light);
+		border-color: var(--ledger-ink-on-navy);
 		color: var(--ledger-ink-on-navy);
 	}
 	.btn.ghost:hover {

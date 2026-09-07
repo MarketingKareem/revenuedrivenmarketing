@@ -18,6 +18,25 @@ const stats = [
 	{ value: 'Multiple Industries', label: 'Healthcare, Legal, Home Services, and More' },
 ];
 
+const auditChecks = [
+	'Search Term Waste',
+	'Negative Keyword Gaps',
+	'Attribution Window Overlap',
+	'Quality Score Diagnostics',
+	'Performance Max Cannibalization',
+	'Landing Page Message Match',
+	'Meta Audience Overlap',
+	'Creative Fatigue Detection',
+	'Conversion Value Accuracy',
+	'Geo & Dayparting Waste',
+	'Match Type Distribution',
+	'Account Structure & Naming',
+	'Duplicate Conversion Counting',
+	'iOS Tracking Loss (Meta)',
+	'Budget Pacing Errors',
+	'Cross-Platform Double Credit',
+];
+
 const problems = [
 	{
 		icon: 'alert-triangle' as const,
@@ -45,31 +64,31 @@ const services = [
 	{
 		icon: 'target' as const,
 		name: 'PPC Management',
-		desc: 'The full picture across every platform, structured around revenue, not spend.',
+		desc: 'Keyword and audience research, negative-keyword pruning, ad copy and creative testing, landing page CRO, and daily bid and budget management, run as one system across every platform instead of disconnected line items.',
 		href: '/ppc-management/',
 	},
 	{
 		icon: 'search' as const,
 		name: 'Google Ads Management',
-		desc: 'Search, Shopping, and Performance Max, structured around what actually converts, not platform-recommended defaults.',
+		desc: 'Search, Shopping, and Performance Max structured around match-type strategy and Quality Score, so bidding logic follows what actually converts instead of platform-recommended defaults.',
 		href: '/google-ads-management/',
 	},
 	{
 		icon: 'share' as const,
 		name: 'Meta Ads Management',
-		desc: "Facebook and Instagram campaigns built for revenue, with creative and audience testing that doesn't stall out after week two.",
+		desc: "Facebook and Instagram campaigns built on lookalike and interest audiences, with a real creative-testing cadence so cost per result doesn't climb the moment an ad set fatigues.",
 		href: '/meta-ads-management/',
 	},
 	{
 		icon: 'bar-chart' as const,
 		name: 'Revenue Attribution & Analytics',
-		desc: 'GA4, conversion tracking, and multi-touch attribution set up correctly, so the numbers you optimize against are actually true.',
+		desc: 'GA4, deduplicated conversion tracking, and multi-touch attribution set up correctly across platforms, so the number you optimize against is your actual revenue, not an inflated one.',
 		href: '/revenue-attribution/',
 	},
 	{
 		icon: 'clipboard-check' as const,
 		name: 'Account Audits & Teardowns',
-		desc: "A full diagnostic of what's broken, what's wasted, and what's working before you spend another dollar.",
+		desc: "A full diagnostic of tracking accuracy, structural waste, and targeting errors before you spend another dollar. Free, with no obligation to work with us afterward.",
 		href: '/account-audits/',
 	},
 ];
@@ -79,19 +98,19 @@ const process = [
 		icon: 'search-check' as const,
 		step: '01',
 		name: 'Audit',
-		desc: "We tear the account down to see what's actually happening: tracking accuracy, wasted spend, structural issues the platform dashboard won't show you.",
+		desc: "We tear the account down before touching a single bid: whether conversion tracking is accurate, where structural waste is hiding (broad match with no negatives, ad sets competing with each other, Performance Max cannibalizing branded search), and whether the account is even structured to let good decisions get made. Free, no obligation.",
 	},
 	{
 		icon: 'wrench' as const,
 		step: '02',
 		name: 'Rebuild',
-		desc: "Fix what's broken first: tracking, structure, targeting, before touching a single bid.",
+		desc: "Fix tracking first, since every optimization decision downstream depends on it being accurate, then fix account structure and targeting. Bid adjustments on top of broken tracking just optimize toward the wrong number faster.",
 	},
 	{
 		icon: 'trending-up' as const,
 		step: '03',
 		name: 'Scale',
-		desc: "Once the foundation is honest, we scale what's proven to convert and cut what isn't.",
+		desc: "Once the foundation is honest, we scale what's proven to convert with a real testing cadence, and cut what isn't, even if it looks fine on platform-reported metrics but isn't producing revenue against the real number.",
 	},
 ];
 
@@ -106,6 +125,33 @@ const notFitFor = [
 	'You are looking for the cheapest possible option regardless of results.',
 	'You want an agency that will never say no to a request, even a bad one.',
 	'You are not running any real ad budget yet and are only exploring options.',
+];
+
+const industries = [
+	{
+		name: 'Healthcare & Medical',
+		desc: 'Compliance constraints shape what claims can appear in ad copy, and intent splits sharply between symptom research (low intent, expensive to chase) and provider comparison (high intent, worth bidding aggressively on). We build around that split instead of paying for every symptom search.',
+	},
+	{
+		name: 'Legal & Professional Services',
+		desc: 'Personal injury and family law sit in some of the most expensive cost-per-click markets in the country, sometimes $100 or more per click. At that price, negative-keyword discipline and landing page conversion rate matter more than bid strategy itself.',
+	},
+	{
+		name: 'Home Services',
+		desc: "HVAC, electrical, plumbing, and roofing live or die on local intent and speed. Someone searching \"emergency AC repair\" at 2pm is a different customer than someone researching maintenance tips, and one generic campaign wastes budget on the wrong one.",
+	},
+	{
+		name: 'Real Estate & Property Management',
+		desc: 'Search intent varies enormously by stage: an early browser researching neighborhoods looks nothing like someone ready to schedule a showing this week. Running one ad for both wastes budget on the wrong stage.',
+	},
+	{
+		name: 'E-Commerce & Retail',
+		desc: 'Accounts live or die on the split between prospecting (new customers, longer payback) and retargeting (near-buyers, immediate ROAS). Getting that split wrong is the most common reason an account looks profitable in aggregate while losing money on new customers.',
+	},
+	{
+		name: 'Every Other Business Spending Real Money on Ads',
+		desc: 'The actual qualifier for whether we can help is not your industry. It is whether you are running a meaningful Google Ads or Meta Ads budget and cannot fully trust the numbers you are seeing.',
+	},
 ];
 
 const faqs = [
@@ -133,6 +179,30 @@ const faqs = [
 		q: 'What Happens After I Request a Free Audit?',
 		a: "We review your account, tracking setup, and reporting, then walk you through exactly what we found. No pressure to sign anything, and no changes are made to your account during the audit itself.",
 	},
+	{
+		q: 'How Much Should I Budget for Google Ads or Meta Ads?',
+		a: "It depends on your market and sales cycle, but as a rough floor, your monthly spend needs to be high enough that a single conversion is not a rounding error in the budget. We will give you a straight answer on whether your current or planned budget is realistic during the free audit, instead of a generic number that does not apply to your account.",
+	},
+	{
+		q: "What's the Difference Between PPC and SEO?",
+		a: 'PPC (Google Ads, Meta Ads) buys placement immediately and stops the moment you stop paying for it. SEO earns organic rankings over months and keeps working after you scale back investment, but takes much longer to show results. Most businesses benefit from both, but if you need revenue this quarter, PPC is the lever that moves fastest.',
+	},
+	{
+		q: 'Do You Build and Optimize Landing Pages Too?',
+		a: "Yes, when the landing page is the reason ad spend is not converting. We'll tell you plainly during the audit if that's your bottleneck, rather than just recommending more ad spend to compensate for a page that isn't converting.",
+	},
+	{
+		q: 'How Quickly Will I See Results?',
+		a: "Tracking and account-structure fixes usually surface within the first couple of weeks. Meaningful performance movement, more clicks actually turning into revenue, typically takes a full optimization cycle, generally 60 to 90 days, since the platforms need real conversion data to optimize against.",
+	},
+	{
+		q: 'Do I Keep Ownership of My Ad Accounts and Data?',
+		a: 'Yes, always. Your Google Ads and Meta Ads accounts, and all the historical data and conversion tracking inside them, belong to you, not to us. If we ever part ways, you keep everything exactly as it is.',
+	},
+	{
+		q: 'Do You Require Long-Term Contracts?',
+		a: "No. We work month to month and earn the relationship on results, not on a signed term. If we're not the right fit, you're free to leave with your accounts intact.",
+	},
 ];
 ---
 
@@ -156,7 +226,7 @@ const faqs = [
 		</div>
 	</section>
 
-	<section class="stats">
+	<section class="stats reveal">
 		<div class="stats-grid">
 			{
 				stats.map((s) => (
@@ -169,55 +239,103 @@ const faqs = [
 		</div>
 	</section>
 
-	<section class="problems">
+	<section class="agency-def reveal">
+		<p class="eyebrow dark">// What This Actually Means</p>
+		<h2>What Is a Performance Marketing Agency?</h2>
+		<div class="agency-def-body">
+			<p>
+				<strong>Performance marketing</strong> is advertising where every dollar is measured
+				against a business outcome, revenue, cost per acquisition, return on ad spend, instead of
+				against clicks or impressions. A performance marketing agency runs Google Ads and Meta Ads
+				with that outcome as the starting assumption, not an afterthought bolted on with a
+				reporting dashboard at the end of the month.
+			</p>
+			<p>
+				That sounds like a small distinction until you look at how most accounts get managed. A
+				traditional agency, or an in-house hire without dedicated bandwidth, tends to optimize for
+				the metrics the platforms surface first: click-through rate, cost per click, impression
+				share. Those numbers are real, but they describe activity, not outcome. An account can hit
+				every platform-reported benchmark while actual revenue stays flat, because the conversions
+				being counted don't match the customers actually paying you.
+			</p>
+			<p>
+				<strong>PPC management</strong> is the operational discipline underneath performance
+				marketing: keyword and audience research, negative-keyword pruning, ad copywriting and
+				creative testing, landing page optimization, bid and budget management, and continuous A/B
+				testing. Google Ads and Meta Ads each require their own expertise, since one is
+				intent-based and the other interruption-based, and a good agency runs both as one
+				coordinated budget rather than two disconnected line items competing for credit.
+			</p>
+			<p>
+				The actual job is making sure the numbers you're optimizing against are true: clean
+				conversion tracking, a defensible model for revenue attribution across platforms, and a
+				monthly answer to a simple question, what did the ad spend actually produce, in dollars,
+				not clicks.
+			</p>
+		</div>
+	</section>
+
+	<section class="problems reveal">
+		<p class="eyebrow dark">// The Pattern We See Over and Over</p>
 		<h2>What's Actually Going Wrong in Most Ad Accounts</h2>
 		<p class="section-lede">
 			Not bad luck. The same handful of problems, over and over, in accounts nobody has actually
 			looked at closely.
 		</p>
-		<div class="grid">
+		<div class="ledger-grid">
 			{
 				problems.map((p) => (
-					<div class="card">
-						<div class="card-icon">
-							<Icon name={p.icon} />
-						</div>
+					<div class="ledger-cell">
+						<Icon name={p.icon} size={22} />
 						<h3>{p.name}</h3>
 						<p>{p.desc}</p>
 					</div>
 				))
 			}
 		</div>
+		<p class="section-close">
+			Running Google Ads and Meta Ads profitably at the same time is a full-time discipline split
+			across two platforms that don't share a rulebook. The realistic alternative to an agency
+			usually isn't "no management," it's a part-time in-house hire or a freelancer managing several
+			unrelated accounts, both with a ramp-up cost while budget keeps getting spent regardless. The
+			honest case for hiring one isn't that doing it yourself is impossible. It's a bet on speed: what
+			a wasted quarter of underoptimized spend actually costs, compared to a management fee.
+		</p>
+		<p class="checklist-label">What We Actually Check, Every Single Audit</p>
+		<div class="checklist-grid">
+			{auditChecks.map((item) => <span class="checklist-item">{item}</span>)}
+		</div>
 		<a class="mid-cta" href="/contact/">Find Out What's Actually Happening in Your Account &rarr;</a>
 	</section>
 
-	<section class="services">
+	<section class="services reveal">
+		<p class="eyebrow dark">// The Work Itself</p>
 		<h2>What We Do</h2>
-		<div class="grid">
+		<div class="ledger-list">
 			{
 				services.map((service) => (
-					<a class="card" href={service.href}>
-						<div class="card-icon">
-							<Icon name={service.icon} />
-						</div>
-						<h3>{service.name} &rarr;</h3>
-						<p>{service.desc}</p>
+					<a class="service-row" href={service.href}>
+						<span class="service-name">
+							<Icon name={service.icon} size={20} />
+							{service.name}
+						</span>
+						<span class="service-desc">{service.desc}</span>
+						<span class="service-arrow" aria-hidden="true">&rarr;</span>
 					</a>
 				))
 			}
 		</div>
 	</section>
 
-	<section class="process" id="process">
+	<section class="process reveal" id="process">
+		<p class="eyebrow dark">// The Actual Process</p>
 		<h2>How We Work</h2>
-		<div class="grid">
+		<div class="process-grid">
 			{
 				process.map((p) => (
 					<div class="step">
-						<div class="card-icon">
-							<Icon name={p.icon} />
-						</div>
 						<span class="step-num">{p.step}</span>
+						<Icon name={p.icon} size={20} />
 						<h3>{p.name}</h3>
 						<p>{p.desc}</p>
 					</div>
@@ -226,7 +344,26 @@ const faqs = [
 		</div>
 	</section>
 
-	<section class="fit">
+	<section class="industries reveal">
+		<p class="eyebrow dark">// Who We Work With</p>
+		<h2>Industries We Serve</h2>
+		<p class="section-lede">
+			Search intent and cost per click look different in every market. Here's where we've run
+			profitable Google and Meta accounts, and adapted the playbook to fit.
+		</p>
+		<div class="ledger-grid industries-grid">
+			{
+				industries.map((ind) => (
+					<div class="ledger-cell">
+						<h3>{ind.name}</h3>
+						<p>{ind.desc}</p>
+					</div>
+				))
+			}
+		</div>
+	</section>
+
+	<section class="fit reveal">
 		<div class="fit-grid">
 			<div>
 				<h2>This Is a Fit If</h2>
@@ -277,6 +414,26 @@ const faqs = [
 		<a class="see-all" href="/blog/">See All Posts &rarr;</a>
 	</section>
 </BaseLayout>
+
+<script>
+	const revealEls = document.querySelectorAll('.reveal');
+	if ('IntersectionObserver' in window && revealEls.length) {
+		const io = new IntersectionObserver(
+			(entries) => {
+				for (const entry of entries) {
+					if (entry.isIntersecting) {
+						entry.target.classList.add('is-visible');
+						io.unobserve(entry.target);
+					}
+				}
+			},
+			{ threshold: 0.12 },
+		);
+		revealEls.forEach((el) => io.observe(el));
+	} else {
+		revealEls.forEach((el) => el.classList.add('is-visible'));
+	}
+</script>
 
 <style>
 	/* Full-bleed section technique: break out of main's centered max-width */
@@ -339,19 +496,21 @@ const faqs = [
 		color: var(--color-accent-hover);
 	}
 	.btn.primary {
-		background: var(--color-accent);
-		color: #fff;
+		background: var(--ledger-paper-white);
+		border-color: var(--ledger-paper-white);
+		color: var(--ledger-navy);
 	}
 	.btn.primary:hover {
-		background: var(--color-accent-hover);
-		color: #fff;
+		background: var(--color-accent);
+		border-color: var(--color-accent);
+		color: var(--ledger-paper-white);
 	}
 	.btn.large {
 		padding: 1rem 2.25rem;
 		font-size: 1.05rem;
 	}
 	.btn.ghost {
-		border-color: var(--ledger-navy-light);
+		border-color: var(--ledger-ink-on-navy);
 		color: var(--ledger-ink-on-navy);
 	}
 	.btn.ghost:hover {
@@ -367,12 +526,17 @@ const faqs = [
 	.stats-grid {
 		display: grid;
 		grid-template-columns: repeat(4, 1fr);
-		gap: 1.5rem;
 	}
 	.stat {
 		display: flex;
 		flex-direction: column;
 		gap: 0.35rem;
+		padding: 0 1.5rem;
+		border-left: 1px solid var(--color-border);
+	}
+	.stat:first-child {
+		padding-left: 0;
+		border-left: none;
 	}
 	.stat-value {
 		font-size: 1.3rem;
@@ -384,68 +548,129 @@ const faqs = [
 		color: var(--color-text-muted);
 	}
 
+	.agency-def,
 	.problems,
 	.services,
 	.process,
+	.industries,
 	.fit {
 		padding: 4.5rem 0;
 		border-top: 1px solid var(--color-border);
 	}
+	.agency-def h2,
 	.problems h2,
 	.services h2,
 	.process h2,
+	.industries h2,
 	.posts h2 {
 		font-size: 1.75rem;
-		margin: 0 0 0.75rem;
+		margin: 0 0 1.5rem;
+		max-width: 26ch;
 	}
 	.section-lede {
 		color: var(--color-text-muted);
 		max-width: 60ch;
 		margin: 0 0 2.5rem;
 	}
+	.section-close {
+		color: var(--color-text-muted);
+		max-width: 68ch;
+		margin: 2rem 0 0;
+		font-size: 0.98rem;
+	}
 	.services h2,
 	.process h2 {
 		margin-bottom: 2.5rem;
 	}
-	.grid {
+	.ledger-grid.industries-grid {
+		grid-template-columns: repeat(3, 1fr);
+	}
+
+	/* Small mono eyebrow label for use on the white canvas, ledger-style
+	   "// annotation" rather than a generic section kicker. */
+	.eyebrow.dark {
+		color: var(--color-accent);
+		font-family: var(--ledger-data);
+	}
+
+	/* Scroll reveal: sections fade and lift in once, on first view. */
+	.reveal {
+		opacity: 0;
+		transform: translateY(16px);
+		transition:
+			opacity 0.6s ease,
+			transform 0.6s ease;
+	}
+	.reveal.is-visible {
+		opacity: 1;
+		transform: translateY(0);
+	}
+	@media (prefers-reduced-motion: reduce) {
+		.reveal {
+			opacity: 1;
+			transform: none;
+			transition: none;
+		}
+	}
+
+	/* Agency definition: single readable column, no layout tricks needed. */
+	.agency-def-body {
+		max-width: 68ch;
+	}
+	.agency-def-body p {
+		margin: 0 0 1.25rem;
+	}
+	.agency-def-body p:first-child {
+		font-size: 1.1rem;
+		color: var(--ledger-ink);
+	}
+
+	/* Audit checklist: borrowed from KlientBoost's "giant list" technique,
+	   a dense tag grid instead of more prose, showing depth at a glance. */
+	.checklist-label {
+		font-family: var(--ledger-data);
+		font-size: 0.72rem;
+		text-transform: uppercase;
+		letter-spacing: 0.06em;
+		color: var(--color-text-muted);
+		margin: 2.5rem 0 1rem;
+	}
+	.checklist-grid {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.6rem;
+	}
+	.checklist-item {
+		font-size: 0.85rem;
+		color: var(--ledger-ink);
+		border: 1px solid var(--color-border);
+		padding: 0.45rem 0.9rem;
+		white-space: nowrap;
+	}
+
+	/* Problems: a shared hairline grid, like ruled ledger cells, instead
+	   of four separate boxed cards. */
+	.ledger-grid {
 		display: grid;
 		grid-template-columns: repeat(2, 1fr);
-		gap: 1.75rem;
+		border-top: 1px solid var(--color-border);
+		border-left: 1px solid var(--color-border);
 	}
-	.card {
-		padding: 1.75rem;
-		border: 1px solid var(--color-border);
-		border-radius: 4px;
-		background: var(--color-bg-subtle);
-		text-decoration: none;
-		display: block;
-		transition: border-color 0.15s ease;
-	}
-	a.card:hover {
-		border-color: var(--color-accent);
-	}
-	.card-icon {
-		width: 40px;
-		height: 40px;
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		border-radius: 4px;
-		background: var(--ledger-signal-wash);
+	.ledger-cell {
+		padding: 2rem;
+		border-right: 1px solid var(--color-border);
+		border-bottom: 1px solid var(--color-border);
 		color: var(--color-accent);
-		margin-bottom: 1rem;
 	}
-	.card h3 {
-		margin: 0 0 0.6rem;
+	.ledger-cell h3 {
+		margin: 0.85rem 0 0.5rem;
 		font-size: 1.1rem;
 		color: var(--color-text);
 	}
-	a.card h3 {
-		color: var(--color-accent);
-	}
-	.card p {
+	.ledger-cell p {
 		margin: 0;
 		font-size: 0.95rem;
+		color: var(--color-text-muted);
 	}
 	.mid-cta {
 		display: inline-block;
@@ -454,21 +679,78 @@ const faqs = [
 		text-decoration: none;
 	}
 
-	.process .grid {
+	/* Services: a menu of line items, not a grid of cards — reads as five
+	   rows regardless of count, so nothing sits orphaned on its own row. */
+	.ledger-list {
+		border-top: 1px solid var(--color-border);
+	}
+	.service-row {
+		display: grid;
+		grid-template-columns: 240px 1fr 1.5rem;
+		align-items: baseline;
+		gap: 1.5rem;
+		padding: 1.6rem 0;
+		border-bottom: 1px solid var(--color-border);
+		text-decoration: none;
+		color: inherit;
+	}
+	.service-name {
+		display: flex;
+		align-items: center;
+		gap: 0.65rem;
+		font-family: var(--ledger-display);
+		font-weight: 700;
+		font-size: 1.2rem;
+		color: var(--color-text);
+	}
+	.service-name :global(svg) {
+		flex-shrink: 0;
+		color: var(--color-accent);
+	}
+	.service-desc {
+		font-size: 0.95rem;
+		color: var(--color-text-muted);
+	}
+	.service-arrow {
+		color: var(--color-accent);
+		font-weight: 700;
+		justify-self: end;
+		transition: transform 0.15s ease;
+	}
+	.service-row:hover .service-name {
+		color: var(--color-accent-hover);
+	}
+	.service-row:hover .service-arrow {
+		transform: translateX(4px);
+	}
+
+	/* Process: one connected strip with vertical dividers, not three
+	   repeated boxes — the big numerals carry the sequence instead. */
+	.process-grid {
+		display: grid;
 		grid-template-columns: repeat(3, 1fr);
+		border-top: 1px solid var(--color-border);
+		border-bottom: 1px solid var(--color-border);
 	}
 	.step {
-		padding: 1.75rem;
-		border: 1px solid var(--color-border);
-		border-radius: 4px;
+		padding: 2rem;
+		border-right: 1px solid var(--color-border);
+	}
+	.step:last-child {
+		border-right: none;
 	}
 	.step-num {
 		display: block;
-		font-size: 0.85rem;
+		font-family: var(--ledger-display);
 		font-weight: 800;
+		font-size: 3rem;
+		line-height: 1;
+		color: rgba(22, 32, 74, 0.13);
+		margin-bottom: 0.5rem;
+	}
+	.step :global(svg) {
 		color: var(--color-accent);
-		letter-spacing: 0.05em;
-		margin-bottom: 0.75rem;
+		margin-bottom: 0.85rem;
 	}
 	.step h3 {
 		margin: 0 0 0.6rem;
@@ -477,6 +759,7 @@ const faqs = [
 	.step p {
 		margin: 0;
 		font-size: 0.95rem;
+		color: var(--color-text-muted);
 	}
 
 	.fit-grid {
@@ -561,13 +844,52 @@ const faqs = [
 		.hero h1 {
 			font-size: 2.1rem;
 		}
-		.grid,
-		.process .grid,
 		.fit-grid {
 			grid-template-columns: 1fr;
 		}
 		.stats-grid {
 			grid-template-columns: repeat(2, 1fr);
+			row-gap: 1.5rem;
+		}
+		.stat {
+			border-left: none;
+			padding-left: 0;
+		}
+		.stat:nth-child(2n) {
+			padding-left: 1.5rem;
+			border-left: 1px solid var(--color-border);
+		}
+		.ledger-grid {
+			grid-template-columns: 1fr;
+			border-left: none;
+		}
+		.ledger-grid.industries-grid {
+			grid-template-columns: 1fr;
+		}
+		.ledger-cell {
+			border-right: none;
+		}
+		.service-row {
+			grid-template-columns: 1fr auto;
+			row-gap: 0.4rem;
+		}
+		.service-desc {
+			grid-column: 1 / -1;
+		}
+		.process-grid {
+			grid-template-columns: 1fr;
+		}
+		.step {
+			border-right: none;
+			border-bottom: 1px solid var(--color-border);
+			padding: 1.75rem 0;
+		}
+		.step:first-child {
+			padding-top: 0;
+		}
+		.step:last-child {
+			border-bottom: none;
+			padding-bottom: 0;
 		}
 	}
 </style>
