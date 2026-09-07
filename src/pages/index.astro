@@ -213,7 +213,7 @@ const faqs = [
 	<section class="hero">
 		<div class="hero-inner">
 			<p class="eyebrow">Performance Marketing Agency</p>
-			<h1>Your Ads Are Spending Money. Are They Actually Driving Revenue?</h1>
+			<h1>Your Ads Are Spending Money. <br class="hero-break" />Are They Actually Driving Revenue?</h1>
 			<p class="lede">
 				Revenue Driven Marketing runs Google Ads and Meta Ads accounts with attribution as the
 				starting point, not an afterthought, so budget goes where it actually converts, not just
@@ -463,7 +463,7 @@ const faqs = [
 	}
 	.hero h1 {
 		font-size: 3rem;
-		max-width: 18ch;
+		max-width: 34ch;
 		margin: 0 0 1.5rem;
 		color: var(--ledger-paper-white);
 	}
@@ -843,6 +843,9 @@ const faqs = [
 	@media (max-width: 640px) {
 		.hero h1 {
 			font-size: 2.1rem;
+		}
+		.hero-break {
+			display: none;
 		}
 		.fit-grid {
 			grid-template-columns: 1fr;
