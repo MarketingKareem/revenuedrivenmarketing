@@ -1,6 +1,6 @@
 ---
-title: 'The Real Google Ads Audit Checklist (Not Impression Share)'
-description: 'A real Google Ads audit checklist: conversion tracking, account structure, wasted spend, and the checks most "audits" skip entirely.'
+title: 'The Google Ads Audit Checklist: 11 Things Most Audits Skip'
+description: 'A real Google Ads audit checklist: conversion tracking, Quality Score, ad copy, budget pacing, and the other checks most "audits" skip entirely.'
 pubDate: 2026-09-06
 pillar: google-ads
 draft: false
