@@ -41,7 +41,7 @@ const blogPostingSchema = {
 <BaseLayout title={post.data.title} description={post.data.description} image={heroImage}>
 	<script type="application/ld+json" set:html={JSON.stringify(blogPostingSchema)} />
 	<article>
-		<img class="hero" src={heroImage} alt="" width="1200" height="630" />
+		<img class="hero" src={heroImage} alt={post.data.title} width="1200" height="630" />
 		<p class="meta">
 			<time datetime={post.data.pubDate.toISOString()}>
 				{post.data.pubDate.toLocaleDateString('en-US', {
