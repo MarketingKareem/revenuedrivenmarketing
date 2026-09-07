@@ -1,9 +1,9 @@
 ---
 title: 'How to Actually Audit a Google Ads Account (Not Just Check Impression Share)'
 description: 'A real Google Ads audit checklist: conversion tracking, account structure, wasted spend, and the checks most "audits" skip entirely.'
-pubDate: 2026-08-10
+pubDate: 2026-09-06
 pillar: google-ads
-draft: true
+draft: false
 ---
 
 Most things called a "Google Ads audit" are a five-minute scroll through the campaigns tab: check impression share, glance at Quality Scores, maybe skim the search terms report if there's time. That's not an audit. That's a status check.
