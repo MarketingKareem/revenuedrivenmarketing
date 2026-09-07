@@ -1,5 +1,5 @@
 ---
-title: 'Why Your Google Ads and Meta Ads Conversions Don''t Match Your Actual Revenue'
+title: 'Why Google Ads and Meta Ads Conversions Don''t Match Your Revenue'
 description: 'Google Ads and Meta Ads conversions don''t match your revenue. Here is why, with a worked example, and how to reconcile the gap.'
 pubDate: 2026-09-05
 pillar: attribution
@@ -9,6 +9,8 @@ draft: false
 You check your Google Ads or Meta Ads dashboard and the conversion count looks solid. Then you check your CRM, your order platform, or your bank account, and the numbers don't line up. Not a rounding difference. Sometimes 20 to 30 percent apart, sometimes more.
 
 If you've searched for why your Google Ads and Meta Ads conversions don't match your actual revenue, the honest answer is that it's not a tracking bug in the sense of "something broke." It's how attribution on ad platforms is built to work by default, for reasons that have nothing to do with your setup. Once you know the mechanisms, you can decide what to actually trust when you're making budget decisions, instead of guessing.
+
+**In short:** Google Ads and Meta Ads each apply their own attribution window, can both claim credit for the same sale, count view-through conversions alongside clicks, and increasingly fill gaps with modeled estimates, none of which your CRM does. The fix isn't picking one platform's number to trust or trying to make them agree with each other; it's treating your CRM or backend revenue as ground truth, reconciling the gap against it on a schedule, and using incrementality testing on your largest campaigns to find out how much of the reported number is real.
 
 ## Attribution Windows Count Conversions You Might Not Consider Yours
 
@@ -719,6 +721,17 @@ Meta reports based on your ad account's time zone. GA4 uses whatever time zone y
 	<p class="rdm-caption">The exact same purchase, logged on two different calendar days — depending only on which system's clock is doing the counting.</p>
 </div>
 
+## Picking a Single Source of Truth Doesn't Fix This Either
+
+The instinct once you've seen the gaps above is to just pick one system, GA4 usually, and trust it exclusively. That doesn't work, because every attribution model has its own blind spot, and GA4's default model isn't neutral, it's just a different set of assumptions than Google Ads' or Meta's.
+
+- **Last-click** rewards whatever touchpoint happened right before the conversion, usually branded search. It systematically undervalues the campaigns that built awareness earlier in the journey.
+- **First-click** does the opposite: full credit to discovery, none to whatever actually closed the sale.
+- **Linear and time-decay** split credit across touchpoints, which feels fairer but is still an arbitrary rule, not a measurement of what actually caused the purchase.
+- **Data-driven attribution** (the current default for most Google Ads accounts) is the most sophisticated on paper, but it's a black box you can't audit. If a platform's own model decides Meta contributed 12% to a conversion, there's no way to check that number against anything.
+
+None of this means attribution is useless. It means no single tool's number, including GA4's, is "the truth" you reconcile everything else against. It's one more model with its own blind spot, which is exactly why the next section treats your CRM or backend revenue, actual recorded transactions, not a model of them, as the only real anchor.
+
 ## How to Actually Reconcile the Numbers
 
 Not by trusting the raw platform number on its own, and not by trying to get Google and Meta to agree with each other, since structurally they can't. Here's what actually holds up:
@@ -760,7 +773,15 @@ Not by trusting the raw platform number on its own, and not by trying to get Goo
 
 The reconciliation above tells you the size of the gap. It doesn't tell you how much of your reported spend is actually driving sales that wouldn't have happened anyway, since someone who searched your brand name on Google might have bought regardless of whether the ad was there. That's a different question, and it takes a different method to answer: incrementality testing.
 
-The basic version is a geo holdout test: pause ads in a handful of comparable markets while running normally everywhere else, then compare the revenue difference against what the platform claimed those markets would have driven. Google and Meta both offer native lift-test tools that do a version of this at the account level. Neither replaces the reconciliation habit above, since incrementality tests take weeks and enough volume to reach significance, but for your largest campaigns, it's the only way to know whether the platform's reported number reflects sales it actually caused or sales it just happened to be standing next to.
+There are three practical ways to run one, and which fits depends on how much budget and traffic you're working with:
+
+- **Geo holdout.** Pause ads in a handful of comparable markets while running normally everywhere else, then compare the revenue difference. Practical for multi-location or national accounts with enough geographic spread to build a real control group.
+- **Audience holdout.** Google and Meta both offer native lift-test tools that carve out a percentage of your target audience and intentionally exclude them from seeing ads, then compare outcomes against the group that did. This is the more accessible option for single-location or smaller accounts that can't split by geography.
+- **Time-based holdout.** Pause a campaign entirely for a defined period and watch whether total conversion volume actually drops. The simplest to run, and the least reliable, since seasonality or a competitor's move during the test window can make an incremental campaign look flat, or a dead one look fine.
+
+None of these replace the reconciliation habit above, since incrementality tests take weeks and enough volume to reach significance. But for your largest campaigns, especially branded search and retargeting, where a large share of "conversions" are often people who would have bought anyway, it's the only way to know whether the platform's reported number reflects sales it actually caused or sales it just happened to be standing next to.
+
+One habit worth building regardless of whether you run a formal test: track the ratio between platform-reported revenue and actual CRM revenue over time, not just once. If that ratio holds steady month to month, your measurement gap is at least stable and predictable, useful for planning even though the raw numbers are inflated. If the ratio suddenly shifts, that's a signal something changed, a tracking break, a new campaign type, an attribution setting, worth investigating before it quietly distorts a budget decision.
 
 Neither Google Ads nor Meta Ads was built to report a number that matches your bank account exactly, and getting them to match each other isn't the right goal either. The question isn't whether the platform number is "right." It's whether you know the size and direction of the gap between it and your actual revenue, and whether you're making budget decisions off the number that's supposed to be right or the one that actually is.
 
