@@ -1,0 +1,103 @@
+---
+interface Props {
+	eyebrow: string;
+	title: string;
+}
+const { eyebrow, title } = Astro.props;
+---
+
+<section class="hero">
+	<div class="hero-inner">
+		<p class="eyebrow">{eyebrow}</p>
+		<h1>{title}</h1>
+		<p class="lede">
+			<slot />
+		</p>
+		<div class="cta-row">
+			<a class="btn primary" href="/contact/">Get a Free Account Audit</a>
+			<a class="btn ghost" href="#faq">See Common Questions</a>
+		</div>
+	</div>
+</section>
+
+<style>
+	.hero {
+		width: auto;
+		margin-inline: calc(50% - 50vw);
+		margin-top: -3rem;
+		background: var(--ledger-navy);
+		color: var(--ledger-ink-on-navy);
+		padding: 5.5rem 1.5rem 5rem;
+	}
+	.hero-inner {
+		max-width: 960px;
+		margin: 0 auto;
+	}
+	.eyebrow {
+		text-transform: uppercase;
+		font-size: 0.8rem;
+		font-weight: 700;
+		letter-spacing: 0.12em;
+		color: var(--ledger-signal-pale);
+		margin: 0 0 1.25rem;
+	}
+	h1 {
+		font-size: 2.75rem;
+		max-width: 20ch;
+		margin: 0 0 1.5rem;
+		color: var(--ledger-paper-white);
+	}
+	.lede {
+		font-size: 1.2rem;
+		max-width: 58ch;
+		color: var(--ledger-ink-on-navy);
+	}
+	.cta-row {
+		display: flex;
+		gap: 1rem;
+		margin-top: 2rem;
+		flex-wrap: wrap;
+	}
+	.btn {
+		display: inline-block;
+		padding: 0.85rem 1.75rem;
+		border-radius: var(--radius);
+		text-decoration: none;
+		font-weight: 700;
+		border: 1px solid var(--color-accent);
+		color: var(--color-accent);
+		transition:
+			background 0.15s ease,
+			border-color 0.15s ease,
+			color 0.15s ease;
+	}
+	.btn:hover {
+		background: var(--color-bg-subtle);
+		color: var(--color-accent-hover);
+	}
+	.btn.primary {
+		background: var(--ledger-paper-white);
+		border-color: var(--ledger-paper-white);
+		color: var(--ledger-navy);
+	}
+	.btn.primary:hover {
+		background: var(--color-accent);
+		border-color: var(--color-accent);
+		color: var(--ledger-paper-white);
+	}
+	.btn.ghost {
+		border-color: var(--ledger-ink-on-navy);
+		color: var(--ledger-ink-on-navy);
+	}
+	.btn.ghost:hover {
+		background: var(--ledger-navy-light);
+		border-color: var(--ledger-signal-pale);
+		color: var(--ledger-paper-white);
+	}
+
+	@media (max-width: 640px) {
+		h1 {
+			font-size: 2rem;
+		}
+	}
+</style>
