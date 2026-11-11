@@ -207,7 +207,7 @@ Thin ad copy is one of the few audit findings that's nearly free to fix and show
 
 ## Check Whether Performance Max Is Cannibalizing Brand Search
 
-Performance Max can be a genuine growth channel or a quiet way to start paying for branded traffic that was already converting for free through organic search. PMax doesn't make this easy to see by default, since it doesn't report search terms the way standard Search campaigns do. You have to look at:
+Performance Max can be a genuine growth channel or a quiet way to start paying for branded traffic that was already converting for free through organic search. PMax doesn't make this easy to see by default, since brand and non-brand traffic are blended into one campaign result. Its search terms report lists the queries, but you have to sort brand from non-brand yourself. The full method, including a before-and-after test, is in our guide to [Performance Max brand search cannibalization](/blog/performance-max-brand-search-cannibalization/). For the audit, look at:
 
 <ul class="audit-checklist">
 	<li><label><input type="checkbox" /> A separate branded search campaign exists and is excluded from PMax's targeting</label></li>
