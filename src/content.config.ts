@@ -7,6 +7,7 @@ const blog = defineCollection({
 		title: z.string(),
 		description: z.string(),
 		pubDate: z.coerce.date(),
+		updatedDate: z.coerce.date().optional(),
 		pillar: z.enum(['google-ads', 'meta-ads', 'attribution', 'case-study', 'general']),
 		draft: z.boolean().default(false),
 	}),
