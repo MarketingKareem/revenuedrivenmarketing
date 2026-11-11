@@ -15,6 +15,9 @@ const { Content } = await render(post);
 const heroImage = `/og/${post.id}.png`;
 const canonicalURL = new URL(`/blog/${post.id}/`, Astro.site);
 const imageURL = new URL(heroImage, Astro.site);
+const modified = post.data.updatedDate ?? post.data.pubDate;
+// A "Title | Brand" tag longer than ~65 characters gets cut off in search results, so long post titles go without the suffix.
+const brandSuffix = post.data.title.length + ' | Revenue Driven Marketing'.length <= 65;
 
 const blogPostingSchema = {
 	'@context': 'https://schema.org',
@@ -22,7 +25,7 @@ const blogPostingSchema = {
 	headline: post.data.title,
 	description: post.data.description,
 	datePublished: post.data.pubDate.toISOString(),
-	dateModified: post.data.pubDate.toISOString(),
+	dateModified: modified.toISOString(),
 	image: imageURL.toString(),
 	url: canonicalURL.toString(),
 	author: {
@@ -38,18 +41,41 @@ const blogPostingSchema = {
 };
 ---
 
-<BaseLayout title={post.data.title} description={post.data.description} image={heroImage}>
+<BaseLayout
+	title={post.data.title}
+	description={post.data.description}
+	image={heroImage}
+	imageAlt={post.data.title}
+	type="article"
+	publishedTime={post.data.pubDate.toISOString()}
+	modifiedTime={modified.toISOString()}
+	brandSuffix={brandSuffix}
+>
 	<script type="application/ld+json" set:html={JSON.stringify(blogPostingSchema)} />
 	<article>
-		<img class="hero" src={heroImage} alt={post.data.title} width="1200" height="630" />
+		<img class="hero" src={heroImage} alt={post.data.title} width="1200" height="630" fetchpriority="high" />
 		<p class="meta">
 			<time datetime={post.data.pubDate.toISOString()}>
 				{post.data.pubDate.toLocaleDateString('en-US', {
 					year: 'numeric',
 					month: 'long',
 					day: 'numeric',
+					timeZone: 'UTC',
 				})}
 			</time>
+			{post.data.updatedDate && (
+				<>
+					<span> · Updated </span>
+					<time datetime={post.data.updatedDate.toISOString()}>
+						{post.data.updatedDate.toLocaleDateString('en-US', {
+							year: 'numeric',
+							month: 'long',
+							day: 'numeric',
+							timeZone: 'UTC',
+						})}
+					</time>
+				</>
+			)}
 		</p>
 		<h1>{post.data.title}</h1>
 		<Content />
