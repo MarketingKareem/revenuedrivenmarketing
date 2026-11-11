@@ -59,7 +59,7 @@ If conversion tracking is wrong, every other finding in the audit is built on a 
 
 This step alone regularly turns up the single biggest issue in an account, and it's the one most "audits" skip because it's not visible from the campaigns tab.
 
-Here's what it looks like in practice. A 40-location home services client came to us reporting 62 leads last month in Google Ads. Their CRM showed 31 booked jobs. Both numbers were technically accurate. The gap was a native "Submit Lead Form" conversion action counting every form submission, stacked on top of a GA4 event import counting the same submissions again through a different tag, on a form that also fired once on page load due to a JavaScript bug that re-triggered the event for anyone who refreshed the confirmation page. Three separate counting paths, one real lead. Target CPA bidding had spent three months optimizing toward a cost-per-lead number that was roughly half of reality, which meant it had been bidding up on the wrong signal the entire time.
+Here's an illustrative example (hypothetical numbers, not a specific client). A 40-location home services business reports 62 leads last month in Google Ads, while its CRM shows 31 booked jobs. Both numbers can be technically accurate. The gap could come from a native "Submit Lead Form" conversion action counting every form submission, stacked on top of a GA4 event import counting the same submissions again through a different tag, on a form that also fires once on page load because a JavaScript bug re-triggers the event whenever someone refreshes the confirmation page. That's three separate counting paths for one real lead, and if Target CPA bidding runs on that data for three months, it optimizes toward a cost-per-lead figure roughly half of reality and bids up on the wrong signal the entire time.
 
 None of that is visible from the campaigns tab. It only shows up when you open Conversions > Summary, check the "counting" column on each action, and cross-reference the resulting number against a source of truth the ad platform doesn't control.
 
@@ -95,7 +95,7 @@ The keywords you bid on and the searches that actually trigger your ads are two 
 Look for a pattern, not just individual bad terms: is a specific match type or campaign consistently pulling in irrelevant traffic, or is it isolated?
 
 <div class="audit-receipt">
-	<p class="audit-receipt-label">What Broad Match on "google ads" Actually Triggered, One Week</p>
+	<p class="audit-receipt-label">Illustrative Example: What Broad Match on "google ads" Can Trigger</p>
 	<div class="audit-receipt-rows">
 		<div class="audit-receipt-row is-bad">
 			<span class="audit-receipt-term">"free google ads tutorial"</span>
@@ -118,7 +118,7 @@ Look for a pattern, not just individual bad terms: is a specific match type or c
 			<span class="audit-receipt-verdict">Wasted &mdash; job seeker, not a client</span>
 		</div>
 	</div>
-	<p class="audit-receipt-total">3 of 5 real queries that week had zero business connection to what's actually being sold &mdash; and every one of them was a legitimate match under broad match rules. That's not a tracking error. That's the match type doing exactly what it's built to do.</p>
+	<p class="audit-receipt-total">In this example, 3 of 5 queries have zero business connection to what's actually being sold &mdash; and every one of them is a legitimate match under broad match rules. That's not a tracking error. That's the match type doing exactly what it's built to do.</p>
 </div>
 
 <style>
@@ -216,7 +216,7 @@ Performance Max can be a genuine growth channel or a quiet way to start paying f
 	<li><label><input type="checkbox" /> The "Insights" tab's search categories are reviewed for brand-term volume PMax is quietly absorbing</label></li>
 </ul>
 
-If a brand campaign's impressions or conversions drop the same month PMax's numbers climb, that's not a coincidence worth ignoring, that's PMax buying traffic that was already free. A real example: an e-commerce client's branded search campaign showed 1,400 monthly clicks converting at 8% before their PMax campaign launched. Three months later, the brand campaign was down to 900 clicks, PMax was showing 600 conversions attributed to brand-adjacent search terms in the Insights tab, and total branded-intent spend had gone up 40% for roughly the same number of actual branded purchases. PMax hadn't grown the pie. It had started charging for a slice that used to be free.
+If a brand campaign's impressions or conversions drop the same month PMax's numbers climb, that's not a coincidence worth ignoring, that's PMax buying traffic that was already free. Here's an illustrative example (hypothetical numbers, not a specific client): an e-commerce account's branded search campaign gets 1,400 monthly clicks converting at 8% before PMax launches. Three months later, the brand campaign is down to 900 clicks, PMax shows 600 conversions attributed to brand-adjacent search terms in the Insights tab, and total branded-intent spend is up 40% for roughly the same number of actual branded purchases. PMax hasn't grown the pie. It has started charging for a slice that used to be free.
 
 ## Check the Shared Library for Settings Applied Inconsistently
 
@@ -264,7 +264,7 @@ An ad that promises one thing and lands on a page that delivers something else w
 The output of an audit should be a short list of issues ranked by estimated dollar impact, not a 40-point checklist with no prioritization. "Fix conversion tracking first" and "this negative keyword list is missing obvious terms" are not equally urgent, even though both are real findings.
 
 <div class="audit-rank">
-	<p class="audit-rank-label">What a Properly Ranked Output Actually Looks Like</p>
+	<p class="audit-rank-label">Illustrative Example: What a Properly Ranked Output Looks Like</p>
 	<div class="audit-rank-rows">
 		<div class="audit-rank-row">
 			<span class="audit-rank-num">01</span>
@@ -287,7 +287,7 @@ The output of an audit should be a short list of issues ranked by estimated doll
 			<span class="audit-rank-impact">~$400/mo</span>
 		</div>
 	</div>
-	<p class="audit-rank-caption">Same four findings a 40-point checklist would also surface &mdash; ranked, this tells you to fix tracking this week and the negative list whenever there's time. Unranked, all four look equally urgent.</p>
+	<p class="audit-rank-caption">Same four findings a 40-point checklist would also surface &mdash; ranked, this tells you to fix tracking this week and the negative list whenever there's time. Unranked, all four look equally urgent. (Dollar figures are hypothetical, for illustration.)</p>
 </div>
 
 <style>
